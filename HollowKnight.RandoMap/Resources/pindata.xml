@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<randomap>
+  <check name="Mothwing_Cloak">
+    <pinScene>Fungus1_04</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus1_04</sceneName>
+    <objectName>Shiny Item</objectName>
+    <logic>BALDURS | ACID | DASH | CLAW | WINGS</logic>
+  </check>
+  <check name="Mantis_Claw">
+    <pinScene>Fungus2_14</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus2_14</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>DASH | WINGS | CLAW | ACID | ((FIREBALL | (SCREAM + BALDURS)) + FIREBALLSKIPS) | (SUPERDASH + BALDURS)</logic>
+  </check>
+  <check name="Crystal_Heart">
+    <pinScene>Mines_31</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Mines_31</sceneName>
+    <logic>(CLAW + (DASH | SUPERDASH | WINGS | ((FIREBALL | SCREAM) + FIREBALLSKIPS))) | (WINGS + (DASH | ((FIREBALL | SCREAM) + FIREBALLSKIPS)) + SPIKETUNNELS + SHADESKIPS)</logic>
+  </check>
+  <check name="Monarch_Wings">
+    <pinScene>Abyss_21</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Abyss_21</sceneName>
+    <logic>(WINGS + MISCSKIPS) | (CLAW + (SUPERDASH | WINGS))</logic>
+  </check>
+  <check name="Shade_Cloak">
+    <pinScene>Abyss_10</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Abyss_10</sceneName>
+    <logic>(CLAW + (WINGS | ((DASH | SUPERDASH) + MISCSKIPS))) | (WINGS + SHADOWDASH + MISCSKIPS)</logic>
+  </check>
+  <check name="Isma's_Tear">
+    <pinScene>Waterways_13</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Waterways_13</sceneName>
+    <objectName>Randomizer Shiny</objectName>
+    <logic>(CLAW + (SUPERDASH | ACID | (WINGS + DASH + SPIKETUNNELS + (FIREBALL | SCREAM | DASHMASTER | SHARPSHADOW)))) | (WINGS + ACID + (SUPERDASH | (DASH + SPIKETUNNELS + (FIREBALL | SCREAM | DASHMASTER | SHARPSHADOW))))</logic>
+  </check>
+  <check name="Dream_Nail">
+    <pinScene>RestingGrounds_04</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Dream_Nailcollection</sceneName>
+    <logic>MISCSKIPS | CLAW</logic>
+  </check>
+  <check name="Dream_Gate">
+    <pinScene>RestingGrounds_05</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>RestingGrounds_07</sceneName>
+    <logic>DREAMNAIL + (CLAW | WINGS)</logic>
+  </check>
+  <!--TODO: Awoken Dream Nail-->
+  <!--Maybe not? People don't seem to like the idea of 3 dream nail pickups-->
+  <check name="Vengeful_Spirit">
+    <pinScene>Crossroads_ShamanTemple</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Crossroads_ShamanTemple</sceneName>
+    <logic></logic>
+  </check>
+  <check name="Shade_Soul">
+    <pinScene>Ruins1_31b</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>openedMageDoor_v2</rawName>
+    <logic>((CLAW | (WINGS + (DASH | FIREBALL | SCREAM))) + SHADESKIPS) | (CLAW + (DASH | SUPERDASH | WINGS | ACID))</logic>
+  </check>
+  <check name="Desolate_Dive">
+    <pinScene>Ruins1_24</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>mageLordDefeated</rawName>
+    <logic>((CLAW | WINGS) + SHADESKIPS) | (CLAW + (DASH | SUPERDASH | WINGS | ACID))</logic>
+  </check>
+  <check name="Descending_Dark">
+    <pinScene>Mines_28</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Mines_35</sceneName>
+    <objectName>One Way Wall</objectName>
+    <logic>QUAKE + ((CLAW + (SUPERDASH | (DASH + (FIREBALL | SCREAM) + FIREBALLSKIPS))) | (WINGS + (SUPERDASH | DASH | ((FIREBALL | SCREAM) + FIREBALLSKIPS))))</logic>
+  </check>
+  <check name="Howling_Wraiths">
+    <pinScene>Fungus3_44</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus3_44</sceneName>
+    <objectName>One Way Wall</objectName>
+    <logic>CLAW | WINGS</logic>
+  </check>
+  <check name="Abyss_Shriek">
+    <pinScene>Abyss_12</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Abyss_12</sceneName>
+    <logic>SCREAM + ((CLAW + WINGS) | ((CLAW | WINGS) + MISCSKIPS))</logic>
+  </check>
+  <check name="Gathering_Swarm">
+    <pinScene>Town</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>metIselda</rawName>
+    <logic></logic>
+  </check>
+  <check name="Wayward_Compass">
+    <pinScene>Town</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>metIselda</rawName>
+    <logic></logic>
+  </check>
+  <check name="Grubsong">
+    <pinScene>Crossroads_38</pinScene>
+    <checkType>playerData.rawGT</checkType>
+    <rawName>grubRewards</rawName>
+    <rawValue>4</rawValue>
+    <logic>CLAW | WINGS</logic>
+  </check>
+  <check name="Stalwart_Shell">
+    <pinScene>Town</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>metSlyShop</rawName>
+    <logic></logic>
+  </check>
+  <check name="Baldur_Shell">
+    <pinScene>Fungus1_28</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus1_28</sceneName>
+    <objectName>Shiny Item</objectName>
+    <logic>BALDURS + (CLAW | DASH | WINGS | SUPERDASH | SHADESKIPS | (FIREBALL + FIREBALLSKIPS))</logic>
+  </check>
+  <check name="Fury_of_the_Fallen">
+    <pinScene>Tutorial_01</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Tutorial_01</sceneName>
+    <objectName>Chest</objectName>
+    <logic>CLAW</logic>
+  </check>
+  <check name="Quick_Focus">
+    <pinScene>Crossroads_04</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>metCharmSlug</rawName>
+    <logic>CLAW | DASH | WINGS | SUPERDASH | ((SCREAM | FIREBALL) + FIREBALLSKIPS) | SHADESKIPS</logic>
+  </check>
+  <check name="Lifeblood_Heart">
+    <pinScene>Crossroads_04</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>metCharmSlug</rawName>
+    <logic>CLAW | DASH | WINGS | SUPERDASH | ((SCREAM | FIREBALL) + FIREBALLSKIPS) | SHADESKIPS</logic>
+  </check>
+  <!--TODO: Lifeblood Core-->
+  <check name="Defender's_Crest">
+    <pinScene>Waterways_05</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Waterways_05</sceneName>
+    <objectName>Waterways_Crank_Lever</objectName>
+    <logic>(CLAW + (SUPERDASH | DASH | WINGS | MISCSKIPS)) | (WINGS + MISCSKIPS)</logic>
+  </check>
+  <check name="Flukenest">
+    <pinScene>Waterways_12</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Waterways_12</sceneName>
+    <objectName>Shiny Item</objectName>
+    <logic>QUAKE + (CLAW | MISCSKIPS)</logic>
+  </check>
+  <check name="Thorns_of_Agony">
+    <pinScene>Fungus1_14</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus1_14</sceneName>
+    <objectName>Shiny Item</objectName>
+    <logic>DASH | (CLAW + SUPERDASH) | (FIREBALL + MAGSKIPS)</logic>
+  </check>
+  <check name="Mark_of_Pride">
+    <pinScene>Fungus2_31</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus2_31</sceneName>
+    <objectName>Shiny Item Charm</objectName>
+    <logic>CLAW | (WINGS + MISCSKIPS)</logic>
+  </check>
+  <check name="Steady_Body">
+    <pinScene>Crossroads_04</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>metCharmSlug</rawName>
+    <logic>CLAW | DASH | WINGS | SUPERDASH | ((SCREAM | FIREBALL) + FIREBALLSKIPS) | SHADESKIPS</logic>
+  </check>
+  <check name="Heavy_Blow">
+    <pinScene>Town</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>hasSlykey|gaveSlykey</rawName>
+    <logic>CLAW | (WINGS + (DASH | ((FIREBALL | SCREAM) + FIREBALLSKIPS)))</logic>
+  </check>
+  <check name="Sharp_Shadow">
+    <pinScene>Deepnest_44</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Deepnest_44</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>SHADOWDASH + (CLAW | (WINGS + SHADESKIPS))</logic>
+  </check>
+  <check name="Spore_Shroom">
+    <pinScene>Fungus2_20</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus2_20</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>(CLAW + (DASH | WINGS | SUPERDASH | ACID)) | (WINGS + (DASH | ACID) + SHADESKIPS)</logic>
+  </check>
+  <check name="Longnail">
+    <pinScene>Crossroads_04</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>metCharmSlug</rawName>
+    <logic>CLAW | DASH | WINGS | SUPERDASH | ((SCREAM | FIREBALL) + FIREBALLSKIPS) | SHADESKIPS</logic>
+  </check>
+  <check name="Shaman_Stone">
+    <pinScene>Crossroads_04</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>metCharmSlug</rawName>
+    <logic>CLAW | DASH | WINGS | SUPERDASH | ((SCREAM | FIREBALL) + FIREBALLSKIPS) | SHADESKIPS</logic>
+  </check>
+  <check name="Soul_Catcher">
+    <pinScene>Crossroads_ShamanTemple</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Crossroads_ShamanTemple</sceneName>
+    <objectName>Shiny Item</objectName>
+    <logic>CLAW | BALDURS | (WINGS + SHADESKIPS)</logic>
+  </check>
+  <check name="Soul_Eater">
+    <pinScene>RestingGrounds_10</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>RestingGrounds_10</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>QUAKE + (CLAW | WINGS)</logic>
+  </check>
+  <check name="Glowing_Womb">
+    <pinScene>Crossroads_22</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Crossroads_22</sceneName>
+    <objectName>Shiny Item</objectName>
+    <logic>(SUPERDASH | ((FIREBALL | SCREAM | DASHMASTER) + DASH + SPIKETUNNELS)) + (CLAW | WINGS)</logic>
+  </check>
+  <check name="Fragile_Heart">
+    <pinScene>Fungus2_26</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>paidLegEater</rawName>
+    <logic>CLAW | DASH | WINGS | ACID | ((FIREBALL | SCREAM) + FIREBALLSKIPS) | (SUPERDASH + BALDURS)</logic>
+  </check>
+  <check name="Fragile_Greed">
+    <pinScene>Fungus2_26</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>paidLegEater</rawName>
+    <logic>CLAW | DASH | WINGS | ACID | ((FIREBALL | SCREAM) + FIREBALLSKIPS) | (SUPERDASH + BALDURS)</logic>
+  </check>
+  <check name="Fragile_Strength">
+    <pinScene>Fungus2_26</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>paidLegEater</rawName>
+    <logic>CLAW | DASH | WINGS | ACID | ((FIREBALL | SCREAM) + FIREBALLSKIPS) | (SUPERDASH + BALDURS)</logic>
+  </check>
+  <check name="Nailmaster's_Glory">
+    <pinScene>Town</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Room_Sly_Storeroom</sceneName>
+    <logic>Cyclone_Slash + Dash_Slash + Great_Slash</logic>
+  </check>
+  <check name="Joni's_Blessing">
+    <pinScene>Cliffs_05</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Cliffs_05</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>CLAW | (NOCLAW + WINGS)</logic>
+  </check>
+  <check name="Shape_of_Unn">
+    <pinScene>Fungus1_Slug</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus1_Slug</sceneName>
+    <objectName>Shiny Item</objectName>
+    <logic>(ACID + (CLAW | WINGS)) | (SUPERDASH + WINGS + FIREBALL + CLAW + DASH + MAGSKIPS)</logic>
+  </check>
+  <check name="Hiveblood">
+    <pinScene>Hive_05</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Hive_05</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>(CLAW + (WINGS | MISCSKIPS)) | (WINGS + DASH + MISCSKIPS)</logic>
+  </check>
+  <check name="Dream_Wielder">
+    <pinScene>RestingGrounds_05</pinScene>
+    <checkType>playerData.rawGT</checkType>
+    <rawName>dreamOrbs</rawName>
+    <rawValue>500</rawValue>
+    <logic>DREAMNAIL + (CLAW | WINGS)</logic>
+  </check>
+  <check name="Dashmaster">
+    <pinScene>Fungus2_23</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus2_23</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>CLAW | DASH | WINGS | ACID | ((FIREBALL | (SCREAM + BALDURS)) + FIREBALLSKIPS) | (SUPERDASH + BALDURS)</logic>
+  </check>
+  <check name="Quick_Slash">
+    <pinScene>Deepnest_East_14b</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Deepnest_East_14b</sceneName>
+    <objectName>Shiny Item</objectName>
+    <logic>(DASH | MISCSKIPS) + QUAKE + (CLAW | (WINGS + MISCSKIPS))</logic>
+  </check>
+  <check name="Spell_Twister">
+    <pinScene>Ruins1_30</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Ruins1_30</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>((CLAW | WINGS) + SHADESKIPS) | (CLAW + (DASH | SUPERDASH | WINGS | ACID))</logic>
+  </check>
+  <check name="Deep_Focus">
+    <pinScene>Mines_36</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Mines_36</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>(SUPERDASH + (CLAW | (WINGS + FIREBALL + SPIKETUNNELS))) | (WINGS + DASH + SPIKETUNNELS)</logic>
+  </check>
+  <check name="Grubberfly's_Elegy">
+    <pinScene>Crossroads_38</pinScene>
+    <checkType>playerData.rawGT</checkType>
+    <rawName>grubRewards</rawName>
+    <rawValue>46</rawValue>
+    <logic>EVERYTHING</logic>
+  </check>
+  <!--TODO: Kingsoul/Void Heart-->
+  <check name="Sprintmaster">
+    <pinScene>Town</pinScene>
+    <checkType>playerData.raw</checkType>
+    <rawName>hasSlykey|gaveSlykey</rawName>
+    <logic>CLAW | (WINGS + (DASH | ((FIREBALL | SCREAM) + FIREBALLSKIPS)))</logic>
+  </check>
+  <check name="Dreamshield">
+    <pinScene>RestingGrounds_17</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>RestingGrounds_17</sceneName>
+    <objectName>Shiny Item Stand</objectName>
+    <logic>CLAW | MISCSKIPS</logic>
+  </check>
+  <check name="Weaversong">
+    <pinScene>Deepnest_39</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Deepnest_45_v02</sceneName>
+    <objectName>Shiny Item (1)</objectName>
+    <logic>CLAW | WINGS</logic>
+  </check>
+  <check name="Cyclone_Slash">
+    <pinScene>Cliffs_02</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Room_nailmaster</sceneName>
+    <logic>CLAW | (NOCLAW + WINGS)</logic>
+  </check>
+  <check name="Dash_Slash">
+    <pinScene>Deepnest_East_16</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Room_nailmaster_03</sceneName>
+    <logic>CLAW | (WINGS + SHADESKIPS)</logic>
+  </check>
+  <check name="Great_Slash">
+    <pinScene>Fungus1_15</pinScene>
+    <checkType>playerData.scenesVisited</checkType>
+    <sceneName>Room_nailmaster_02</sceneName>
+    <logic>(CLAW + ((DASH + (SUPERDASH | WINGS)) | (WINGS + SUPERDASH))) | (NOCLAW + WINGS + DASH)</logic>
+  </check>
+  <!--TODO: Grimmchild-->
+  <!--TODO: Relics-->
+  <!--TODO: Keys-->
+  <!--TODO: Ore-->
+  <check name="False_Knight_Chest">
+    <pinScene>Crossroads_10</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Crossroads_10</sceneName>
+    <objectName>Chest</objectName>
+    <logic></logic>
+  </check>
+  <check name="Soul_Master_Chest">
+    <pinScene>Ruins1_32</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Ruins1_32</sceneName>
+    <objectName>Chest</objectName>
+    <logic>((CLAW | WINGS) + SHADESKIPS) | (CLAW + (DASH | SUPERDASH | WINGS | ACID))</logic>
+  </check>
+  <check name="Watcher_Knights_Chest">
+    <pinScene>Ruins2_03</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Ruins2_03</sceneName>
+    <objectName>Chest</objectName>
+    <logic>CLAW | (NOCLAW + WINGS)</logic>
+  </check>
+  <check name="Greenpath_Chest">
+    <pinScene>Fungus1_13</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus1_13</sceneName>
+    <objectName>Chest</objectName>
+    <logic>DASH | WINGS | ((BALDURS | ACID | CLAW) + (SHADESKIPS | SUPERDASH))</logic>
+  </check>
+  <check name="Mantis_Lords_Chest">
+    <pinScene>Fungus2_31</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Fungus2_31</sceneName>
+    <objectName>Mantis Chest (2)</objectName>
+    <logic>CLAW | (WINGS + MISCSKIPS)</logic>
+  </check>
+  <check name="Resting_Grounds_Chest">
+    <pinScene>RestingGrounds_10</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>RestingGrounds_10</sceneName>
+    <objectName>Chest</objectName>
+    <logic>(MISCSKIPS | CLAW) + QUAKE</logic>
+  </check>
+  <check name="Crystal_Peak_Chest">
+    <pinScene>Mines_37</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Mines_37</sceneName>
+    <objectName>Chest</objectName>
+    <logic>(CLAW | (NOCLAW + WINGS + SPIKETUNNELS + (DASH | FIREBALL | SCREAM))) + ((Sprintmaster + Dashmaster) | DASH | SUPERDASH)</logic>
+  </check>
+  <check name="Weavers_Den_Chest">
+    <pinScene>Deepnest_39</pinScene>
+    <checkType>sceneData.persistentBoolItems</checkType>
+    <sceneName>Deepnest_45_v02</sceneName>
+    <objectName>Chest</objectName>
+    <logic>(WINGS + (DASH | SUPERDASH)) | (CLAW + SUPERDASH)</logic>
+  </check>
+  
+  <macro name="SHADOWDASH">Mothwing_Cloak + Shade_Cloak</macro>
+  <macro name="SUPERDASH">Crystal_Heart</macro>
+  <macro name="ACID">Isma's_Tear</macro>
+  <macro name="WINGS">Monarch_Wings</macro>
+  <macro name="CLAW">Mantis_Claw</macro>
+  <macro name="BALDURS">FIREBALL | QUAKE | Grubberfly's_Elegy | Glowing_Womb | Spore_Shroom | Weaversong | Mark_of_Pride | Cyclone_Slash | (Longnail + MAGSKIPS) | (Dash_Slash + DASH)</macro>
+  <macro name="SHARPSHADOW">Sharp_Shadow + SHADOWDASH</macro>
+  <macro name="DASHMASTER">Dashmaster + DASH</macro>
+</randomap>
