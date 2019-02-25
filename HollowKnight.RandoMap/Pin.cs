@@ -20,26 +20,38 @@ class Pin : MonoBehaviour {
 
 		switch ( pinData.CheckType ) {
 			case PinData.Types.PlayerBool:
-				if ( pd.GetBool( pinData.PDName ) ) {
-					DebugLog.Write( "  PDBool disable" );
-					disable = true;
+				if ( pinData.PDName.Contains( "|" ) ) {
+					string[] thingy = pinData.PDName.Split( '|' );
+
+					foreach ( string thing in thingy ) {
+						if ( pd.GetBool( thing ) ) {
+							//DebugLog.Write( "  PDBool disable" );
+							disable = true;
+							break;
+						}
+					}
+				} else {
+					if ( pd.GetBool( pinData.PDName ) ) {
+						//DebugLog.Write( "  PDBool disable" );
+						disable = true;
+					}
 				}
 				break;
 			case PinData.Types.PlayerGT:
 				if ( pd.GetInt( pinData.PDName ) > int.Parse(pinData.PDValue) ) {
-					DebugLog.Write( "  PDGT disable" );
+					//DebugLog.Write( "  PDGT disable" );
 					disable = true;
 				}
 				break;
 			case PinData.Types.PlayerSceneVisited:
 				if ( pd.scenesVisited.Contains( pinData.SceneName ) ) {
-					DebugLog.Write( "  SceneVisited disable" );
+					//DebugLog.Write( "  SceneVisited disable" );
 					disable = true;
 				}
 				break;
 			case PinData.Types.SceneData:
 				if ( pSceneObjectActivated( pinData.SceneName, pinData.ObjectName ) ) {
-					DebugLog.Write( "  SceneData disable" );
+					//DebugLog.Write( "  SceneData disable" );
 					disable = true;
 				}
 				break;
@@ -59,13 +71,15 @@ class Pin : MonoBehaviour {
 	private bool pSceneObjectActivated( string pSceneName, string pObjectName ) {
 		List<PersistentBoolData> pbis = SceneData.instance.persistentBoolItems;
 
+		string objectName = ObjectNameChange.GetName(pSceneName, pObjectName);
+
 		foreach ( PersistentBoolData pbd in pbis ) {
-			if ( pbd.sceneName == pSceneName && pbd.id == pObjectName ) {
+			if ( pbd.sceneName == pSceneName && pbd.id == objectName ) {
 				return pbd.activated;
 			}
 		}
 
-		DebugLog.Write( "PBD NOT FOUND! PANIC! " + pSceneName + " - " + pObjectName );
+		//DebugLog.Write( "PBD NOT FOUND! PANIC! " + pSceneName + " - " + objectName );
 		return false;
 	}
 

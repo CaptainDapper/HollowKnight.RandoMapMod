@@ -37,6 +37,27 @@ namespace RandoMapMod {
 			//On.GameMap.SetupMapMarkers += this.PrintDebug;
 			On.GameMap.SetupMapMarkers += this.GameMap_SetupMapMarkers;
 			On.GameMap.DisableMarkers += this.GameMap_DisableMarkers;
+
+			ModHooks.Instance.SavegameLoadHook += this.SavegameLoadHook;
+			ModHooks.Instance.NewGameHook += this.NewGameHook;
+			ModHooks.Instance.SceneChanged += this.SceneChanged;
+		}
+
+		private bool isNewGameTrigger = false;
+		private void SceneChanged( string targetScene ) {
+			if ( !IsRando || !(isNewGameTrigger && targetScene == "Tutorial_01" ) ) {
+				return;
+			}
+
+			ObjectNameChange.Load();
+		}
+
+		private void NewGameHook() {
+			isNewGameTrigger = true;
+		}
+
+		private void SavegameLoadHook( int slot ) {
+			ObjectNameChange.Load();
 		}
 
 		private void GameMap_Start( On.GameMap.orig_Start orig, GameMap self ) {
