@@ -8,9 +8,9 @@ using UnityEngine;
 namespace RandoMapMod {
 	class Resources {
 		private static Dictionary<string, Sprite> pSprites = null;
-		private static List<PinData> pPinData = null;
+		private static Dictionary<string, PinData> pPinData = null;
 
-		internal static List<PinData> PinData() {
+		internal static Dictionary<string, PinData> PinData() {
 			return pPinData;
 		}
 
@@ -19,7 +19,7 @@ namespace RandoMapMod {
 				return sprite;
 			}
 
-			DebugLog.Write( "Failed to load sprite named '" + pSpriteName + "'" );
+			DebugLog.Error( "Failed to load sprite named '" + pSpriteName + "'" );
 			return null;
 		}
 
@@ -45,8 +45,22 @@ namespace RandoMapMod {
 							pLoadPinData( stream );
 						}
 					} catch ( Exception e ) {
-						DebugLog.Write( "XML Load Failed!" );
-						DebugLog.Write( e.ToString() );
+						DebugLog.Error( "XML Load Failed!" );
+						DebugLog.Error( e.ToString() );
+					}
+				}
+			}
+
+			Assembly randoDLL = typeof( RandomizerMod.RandomizerMod ).Assembly;
+			foreach ( string resource in randoDLL.GetManifestResourceNames() ) {
+				if ( resource.EndsWith( "items.xml" ) ) {
+					try {
+						using ( Stream stream = theDLL.GetManifestResourceStream( resource ) ) {
+							pLoadItemData( stream );
+						}
+					} catch ( Exception e ) {
+						DebugLog.Error( "XML Load Failed!" );
+						DebugLog.Error( e.ToString() );
 					}
 				}
 			}
@@ -54,14 +68,13 @@ namespace RandoMapMod {
 
 		private static void pLoadPinData( Stream stream ) {
 			//DebugLog.Write( "pLoadPinData" );
-
-			pPinData = new List<PinData>();
+			pPinData = new Dictionary<string, PinData>();
 
 			XmlDocument xml = new XmlDocument();
 			xml.Load( stream );
-			foreach ( XmlNode node in xml.SelectNodes( "randomap/check" ) ) {
+			foreach ( XmlNode node in xml.SelectNodes( "randomap/pin" ) ) {
 				PinData newPin = new PinData();
-				newPin.Item = node.Attributes["name"].Value;
+				newPin.ID = node.Attributes["name"].Value;
 				//DebugLog.Write( "  " + node.Name + " " + newPin.Item );
 
 				foreach ( XmlNode chld in node.ChildNodes ) {
@@ -78,52 +91,76 @@ namespace RandoMapMod {
 						newPin.CheckType = pSelectCheckType( chld.InnerText );
 					}
 
-					if ( chld.Name == "sceneName" ) {
+					if ( chld.Name == "boolName" ) {
 						found = true;
-						newPin.SceneName = chld.InnerText;
-					}
-
-					if ( chld.Name == "objectName" ) {
-						found = true;
-						newPin.ObjectName = chld.InnerText;
-					}
-
-					if ( chld.Name == "rawName" ) {
-						found = true;
-						newPin.PDName = chld.InnerText;
-					}
-
-					if ( chld.Name == "rawValue" ) {
-						found = true;
-						newPin.PDValue = chld.InnerText;
-					}
-
-					if ( chld.Name == "logic" ) {
-						found = true;
-						newPin.LogicRaw = chld.InnerText;
+						newPin.CheckBool = chld.InnerText;
 					}
 
 					if ( found == false ) {
-						DebugLog.Write( "Item '" + newPin.Item + "' in XML had node '" + chld.Name + "' not parsable!" );
+						DebugLog.Error( "Pin '" + newPin.ID + "' in XML had node '" + chld.Name + "' not parsable!" );
 					}
 				}
 
-				pPinData.Add( newPin );
+				pPinData.Add( newPin.ID, newPin );
+			}
+		}
+
+		private static void pLoadItemData( Stream stream ) {
+			XmlDocument xml = new XmlDocument();
+			xml.Load( stream );
+			foreach ( XmlNode node in xml.SelectNodes( "randomizer/item" ) ) {
+				string itemName = node.Attributes["name"].Value;
+				if ( !pPinData.ContainsKey( itemName ) ) {
+					DebugLog.Error( "Could not find item '" + itemName + "' in PinData Dict!" );
+					continue;
+				}
+
+				PinData pinD = pPinData[itemName];
+				foreach ( XmlNode chld in node.ChildNodes ) {
+					if ( chld.Name == "sceneName" ) {
+						pinD.SceneName = chld.InnerText;
+						continue;
+					}
+
+					if ( chld.Name == "objectName" ) {
+						pinD.OriginalName = chld.InnerText;
+						continue;
+					}
+
+					if ( chld.Name == "logic" ) {
+						pinD.LogicRaw = chld.InnerText;
+						continue;
+					}
+
+					if ( chld.Name == "boolName" ) {
+						pinD.LogicBool = chld.InnerText;
+						continue;
+					}
+
+					if ( chld.Name == "newShiny" ) {
+						pinD.NewShiny = true;
+						continue;
+					}
+
+					if ( chld.Name == "x" ) {
+						pinD.NewX = XmlConvert.ToInt32( chld.InnerText );
+					}
+
+					if ( chld.Name == "y" ) {
+						pinD.NewY = XmlConvert.ToInt32( chld.InnerText );
+					}
+				}
 			}
 		}
 
 		private static PinData.Types pSelectCheckType( string text ) {
 			switch ( text ) {
-				case "sceneData.persistentBoolItems":
+				case "sceneData":
 					return global::RandoMapMod.PinData.Types.SceneData;
-				case "playerData.scenesVisited":
-					return global::RandoMapMod.PinData.Types.PlayerSceneVisited;
-				case "playerData.raw":
+				case "playerData.bool":
 					return global::RandoMapMod.PinData.Types.PlayerBool;
-				case "playerData.rawGT":
-					return global::RandoMapMod.PinData.Types.PlayerGT;
 				default:
-					DebugLog.Write( "WOW something went wrong with the thingy. '" + text + "'" );
+					DebugLog.Error( "Error parsing Pin Check Type. '" + text + "'" );
 					return global::RandoMapMod.PinData.Types.PlayerBool;
 			}
 		}

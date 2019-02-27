@@ -5,11 +5,14 @@ using UnityEngine;
 
 namespace RandoMapMod {
 	// TO DO LIST
-	//  Need to figure out the various pins that won't disappear
-	//    Some items turn into "Randomizer Shiny" instead of the orig objectName...?
 	//  Sometimes map loading fails entirely, probably because we don't have all the maps.
 	//  Need to Minimize and Gray out Not-Gettable-Items
+	//  Let's see if we can stop re-building a lot of the info that randomizer already knows... Logic etc.
 	public class RandoMapMod : Mod {
+		public static RandoMapMod Instance {
+			get; private set;
+		}
+
 		public static bool IsRando {
 			get {
 				//DebugLog.Write( "Rando? " + RandomizerMod.RandomizerMod.Instance.Settings.Randomizer );
@@ -30,6 +33,12 @@ namespace RandoMapMod {
 		}
 
 		public override void Initialize() {
+			if ( Instance != null ) {
+				LogWarn( "Initialized twice... Stop that." );
+				return;
+			}
+			Instance = this;
+
 			Resources.Initialize();
 
 			//On.GameMap.Start += this.PrintDebug;
@@ -41,6 +50,8 @@ namespace RandoMapMod {
 			ModHooks.Instance.SavegameLoadHook += this.SavegameLoadHook;
 			ModHooks.Instance.NewGameHook += this.NewGameHook;
 			ModHooks.Instance.SceneChanged += this.SceneChanged;
+
+			DebugLog.Log("RandoMapMod Initialize complete!");
 		}
 
 		private bool isNewGameTrigger = false;
@@ -49,7 +60,7 @@ namespace RandoMapMod {
 				return;
 			}
 
-			ObjectNameChange.Load();
+			ObjectNames.Load();
 		}
 
 		private void NewGameHook() {
@@ -57,7 +68,7 @@ namespace RandoMapMod {
 		}
 
 		private void SavegameLoadHook( int slot ) {
-			ObjectNameChange.Load();
+			ObjectNames.Load();
 		}
 
 		private void GameMap_Start( On.GameMap.orig_Start orig, GameMap self ) {
@@ -79,7 +90,7 @@ namespace RandoMapMod {
 
 				this.roomCount = new Dictionary<string, int>();
 
-				foreach ( PinData pin in PinData_S.All ) {
+				foreach ( PinData pin in PinData_S.All.Values ) {
 					this.pAddPinToRoom( pin );
 				}
 

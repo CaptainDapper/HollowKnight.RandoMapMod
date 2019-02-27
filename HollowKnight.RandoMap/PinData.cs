@@ -8,14 +8,11 @@ namespace RandoMapMod {
 	class PinData {
 		public enum Types {
 			SceneData,
-			PlayerSceneVisited,
-			PlayerBool,
-			PlayerGT
+			PlayerBool
 		}
-		public string Name {
-			get; set;
-		}
-		public string Item {
+
+		//Assigned with pindata.xml
+		public string ID {
 			get;
 			internal set;
 		}
@@ -27,19 +24,17 @@ namespace RandoMapMod {
 			get;
 			internal set;
 		}
+		public string CheckBool {
+			get;
+			internal set;
+		}
+
+		//Assigned with Randomizer's items.xml:
 		public string SceneName {
 			get;
 			internal set;
 		}
-		public string ObjectName {
-			get;
-			internal set;
-		}
-		public string PDName {
-			get;
-			internal set;
-		}
-		public string PDValue {
+		public string OriginalName {
 			get;
 			internal set;
 		}
@@ -47,17 +42,40 @@ namespace RandoMapMod {
 			get;
 			internal set;
 		}
+		public string LogicBool {
+			get;
+			internal set;
+		}
+		public bool NewShiny {
+			get;
+			internal set;
+		}
+		public int NewX {
+			get;
+			internal set;
+		}
+		public int NewY {
+			get;
+			internal set;
+		}
+
+		public string ObjectName {
+			get {
+				return ObjectNames.Get( this );
+			}
+		}
+
 		public GameObject gameObject {
 			get;
 			set;
 		}
 
 		public PinData() {
-
-		}
-
-		public PinData( string name ) {
-			this.Name = name;
+			this.SceneName = "";
+			this.OriginalName = "";
+			this.LogicRaw = "";
+			this.LogicBool = "";
+			this.NewShiny = false;
 		}
 	}
 }

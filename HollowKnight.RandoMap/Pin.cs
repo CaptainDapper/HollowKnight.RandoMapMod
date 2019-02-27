@@ -20,32 +20,8 @@ class Pin : MonoBehaviour {
 
 		switch ( pinData.CheckType ) {
 			case PinData.Types.PlayerBool:
-				if ( pinData.PDName.Contains( "|" ) ) {
-					string[] thingy = pinData.PDName.Split( '|' );
-
-					foreach ( string thing in thingy ) {
-						if ( pd.GetBool( thing ) ) {
-							//DebugLog.Write( "  PDBool disable" );
-							disable = true;
-							break;
-						}
-					}
-				} else {
-					if ( pd.GetBool( pinData.PDName ) ) {
-						//DebugLog.Write( "  PDBool disable" );
-						disable = true;
-					}
-				}
-				break;
-			case PinData.Types.PlayerGT:
-				if ( pd.GetInt( pinData.PDName ) > int.Parse(pinData.PDValue) ) {
-					//DebugLog.Write( "  PDGT disable" );
-					disable = true;
-				}
-				break;
-			case PinData.Types.PlayerSceneVisited:
-				if ( pd.scenesVisited.Contains( pinData.SceneName ) ) {
-					//DebugLog.Write( "  SceneVisited disable" );
+				if ( pd.GetBool( pinData.CheckBool ) ) {
+					//DebugLog.Write( "  PDBool disable" );
 					disable = true;
 				}
 				break;
@@ -56,34 +32,26 @@ class Pin : MonoBehaviour {
 				}
 				break;
 			default:
-				DebugLog.Write( "Something seriously wrong with this PinMB's PinData..." );
+				DebugLog.Warn( "Pin CheckType not defined?" );
 				break;
 		}
 
 		if ( disable ) {
-			//DebugLog.Write( "Disabling pin: " + pinData.Item + " " + pinData.PinScene + " " + pinData.CheckType.ToString() );
 			this.gameObject.SetActive( false );
 		} else {
-			DebugLog.Write( "Pin remains enabled: " + pinData.Item + " " + pinData.PinScene + " " + pinData.CheckType.ToString() );
+			//DebugLog.Write( "Pin remains enabled: " + pinData.ID + " " + pinData.PinScene + " " + pinData.CheckType.ToString() );
 		}
 	}
 
 	private bool pSceneObjectActivated( string pSceneName, string pObjectName ) {
 		List<PersistentBoolData> pbis = SceneData.instance.persistentBoolItems;
 
-		string objectName = ObjectNameChange.GetName(pSceneName, pObjectName);
-
 		foreach ( PersistentBoolData pbd in pbis ) {
-			if ( pbd.sceneName == pSceneName && pbd.id == objectName ) {
+			if ( pbd.sceneName == pSceneName && pbd.id == pObjectName ) {
 				return pbd.activated;
 			}
 		}
-
-		//DebugLog.Write( "PBD NOT FOUND! PANIC! " + pSceneName + " - " + objectName );
+		
 		return false;
-	}
-
-	void OnDisable() {
-
 	}
 }
