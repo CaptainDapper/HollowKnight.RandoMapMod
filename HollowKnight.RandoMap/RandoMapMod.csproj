@@ -70,9 +70,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomPinGroup.cs" />
     <Compile Include="DebugLog.cs" />
     <Compile Include="LogicManager.cs" />
+    <Compile Include="ObjectName.cs" />
     <Compile Include="Pin.cs" />
     <Compile Include="PinData.cs" />
     <Compile Include="PinData_S.cs" />

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RandoMapMod {
 	class PinData {
@@ -89,7 +85,6 @@ namespace RandoMapMod {
 		}
 		public bool Possible {
 			get {
-				//DebugLog.Write( this.ID + " Possible?" );
 				return LogicManager.ParseLogic( this.Logic );
 			}
 		}
@@ -105,12 +100,8 @@ namespace RandoMapMod {
 			}
 		}
 
-		public Pin Pin {
-			get;
-			set;
-		}
-
 		public PinData() {
+			//Some of these things don't appear in the items.xml file, so I'll just set some defaults...
 			this.SceneName = "";
 			this.OriginalName = "";
 			this.LogicRaw = "";

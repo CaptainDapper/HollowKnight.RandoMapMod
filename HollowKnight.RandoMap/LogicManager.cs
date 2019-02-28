@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RandoMapMod {
 	static class LogicManager {
+		//I'm not proud of this, but most of this code was copied right from the Randomizerv2.0 mod...
+		//I could have made use of the original assembly, but they were marked internal in Seanpr's assembly.
 		private static Dictionary<string, string[]> macros = null;
 
 		public static void AddMacro( string macroName, string rawMacro ) {
@@ -19,7 +20,7 @@ namespace RandoMapMod {
 			List<string> postfix = new List<string>();
 
 			while ( i < infix.Length ) {
-				string op = pGetNextOperator( infix, ref i );
+				string op = getNextOperator( infix, ref i );
 
 				// Easiest way to deal with whitespace between operators
 				if ( op.Trim( ' ' ) == string.Empty ) {
@@ -57,7 +58,7 @@ namespace RandoMapMod {
 			return postfix.ToArray();
 		}
 
-		internal static bool ParseLogic( string[] logic ) {
+		public static bool ParseLogic( string[] logic ) {
 			if ( logic == null || logic.Length == 0 ) {
 				return true;
 			}
@@ -133,13 +134,11 @@ namespace RandoMapMod {
 			if ( stack.Count != 1 ) {
 				DebugLog.Warn( $"Extra items in stack after parsing logic" );
 			}
-
-			//DebugLog.Write( stack.Peek() + " - " + string.Join( " ", logic ) );
-			//DebugLog.Write( stack.Peek() + " - " + string.Join( " ", results ) );
+			
 			return stack.Pop();
 		}
 
-		private static string pGetNextOperator( string infix, ref int i ) {
+		private static string getNextOperator( string infix, ref int i ) {
 			int start = i;
 
 			if ( infix[i] == '(' || infix[i] == ')' || infix[i] == '+' || infix[i] == '|' ) {

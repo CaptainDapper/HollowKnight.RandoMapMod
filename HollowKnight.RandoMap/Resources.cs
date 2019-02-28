@@ -10,11 +10,11 @@ namespace RandoMapMod {
 		private static Dictionary<string, Sprite> pSprites = null;
 		private static Dictionary<string, PinData> pPinData = null;
 
-		internal static Dictionary<string, PinData> PinData() {
+		public static Dictionary<string, PinData> PinData() {
 			return pPinData;
 		}
 
-		internal static Sprite Sprite( string pSpriteName ) {
+		public static Sprite Sprite( string pSpriteName ) {
 			if ( pSprites != null && pSprites.TryGetValue( pSpriteName, out Sprite sprite ) ) {
 				return sprite;
 			}
@@ -23,11 +23,14 @@ namespace RandoMapMod {
 			return null;
 		}
 
+
+
 		internal static void Initialize() {
 			Assembly theDLL = typeof( RandoMapMod ).Assembly;
 			pSprites = new Dictionary<string, Sprite>();
 			foreach ( string resource in theDLL.GetManifestResourceNames() ) {
 				if ( resource.EndsWith( ".png" ) ) {
+					//Load up all the one sprites!
 					Stream img = theDLL.GetManifestResourceStream( resource );
 					byte[] buff = new byte[img.Length];
 					img.Read( buff, 0, buff.Length );
@@ -40,9 +43,10 @@ namespace RandoMapMod {
 						Path.GetFileNameWithoutExtension( resource.Replace( "RandoMapMod.Resources.", string.Empty ) ),
 						UnityEngine.Sprite.Create( texture, new Rect( 0, 0, texture.width, texture.height ), new Vector2( 0.5f, 0.5f ) ) );
 				} else if ( resource.EndsWith( "pindata.xml" ) ) {
+					//Load the pin-specific data; we'll follow up with the direct rando info later, so we don't duplicate defs...
 					try {
 						using ( Stream stream = theDLL.GetManifestResourceStream( resource ) ) {
-							pLoadPinData( stream );
+							loadPinData( stream );
 						}
 					} catch ( Exception e ) {
 						DebugLog.Error( "pindata.xml Load Failed!" );
@@ -58,8 +62,8 @@ namespace RandoMapMod {
 						using ( Stream stream = randoDLL.GetManifestResourceStream( resource ) ) {
 							XmlDocument xml = new XmlDocument();
 							xml.Load( stream );
-							pLoadItemData( xml.SelectNodes( "randomizer/item" ) );
-							pLoadMacroData( xml.SelectNodes( "randomizer/macro" ), xml.SelectNodes( "randomizer/additiveItemSet" ) );
+							loadItemData( xml.SelectNodes( "randomizer/item" ) );
+							loadMacroData( xml.SelectNodes( "randomizer/macro" ), xml.SelectNodes( "randomizer/additiveItemSet" ) );
 						}
 					} catch ( Exception e ) {
 						DebugLog.Error( "items.xml Load Failed!" );
@@ -69,7 +73,9 @@ namespace RandoMapMod {
 			}
 		}
 
-		private static void pLoadMacroData( XmlNodeList nodes, XmlNodeList additiveItems ) {
+
+
+		private static void loadMacroData( XmlNodeList nodes, XmlNodeList additiveItems ) {
 			DebugLog.Write( "pLoadMacroData" );
 			foreach ( XmlNode node in nodes ) {
 				string name = node.Attributes["name"].Value;
@@ -88,7 +94,7 @@ namespace RandoMapMod {
 			}
 		}
 
-		private static void pLoadItemData( XmlNodeList nodes ) {
+		private static void loadItemData( XmlNodeList nodes ) {
 			DebugLog.Write( "pLoadItemData" );
 			foreach ( XmlNode node in nodes ) {
 				string itemName = node.Attributes["name"].Value;
@@ -135,7 +141,7 @@ namespace RandoMapMod {
 			}
 		}
 
-		private static void pLoadPinData( Stream stream ) {
+		private static void loadPinData( Stream stream ) {
 			DebugLog.Write( "pLoadPinData" );
 			pPinData = new Dictionary<string, PinData>();
 
@@ -144,10 +150,8 @@ namespace RandoMapMod {
 			foreach ( XmlNode node in xml.SelectNodes( "randomap/pin" ) ) {
 				PinData newPin = new PinData();
 				newPin.ID = node.Attributes["name"].Value;
-				//DebugLog.Write( "  " + node.Name + " " + newPin.Item );
 
 				foreach ( XmlNode chld in node.ChildNodes ) {
-					//DebugLog.Write( "    " + chld.Name + " " + chld.InnerText );
 					bool found = false;
 
 					switch ( chld.Name ) {
@@ -155,7 +159,7 @@ namespace RandoMapMod {
 							newPin.PinScene = chld.InnerText;
 							break;
 						case "checkType":
-							newPin.CheckType = pSelectCheckType( chld.InnerText );
+							newPin.CheckType = selectCheckType( chld.InnerText );
 							break;
 						case "checkBool":
 							newPin.CheckBool = chld.InnerText;
@@ -179,7 +183,8 @@ namespace RandoMapMod {
 			}
 		}
 
-		private static PinData.Types pSelectCheckType( string text ) {
+		private static PinData.Types selectCheckType( string text ) {
+			//There used to be more of these things... This is probably useless now.
 			switch ( text ) {
 				case "sceneData":
 					return global::RandoMapMod.PinData.Types.SceneData;

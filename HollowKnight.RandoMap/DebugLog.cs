@@ -32,14 +32,12 @@ namespace RandoMapMod {
 		}
 
 		internal static void Write( string[] lines ) {
-#if DEBUG
 			if ( File.Exists( LogFile ) ) {
 				using ( var writer = new StreamWriter( LogFile, true ) ) {
 					foreach ( var line in lines )
 						writer.WriteLine( DateTime.Now.ToString( "HH:mm:ss tt" ) + " " + line );
 				}
 			}
-#endif
 		}
 
 		internal static void Error( string v ) {
