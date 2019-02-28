@@ -5,10 +5,13 @@ using UnityEngine;
 
 namespace RandoMapMod {
 	// TO DO LIST
-	//  Sometimes map loading fails entirely, probably because we don't have all the maps.
-	//  Need to Minimize and Gray out Not-Gettable-Items
-	//  Let's see if we can stop re-building a lot of the info that randomizer already knows... Logic etc.
+	//  Update all of the pin offsets.
+	//  Fix blurry pins
+
 	public class RandoMapMod : Mod {
+		private GameObject custPinGroup = null;
+		private GameMap theMap;
+
 		public static RandoMapMod Instance {
 			get; private set;
 		}
@@ -16,7 +19,8 @@ namespace RandoMapMod {
 		public static bool IsRando {
 			get {
 				//DebugLog.Write( "Rando? " + RandomizerMod.RandomizerMod.Instance.Settings.Randomizer );
-				return RandomizerMod.RandomizerMod.Instance.Settings.Randomizer;
+				return true;
+				//return RandomizerMod.RandomizerMod.Instance.Settings.Randomizer;
 			}
 		}
 
@@ -33,6 +37,8 @@ namespace RandoMapMod {
 		}
 
 		public override void Initialize() {
+			DebugLog.Write( "Initialize" );
+
 			if ( Instance != null ) {
 				LogWarn( "Initialized twice... Stop that." );
 				return;
@@ -49,57 +55,61 @@ namespace RandoMapMod {
 
 			ModHooks.Instance.SavegameLoadHook += this.SavegameLoadHook;
 			ModHooks.Instance.NewGameHook += this.NewGameHook;
-			ModHooks.Instance.SceneChanged += this.SceneChanged;
 
 			DebugLog.Log("RandoMapMod Initialize complete!");
 		}
 
-		private bool isNewGameTrigger = false;
 		private void SceneChanged( string targetScene ) {
-			if ( !IsRando || !(isNewGameTrigger && targetScene == "Tutorial_01" ) ) {
-				return;
+			DebugLog.Write( "SceneChanged " + targetScene );
+			if ( targetScene == "Tutorial_01" ) {
+				if ( IsRando ) {
+					ObjectNames.Load();
+				}
+				ModHooks.Instance.SceneChanged -= this.SceneChanged;
 			}
-
-			ObjectNames.Load();
 		}
 
 		private void NewGameHook() {
-			isNewGameTrigger = true;
+			DebugLog.Write( "NewGameHook" );
+
+			ModHooks.Instance.SceneChanged += this.SceneChanged;
 		}
 
 		private void SavegameLoadHook( int slot ) {
+			DebugLog.Write( "SavegameLoadHook " + slot );
+
 			ObjectNames.Load();
 		}
 
 		private void GameMap_Start( On.GameMap.orig_Start orig, GameMap self ) {
+			DebugLog.Write( "GameMap_Start" );
+
 			if ( !IsRando ) {
 				orig( self );
 				return;
 			}
 
-			if ( this.pinGroupCreated == false ) {
+			if ( this.custPinGroup == null ) {
 				this.theMap = self;
-				//this.pPrintDebug( self );
 
-				//this.pMakeRoomLabels();
+				DebugLog.Write( "Creating Custom Pin Group." );
 
 				this.custPinGroup = new GameObject( "Custom Pins" );
+				CustomPinGroup cpg = this.custPinGroup.AddComponent<CustomPinGroup>();
 				this.custPinGroup.transform.parent = self.transform;
 				this.custPinGroup.transform.position = new Vector3( 0f, 0f, 0f );
 				this.custPinGroup.SetActive( false );
 
-				this.roomCount = new Dictionary<string, int>();
-
 				foreach ( PinData pin in PinData_S.All.Values ) {
 					this.pAddPinToRoom( pin );
 				}
-
-				this.pinGroupCreated = true;
 			}
 			orig( self );
 		}
 
 		private void GameMap_SetupMapMarkers( On.GameMap.orig_SetupMapMarkers orig, GameMap self ) {
+			DebugLog.Write( "GameMap_SetupMapMarkers" );
+
 			if ( !IsRando ) {
 				orig( self );
 				return;
@@ -110,6 +120,8 @@ namespace RandoMapMod {
 		}
 
 		private void GameMap_DisableMarkers( On.GameMap.orig_DisableMarkers orig, GameMap self ) {
+			DebugLog.Write( "GameMap_DisableMarkers" );
+
 			if ( !IsRando ) {
 				orig( self );
 				return;
@@ -118,11 +130,6 @@ namespace RandoMapMod {
 
 			orig( self );
 		}
-
-		private GameObject custPinGroup;
-		private bool pinGroupCreated = false;
-		private GameMap theMap;
-		private Dictionary<string, int> roomCount;
 
 		private void pAddPinToRoom( PinData pPin ) {
 			string roomName = pPin.PinScene;
@@ -136,30 +143,18 @@ namespace RandoMapMod {
 			sr.sortingLayerName = "HUD";
 			sr.size = new Vector2( 1f, 1f );
 
+			newPin.transform.localScale *= 1.2f;
+
 			Pin pin = newPin.AddComponent<Pin>();
 			pin.PinData = pPin;
 
-			Vector3 vec = this.pGetRoomPos( roomName ) + this.pAddRoomOffset( roomName );
+			Vector3 vec = this.pGetRoomPos( roomName ) + pPin.Offset;
 
-			newPin.transform.localPosition = new Vector3( vec.x, vec.y, vec.z );
-		}
-
-		private Vector3 pAddRoomOffset( string pRoomName ) {
-			if ( this.roomCount.ContainsKey( pRoomName ) ) {
-				this.roomCount[pRoomName] += 1;
-			} else {
-				this.roomCount.Add( pRoomName, 1 );
-			}
-
-			float xOff = this.roomCount[pRoomName] * -0.2f - 0.2f;
-			float yOff = this.roomCount[pRoomName] * 0.2f - 0.2f;
-			float zOff = this.roomCount[pRoomName] * 0.01f - 0.01f - 0.5f;
-
-			return new Vector3( xOff, yOff, zOff );
+			newPin.transform.localPosition = new Vector3( vec.x, vec.y, (vec.z - 0.5f) );
 		}
 
 		private Vector3 pGetRoomPos( string prmRoomName ) {
-			Vector3 pos = new Vector3( -30f, -30f, 0.5f );
+			Vector3 pos = new Vector3( -30f, -30f, -0.5f );
 			bool exitLoop = false;
 
 			for ( int index1 = 0; index1 < this.theMap.transform.childCount; ++index1 ) {

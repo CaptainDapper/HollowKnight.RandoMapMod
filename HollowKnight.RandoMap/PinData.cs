@@ -20,11 +20,24 @@ namespace RandoMapMod {
 			get;
 			internal set;
 		}
+
 		public Types CheckType {
 			get;
 			internal set;
 		}
 		public string CheckBool {
+			get;
+			internal set;
+		}
+		public float OffsetX {
+			get;
+			internal set;
+		}
+		public float OffsetY {
+			get;
+			internal set;
+		}
+		public float OffsetZ {
 			get;
 			internal set;
 		}
@@ -59,13 +72,40 @@ namespace RandoMapMod {
 			internal set;
 		}
 
+		//Stuff and things
+		private string[] pLogic = null;
+		public string[] Logic {
+			get {
+				if ( pLogic == null ) {
+					pLogic = LogicManager.ShuntingYard( this.LogicRaw );
+				}
+				return pLogic;
+			}
+		}
+		public bool Obtained {
+			get {
+				return PlayerData.instance.GetBool( this.LogicBool );
+			}
+		}
+		public bool Possible {
+			get {
+				//DebugLog.Write( this.ID + " Possible?" );
+				return LogicManager.ParseLogic( this.Logic );
+			}
+		}
 		public string ObjectName {
 			get {
 				return ObjectNames.Get( this );
 			}
 		}
 
-		public GameObject gameObject {
+		public Vector3 Offset {
+			get {
+				return new Vector3( this.OffsetX, this.OffsetY, this.OffsetZ );
+			}
+		}
+
+		public Pin Pin {
 			get;
 			set;
 		}

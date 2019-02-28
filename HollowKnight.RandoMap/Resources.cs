@@ -45,7 +45,7 @@ namespace RandoMapMod {
 							pLoadPinData( stream );
 						}
 					} catch ( Exception e ) {
-						DebugLog.Error( "XML Load Failed!" );
+						DebugLog.Error( "pindata.xml Load Failed!" );
 						DebugLog.Error( e.ToString() );
 					}
 				}
@@ -55,60 +55,42 @@ namespace RandoMapMod {
 			foreach ( string resource in randoDLL.GetManifestResourceNames() ) {
 				if ( resource.EndsWith( "items.xml" ) ) {
 					try {
-						using ( Stream stream = theDLL.GetManifestResourceStream( resource ) ) {
-							pLoadItemData( stream );
+						using ( Stream stream = randoDLL.GetManifestResourceStream( resource ) ) {
+							XmlDocument xml = new XmlDocument();
+							xml.Load( stream );
+							pLoadItemData( xml.SelectNodes( "randomizer/item" ) );
+							pLoadMacroData( xml.SelectNodes( "randomizer/macro" ), xml.SelectNodes( "randomizer/additiveItemSet" ) );
 						}
 					} catch ( Exception e ) {
-						DebugLog.Error( "XML Load Failed!" );
+						DebugLog.Error( "items.xml Load Failed!" );
 						DebugLog.Error( e.ToString() );
 					}
 				}
 			}
 		}
 
-		private static void pLoadPinData( Stream stream ) {
-			//DebugLog.Write( "pLoadPinData" );
-			pPinData = new Dictionary<string, PinData>();
+		private static void pLoadMacroData( XmlNodeList nodes, XmlNodeList additiveItems ) {
+			DebugLog.Write( "pLoadMacroData" );
+			foreach ( XmlNode node in nodes ) {
+				string name = node.Attributes["name"].Value;
+				LogicManager.AddMacro( name, node.InnerText );
+			}
 
-			XmlDocument xml = new XmlDocument();
-			xml.Load( stream );
-			foreach ( XmlNode node in xml.SelectNodes( "randomap/pin" ) ) {
-				PinData newPin = new PinData();
-				newPin.ID = node.Attributes["name"].Value;
-				//DebugLog.Write( "  " + node.Name + " " + newPin.Item );
+			foreach ( XmlNode node in additiveItems ) {
+				string name = node.Attributes["name"].Value;
 
-				foreach ( XmlNode chld in node.ChildNodes ) {
-					//DebugLog.Write( "    " + chld.Name + " " + chld.InnerText );
-					bool found = false;
-
-					if ( chld.Name == "pinScene" ) {
-						found = true;
-						newPin.PinScene = chld.InnerText;
-					}
-
-					if ( chld.Name == "checkType" ) {
-						found = true;
-						newPin.CheckType = pSelectCheckType( chld.InnerText );
-					}
-
-					if ( chld.Name == "boolName" ) {
-						found = true;
-						newPin.CheckBool = chld.InnerText;
-					}
-
-					if ( found == false ) {
-						DebugLog.Error( "Pin '" + newPin.ID + "' in XML had node '" + chld.Name + "' not parsable!" );
-					}
+				string[] additiveSet = new string[node.ChildNodes.Count];
+				for ( int i = 0; i < additiveSet.Length; i++ ) {
+					additiveSet[i] = node.ChildNodes[i].InnerText;
 				}
 
-				pPinData.Add( newPin.ID, newPin );
+				LogicManager.AddMacro( name, string.Join( " | ", additiveSet ));
 			}
 		}
 
-		private static void pLoadItemData( Stream stream ) {
-			XmlDocument xml = new XmlDocument();
-			xml.Load( stream );
-			foreach ( XmlNode node in xml.SelectNodes( "randomizer/item" ) ) {
+		private static void pLoadItemData( XmlNodeList nodes ) {
+			DebugLog.Write( "pLoadItemData" );
+			foreach ( XmlNode node in nodes ) {
 				string itemName = node.Attributes["name"].Value;
 				if ( !pPinData.ContainsKey( itemName ) ) {
 					DebugLog.Error( "Could not find item '" + itemName + "' in PinData Dict!" );
@@ -150,6 +132,50 @@ namespace RandoMapMod {
 						pinD.NewY = XmlConvert.ToInt32( chld.InnerText );
 					}
 				}
+			}
+		}
+
+		private static void pLoadPinData( Stream stream ) {
+			DebugLog.Write( "pLoadPinData" );
+			pPinData = new Dictionary<string, PinData>();
+
+			XmlDocument xml = new XmlDocument();
+			xml.Load( stream );
+			foreach ( XmlNode node in xml.SelectNodes( "randomap/pin" ) ) {
+				PinData newPin = new PinData();
+				newPin.ID = node.Attributes["name"].Value;
+				//DebugLog.Write( "  " + node.Name + " " + newPin.Item );
+
+				foreach ( XmlNode chld in node.ChildNodes ) {
+					//DebugLog.Write( "    " + chld.Name + " " + chld.InnerText );
+					bool found = false;
+
+					switch ( chld.Name ) {
+						case "pinScene":
+							newPin.PinScene = chld.InnerText;
+							break;
+						case "checkType":
+							newPin.CheckType = pSelectCheckType( chld.InnerText );
+							break;
+						case "checkBool":
+							newPin.CheckBool = chld.InnerText;
+							break;
+						case "offsetX":
+							newPin.OffsetX = XmlConvert.ToSingle( chld.InnerText );
+							break;
+						case "offsetY":
+							newPin.OffsetY = XmlConvert.ToSingle( chld.InnerText );
+							break;
+						case "offsetZ":
+							newPin.OffsetZ = XmlConvert.ToSingle( chld.InnerText );
+							break;
+						default:
+							DebugLog.Error( "Pin '" + newPin.ID + "' in XML had node '" + chld.Name + "' not parsable!" );
+							break;
+					}
+				}
+
+				pPinData.Add( newPin.ID, newPin );
 			}
 		}
 

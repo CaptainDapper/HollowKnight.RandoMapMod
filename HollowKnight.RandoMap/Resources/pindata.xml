@@ -3,26 +3,37 @@
   <pin name="Mothwing_Cloak">
     <pinScene>Fungus1_04</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.35</offsetX>
+    <offsetY>0.2</offsetY>
   </pin>
   <pin name="Mantis_Claw">
     <pinScene>Fungus2_14</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-1.75</offsetX>
+    <offsetY>0.05</offsetY>
   </pin>
   <pin name="Crystal_Heart">
     <pinScene>Mines_31</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>2.6</offsetX>
+    <offsetY>-0.4</offsetY>
   </pin>
   <pin name="Monarch_Wings">
     <pinScene>Abyss_21</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-1.25</offsetX>
+    <offsetY>0.15</offsetY>
   </pin>
   <pin name="Shade_Cloak">
     <pinScene>Abyss_10</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>1.35</offsetX>
   </pin>
   <pin name="Isma's_Tear">
     <pinScene>Waterways_13</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.55</offsetX>
+    <offsetY>-0.85</offsetY>
   </pin>
   <pin name="Dream_Nail">
     <pinScene>RestingGrounds_04</pinScene>
@@ -31,133 +42,193 @@
   <pin name="Dream_Gate">
     <pinScene>RestingGrounds_05</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.75</offsetX>
+    <offsetY>0.95</offsetY>
+    <offsetZ>-0.05</offsetZ>
   </pin>
   <pin name="Vengeful_Spirit">
     <pinScene>Crossroads_ShamanTemple</pinScene>
     <checkType>sceneData</checkType>
+    <offsetY>0.1</offsetY>
+    <offsetZ>0.05</offsetZ>
   </pin>
   <pin name="Shade_Soul">
     <pinScene>Ruins1_31b</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.1</offsetX>
+    <offsetY>0.1</offsetY>
   </pin>
   <pin name="Desolate_Dive">
     <pinScene>Ruins1_24</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.1</offsetX>
+    <offsetY>-0.1</offsetY>
   </pin>
   <pin name="Descending_Dark">
     <pinScene>Mines_28</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.7</offsetX>
+    <offsetY>0.9</offsetY>
   </pin>
   <pin name="Howling_Wraiths">
     <pinScene>Fungus3_44</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.75</offsetX>
+    <offsetY>0.45</offsetY>
   </pin>
   <pin name="Abyss_Shriek">
     <pinScene>Abyss_12</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-1.5</offsetX>
   </pin>
   <pin name="Gathering_Swarm">
     <pinScene>Town</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>metIselda</checkBool>
+    <offsetX>0.975</offsetX>
+    <offsetY>-0.2</offsetY>
+    <offsetZ>-0.05</offsetZ>
   </pin>
   <pin name="Wayward_Compass">
     <pinScene>Town</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>metIselda</checkBool>
+    <offsetX>0.975</offsetX>
   </pin>
   <pin name="Grubsong">
     <pinScene>Crossroads_38</pinScene>
     <checkType>sceneData</checkType>
+    <offsetY>0.2</offsetY>
+    <offsetZ>0.05</offsetZ>
   </pin>
   <pin name="Stalwart_Shell">
     <pinScene>Town</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>metSlyShop</checkBool>
+    <offsetX>-0.85</offsetX>
+    <offsetY>0.4</offsetY>
+    <offsetZ>0.1</offsetZ>
   </pin>
   <pin name="Baldur_Shell">
     <pinScene>Fungus1_28</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.35</offsetX>
+    <offsetY>-0.6</offsetY>
   </pin>
   <pin name="Fury_of_the_Fallen">
     <pinScene>Tutorial_01</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>1.2</offsetX>
+    <offsetY>-0.75</offsetY>
   </pin>
   <pin name="Quick_Focus">
     <pinScene>Crossroads_04</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>metCharmSlug</checkBool>
+    <offsetX>1.2</offsetX>
   </pin>
   <pin name="Lifeblood_Heart">
     <pinScene>Crossroads_04</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>metCharmSlug</checkBool>
+    <offsetX>1.2</offsetX>
+    <offsetY>-0.2</offsetY>
+    <offsetZ>-0.05</offsetZ>
   </pin>
   <pin name="Defender's_Crest">
     <pinScene>Waterways_05</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.4</offsetX>
   </pin>
   <pin name="Flukenest">
     <pinScene>Waterways_12</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.8</offsetX>
   </pin>
   <pin name="Thorns_of_Agony">
     <pinScene>Fungus1_14</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.65</offsetX>
+    <offsetY>0.05</offsetY>
   </pin>
   <pin name="Mark_of_Pride">
     <pinScene>Fungus2_31</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.15</offsetX>
+    <offsetY>0.05</offsetY>
   </pin>
   <pin name="Steady_Body">
     <pinScene>Crossroads_04</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>metCharmSlug</checkBool>
+    <offsetX>1.2</offsetX>
+    <offsetY>-0.4</offsetY>
+    <offsetZ>-0.1</offsetZ>
   </pin>
   <pin name="Heavy_Blow">
     <pinScene>Town</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>gaveSlykey</checkBool>
+    <offsetX>-0.85</offsetX>
   </pin>
   <pin name="Sharp_Shadow">
     <pinScene>Deepnest_44</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.05</offsetX>
+    <offsetY>-0.6</offsetY>
   </pin>
   <pin name="Spore_Shroom">
     <pinScene>Fungus2_20</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.15</offsetX>
+    <offsetY>-0.25</offsetY>
   </pin>
   <pin name="Longnail">
     <pinScene>Crossroads_04</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>metCharmSlug</checkBool>
+    <offsetX>1.2</offsetX>
+    <offsetY>0.2</offsetY>
+    <offsetZ>0.05</offsetZ>
   </pin>
   <pin name="Shaman_Stone">
     <pinScene>Crossroads_04</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>metCharmSlug</checkBool>
+    <offsetX>1.2</offsetX>
+    <offsetY>0.4</offsetY>
+    <offsetZ>0.1</offsetZ>
   </pin>
   <pin name="Soul_Catcher">
     <pinScene>Crossroads_ShamanTemple</pinScene>
     <checkType>sceneData</checkType>
+    <offsetY>-0.1</offsetY>
   </pin>
   <pin name="Soul_Eater">
     <pinScene>RestingGrounds_10</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>3.5</offsetX>
+    <offsetY>0.1</offsetY>
   </pin>
   <pin name="Glowing_Womb">
     <pinScene>Crossroads_22</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.9</offsetX>
+    <offsetY>0.05</offsetY>
   </pin>
   <pin name="Fragile_Heart">
     <pinScene>Fungus2_26</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>paidLegEater</checkBool>
+    <offsetY>0.2</offsetY>
+    <offsetZ>0.05</offsetZ>
   </pin>
   <pin name="Fragile_Greed">
     <pinScene>Fungus2_26</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>paidLegEater</checkBool>
+    <offsetY>0.4</offsetY>
+    <offsetZ>0.1</offsetZ>
   </pin>
   <pin name="Fragile_Strength">
     <pinScene>Fungus2_26</pinScene>
@@ -167,38 +238,57 @@
   <pin name="Nailmaster's_Glory">
     <pinScene>Town</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.85</offsetX>
+    <offsetY>-0.2</offsetY>
+    <offsetZ>-0.05</offsetZ>
   </pin>
   <pin name="Joni's_Blessing">
     <pinScene>Cliffs_05</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.55</offsetX>
+    <offsetY>-0.4</offsetY>
   </pin>
   <pin name="Shape_of_Unn">
     <pinScene>Fungus1_Slug</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.5</offsetX>
+    <offsetY>1.0</offsetY>
   </pin>
   <pin name="Hiveblood">
     <pinScene>Hive_05</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.7</offsetX>
+    <offsetY>-0.35</offsetY>
   </pin>
   <pin name="Dream_Wielder">
     <pinScene>RestingGrounds_05</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.75</offsetX>
+    <offsetY>1.15</offsetY>
+    <offsetZ>0.05</offsetZ>
   </pin>
   <pin name="Dashmaster">
     <pinScene>Fungus2_23</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.45</offsetX>
+    <offsetY>-0.55</offsetY>
   </pin>
   <pin name="Quick_Slash">
     <pinScene>Deepnest_East_14b</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.5</offsetX>
+    <offsetY>0.1</offsetY>
   </pin>
   <pin name="Spell_Twister">
     <pinScene>Ruins1_30</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.35</offsetX>
+    <offsetY>0.45</offsetY>
   </pin>
   <pin name="Deep_Focus">
     <pinScene>Mines_36</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.1</offsetX>
   </pin>
   <pin name="Grubberfly's_Elegy">
     <pinScene>Crossroads_38</pinScene>
@@ -208,57 +298,83 @@
     <pinScene>Town</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>gaveSlykey</checkBool>
+    <offsetX>-0.85</offsetX>
+    <offsetY>0.2</offsetY>
+    <offsetZ>0.05</offsetZ>
   </pin>
   <pin name="Dreamshield">
     <pinScene>RestingGrounds_17</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.5</offsetX>
   </pin>
   <pin name="Weaversong">
     <pinScene>Deepnest_39</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>2.4</offsetX>
+    <offsetY>0.35</offsetY>
   </pin>
   <pin name="Cyclone_Slash">
     <pinScene>Cliffs_02</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.2</offsetX>
+    <offsetY>0.45</offsetY>
   </pin>
   <pin name="Dash_Slash">
     <pinScene>Deepnest_East_16</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-1.05</offsetX>
   </pin>
   <pin name="Great_Slash">
     <pinScene>Fungus1_15</pinScene>
     <checkType>sceneData</checkType>
+    <offsetY>0.15</offsetY>
   </pin>
   <pin name="False_Knight_Chest">
     <pinScene>Crossroads_10</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.5</offsetX>
+    <offsetY>-0.2</offsetY>
   </pin>
   <pin name="Soul_Master_Chest">
     <pinScene>Ruins1_32</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.3</offsetX>
+    <offsetY>1.15</offsetY>
   </pin>
   <pin name="Watcher_Knights_Chest">
     <pinScene>Ruins2_03</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>-0.6</offsetX>
+    <offsetY>1.3</offsetY>
   </pin>
   <pin name="Greenpath_Chest">
     <pinScene>Fungus1_13</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.35</offsetX>
+    <offsetY>0.2</offsetY>
   </pin>
   <pin name="Mantis_Lords_Chest">
     <pinScene>Fungus2_31</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.45</offsetX>
+    <offsetY>0.1</offsetY>
   </pin>
   <pin name="Resting_Grounds_Chest">
     <pinScene>RestingGrounds_10</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>1.5</offsetX>
+    <offsetY>-0.25</offsetY>
   </pin>
   <pin name="Crystal_Peak_Chest">
     <pinScene>Mines_37</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>0.2</offsetX>
+    <offsetY>-0.23</offsetY>
   </pin>
   <pin name="Weavers_Den_Chest">
     <pinScene>Deepnest_39</pinScene>
     <checkType>sceneData</checkType>
+    <offsetX>2.4</offsetX>
+    <offsetY>0.15</offsetY>
   </pin>
 </randomap>

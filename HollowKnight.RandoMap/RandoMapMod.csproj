@@ -70,7 +70,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomPinGroup.cs" />
     <Compile Include="DebugLog.cs" />
+    <Compile Include="LogicManager.cs" />
     <Compile Include="Pin.cs" />
     <Compile Include="PinData.cs" />
     <Compile Include="PinData_S.cs" />
@@ -79,13 +81,12 @@
     <Compile Include="Resources.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\pindata.xml" />
+    <EmbeddedResource Include="Resources\pindata.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Map\randoPin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\pindataOLD.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
