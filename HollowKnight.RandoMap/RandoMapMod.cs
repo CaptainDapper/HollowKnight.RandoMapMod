@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace RandoMapMod {
 	public class RandoMapMod : Mod {
+		//TODO: I need to change RandomizerMod in a few places, in order to ultimately clean this all up
+		//		LogicManager all public'd, and maybe change the parser to accept a callback function instead of the list of 'obtained' items.
+		//		Either the SaveSettings needs to hang onto the StringValues a bit longer before removing the actions, or all the action types need to be public'd.
 		private GameObject custPinGroup = null;
 		private GameMap theMap;
 
@@ -33,10 +36,11 @@ namespace RandoMapMod {
 
 		public override void Initialize() {
 			if ( Instance != null ) {
-				LogWarn( "Initialized twice... Stop that." );
+				DebugLog.Warn( "Initialized twice... Stop that." );
 				return;
 			}
 			Instance = this;
+			DebugLog.Log( "RandoMapMod Initializing..." );
 
 			Resources.Initialize();
 			
@@ -45,26 +49,17 @@ namespace RandoMapMod {
 			On.GameMap.DisableMarkers += this.GameMap_DisableMarkers;
 
 			ModHooks.Instance.SavegameLoadHook += this.SavegameLoadHook;
-			ModHooks.Instance.NewGameHook += this.NewGameHook;
+			ModHooks.Instance.SavegameSaveHook += this.SavegameSaveHook;
 
-			global::RandoMapMod.DebugLog.Log("RandoMapMod Initialize complete!");
-		}
-
-		private void SceneChanged( string targetScene ) {
-			if ( targetScene == "Tutorial_01" ) {
-				if ( IsRando ) {
-					ObjectNames.Load();
-				}
-				ModHooks.Instance.SceneChanged -= this.SceneChanged;
-			}
-		}
-
-		private void NewGameHook() {
-			ModHooks.Instance.SceneChanged += this.SceneChanged;
+			DebugLog.Log("RandoMapMod Initialize complete!");
 		}
 
 		private void SavegameLoadHook( int slot ) {
-			ObjectNames.Load();
+			ObjectNames.Load(slot);
+		}
+
+		private void SavegameSaveHook( int slot ) {
+			ObjectNames.Load(slot);
 		}
 
 		private void GameMap_Start( On.GameMap.orig_Start orig, GameMap self ) {

@@ -76,12 +76,6 @@ namespace RandoMapMod {
 
 
 		private static void loadMacroData( XmlNodeList nodes, XmlNodeList additiveItems ) {
-			DebugLog.Write( "pLoadMacroData" );
-			foreach ( XmlNode node in nodes ) {
-				string name = node.Attributes["name"].Value;
-				LogicManager.AddMacro( name, node.InnerText );
-			}
-
 			foreach ( XmlNode node in additiveItems ) {
 				string name = node.Attributes["name"].Value;
 
@@ -90,12 +84,16 @@ namespace RandoMapMod {
 					additiveSet[i] = node.ChildNodes[i].InnerText;
 				}
 
-				LogicManager.AddMacro( name, string.Join( " | ", additiveSet ));
+				LogicManager.AddMacro( name, string.Join( " | ", additiveSet ) );
+			}
+
+			foreach ( XmlNode node in nodes ) {
+				string name = node.Attributes["name"].Value;
+				LogicManager.AddMacro( name, node.InnerText );
 			}
 		}
 
 		private static void loadItemData( XmlNodeList nodes ) {
-			DebugLog.Write( "pLoadItemData" );
 			foreach ( XmlNode node in nodes ) {
 				string itemName = node.Attributes["name"].Value;
 				if ( !pPinData.ContainsKey( itemName ) ) {
@@ -103,46 +101,56 @@ namespace RandoMapMod {
 					continue;
 				}
 
+				string line = "";
+
 				PinData pinD = pPinData[itemName];
 				foreach ( XmlNode chld in node.ChildNodes ) {
 					if ( chld.Name == "sceneName" ) {
+						line += ", sceneName = " + chld.InnerText;
 						pinD.SceneName = chld.InnerText;
 						continue;
 					}
 
 					if ( chld.Name == "objectName" ) {
+						line += ", objectName = " + chld.InnerText;
 						pinD.OriginalName = chld.InnerText;
 						continue;
 					}
 
 					if ( chld.Name == "logic" ) {
+						line += ", logic = " + chld.InnerText;
 						pinD.LogicRaw = chld.InnerText;
 						continue;
 					}
 
 					if ( chld.Name == "boolName" ) {
+						line += ", boolName = " + chld.InnerText;
 						pinD.LogicBool = chld.InnerText;
 						continue;
 					}
 
 					if ( chld.Name == "newShiny" ) {
+						line += ", newShiny = " + chld.InnerText;
 						pinD.NewShiny = true;
 						continue;
 					}
 
 					if ( chld.Name == "x" ) {
+						line += ", x = " + chld.InnerText;
 						pinD.NewX = XmlConvert.ToInt32( chld.InnerText );
+						continue;
 					}
 
 					if ( chld.Name == "y" ) {
+						line += ", y = " + chld.InnerText;
 						pinD.NewY = XmlConvert.ToInt32( chld.InnerText );
+						continue;
 					}
 				}
 			}
 		}
 
 		private static void loadPinData( Stream stream ) {
-			DebugLog.Write( "pLoadPinData" );
 			pPinData = new Dictionary<string, PinData>();
 
 			XmlDocument xml = new XmlDocument();
@@ -151,26 +159,32 @@ namespace RandoMapMod {
 				PinData newPin = new PinData();
 				newPin.ID = node.Attributes["name"].Value;
 
-				foreach ( XmlNode chld in node.ChildNodes ) {
-					bool found = false;
+				string line = "";
 
+				foreach ( XmlNode chld in node.ChildNodes ) {
 					switch ( chld.Name ) {
 						case "pinScene":
+							line += ", pinScene = " + chld.InnerText;
 							newPin.PinScene = chld.InnerText;
 							break;
 						case "checkType":
+							line += ", checkType = " + chld.InnerText;
 							newPin.CheckType = selectCheckType( chld.InnerText );
 							break;
 						case "checkBool":
+							line += ", checkBool = " + chld.InnerText;
 							newPin.CheckBool = chld.InnerText;
 							break;
 						case "offsetX":
+							line += ", offsetX = " + chld.InnerText;
 							newPin.OffsetX = XmlConvert.ToSingle( chld.InnerText );
 							break;
 						case "offsetY":
+							line += ", offsetY = " + chld.InnerText;
 							newPin.OffsetY = XmlConvert.ToSingle( chld.InnerText );
 							break;
 						case "offsetZ":
+							line += ", offsetZ = " + chld.InnerText;
 							newPin.OffsetZ = XmlConvert.ToSingle( chld.InnerText );
 							break;
 						default:

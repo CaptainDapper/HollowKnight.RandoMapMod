@@ -1,4 +1,5 @@
 ﻿using RandoMapMod;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,18 +27,22 @@ class Pin : MonoBehaviour {
 
 	void OnEnable() {
 		//Set Pin's display state according to location's logic.
-		setLogicState( this.pinData.Possible );
+		try {
+			this.setLogicState( this.pinData.Possible );
+		} catch ( Exception e ) {
+			DebugLog.Error( e.ToString() );
+		}
 
 		//Disable Pin if we've already obtained / checked this location.
 		switch ( this.pinData.CheckType ) {
 			case PinData.Types.PlayerBool:
-				if ( PlayerData.instance.GetBool( this.pinData.CheckBool ) ) {
-					disableSelf();
+				if ( this.checkPlayerData( this.pinData.CheckBool ) ) {
+					this.disableSelf();
 				}
 				break;
 			case PinData.Types.SceneData:
 				if ( this.checkSceneData( this.pinData.SceneName, this.pinData.ObjectName ) ) {
-					disableSelf();
+					this.disableSelf();
 				}
 				break;
 			default:
@@ -45,8 +50,6 @@ class Pin : MonoBehaviour {
 				break;
 		}
 	}
-
-
 
 	private void disableSelf() {
 		this.gameObject.SetActive( false );
@@ -64,15 +67,23 @@ class Pin : MonoBehaviour {
 		}
 	}
 
+	private bool checkPlayerData( string checkBool ) {
+		bool ret = PlayerData.instance.GetBool( checkBool );
+
+		return ret;
+	}
+
 	private bool checkSceneData( string pSceneName, string pObjectName ) {
+		bool ret = false;
 		List<PersistentBoolData> pbis = SceneData.instance.persistentBoolItems;
 
 		foreach ( PersistentBoolData pbd in pbis ) {
 			if ( pbd.sceneName == pSceneName && pbd.id == pObjectName ) {
-				return pbd.activated;
+				ret = pbd.activated;
+				break;
 			}
 		}
 
-		return false;
+		return ret;
 	}
 }

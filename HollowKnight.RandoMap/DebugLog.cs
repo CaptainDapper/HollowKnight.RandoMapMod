@@ -41,14 +41,17 @@ namespace RandoMapMod {
 		}
 
 		internal static void Error( string v ) {
+			DebugLog.Write( "ERROR: " + v );
 			RandoMapMod.Instance.LogError( v );
 		}
 
 		internal static void Log( string v ) {
+			DebugLog.Write( "LOG: " + v );
 			RandoMapMod.Instance.Log( v );
 		}
 
 		internal static void Warn( string v ) {
+			DebugLog.Write( "WARN: " + v );
 			RandoMapMod.Instance.LogWarn( v );
 		}
 	}

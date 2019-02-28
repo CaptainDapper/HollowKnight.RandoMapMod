@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace RandoMapMod {
 	static class LogicManager {
@@ -134,7 +135,7 @@ namespace RandoMapMod {
 			if ( stack.Count != 1 ) {
 				DebugLog.Warn( $"Extra items in stack after parsing logic" );
 			}
-			
+
 			return stack.Pop();
 		}
 
