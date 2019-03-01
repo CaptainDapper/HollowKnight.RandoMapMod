@@ -55,6 +55,10 @@ namespace RandoMapMod {
 			get;
 			internal set;
 		}
+		public bool InChest {
+			get;
+			internal set;
+		}
 		public bool NewShiny {
 			get;
 			internal set;
@@ -107,6 +111,10 @@ namespace RandoMapMod {
 			this.LogicRaw = "";
 			this.LogicBool = "";
 			this.NewShiny = false;
+		}
+
+		public override string ToString() {
+			return "Pin_" + this.ID;
 		}
 	}
 }

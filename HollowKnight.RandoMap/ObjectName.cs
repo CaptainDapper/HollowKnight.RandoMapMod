@@ -2,65 +2,108 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using UnityEngine;
 
 namespace RandoMapMod {
 	//Some object names get changed around in the Randomizer. Luckily, these changes are saved in the save-data.
-	class ObjectName {
+	class JSONAction {
 		public string sceneName;
 		public string objectName;
 		public string newShinyName;
 		public float x;
 		public float y;
+
+		public enum Type {
+			AddShinyToChest,
+			ReplaceObjectWithShiny,
+			CreateNewShiny,
+			ChangeChestGeo,
+			NONE
+		}
 	}
 
 	static class ObjectNames {
-		private static List<ObjectName> list = null;
+		private static Dictionary<string, string> dict = null;
 
 		public static string Get( PinData pinD ) {
-			if ( list == null )
-				Load(GameManager.instance.profileID);
-
-			foreach ( ObjectName onc in list ) {
-				if ( pinD.NewShiny == true && pinD.NewX == (int) onc.x && pinD.NewY == (int) onc.y ) {
-					return onc.newShinyName;
-				}
-
-				if ( onc.sceneName == pinD.SceneName && onc.objectName == pinD.OriginalName ) {
-					return onc.newShinyName;
-				}
+			if ( dict == null ) {
+				Load( GameManager.instance.profileID );
 			}
 
-			return pinD.OriginalName;
+			string newName = "";
+			if ( dict.TryGetValue( pinD.ID, out newName ) ) {
+				return newName;
+			} else {
+				return pinD.OriginalName;
+			}
 		}
 
-		private static void Add( ObjectName onc ) {
-			list.Add( onc );
+		private static void Add( string pinID, string newName ) {
+			dict.Add( pinID, newName );
 		}
 
 		public static void Load(int saveSlot) {
 			/*
-			 * GOOD LORD SEAN WHY REMOVE THE STRINGVALUES
+			 * GOOD LORD WHY REMOVE THE STRINGVALUES
 			foreach ( string val in RandomizerMod.RandomizerMod.Instance.Settings.StringValues.Values ) {
-				DebugLog.Write( val );
 				if ( val.Contains( "newShinyName" ) ) {
 					ObjectName newONC = JsonUtility.FromJson<ObjectName>( val );
 					Add( newONC );
 				}
 			*/
-
-			list = new List<ObjectName>();
+			dict = new Dictionary<string, string>();
 						
 			Platform.Current.ReadSaveSlot( saveSlot, (Action<byte[]>) ( fileBytes =>
 			{
 				try {
 					SaveGameData data = JsonUtility.FromJson<SaveGameData>( !GameManager.instance.gameConfig.useSaveEncryption || Platform.Current.IsFileSystemProtected ? Encoding.UTF8.GetString( fileBytes ) : Encryption.Decrypt( (string) new BinaryFormatter().Deserialize( (Stream) new MemoryStream( fileBytes ) ) ) );
-					foreach ( string val in data.modData["RandomizerMod"].StringValues.Values ) {
-						if ( val.Contains( "newShinyName" ) ) {
-							ObjectName newONC = JsonUtility.FromJson<ObjectName>( val );
-							Add( newONC );
+					foreach ( string key in data.modData["RandomizerMod"].StringValues.Keys ) {
+						JSONAction.Type type = JSONAction.Type.NONE;
+							type = getActionType( key );
+							if ( type == JSONAction.Type.NONE ) {
+								continue;
+							}
+
+						string val = data.modData["RandomizerMod"].StringValues[key];
+						JSONAction actionData = JsonUtility.FromJson<JSONAction>( val );
+						PinData pinD = null;
+						string newName = "";
+						switch ( type ) {
+							case JSONAction.Type.AddShinyToChest:
+							case JSONAction.Type.ReplaceObjectWithShiny:
+								pinD = PinData_S.All.Values.Where(
+									pins => pins.SceneName == actionData.sceneName
+										&& pins.OriginalName == actionData.objectName
+									).FirstOrDefault();
+								newName = actionData.newShinyName;
+								break;
+							case JSONAction.Type.CreateNewShiny:
+								pinD = PinData_S.All.Values.Where(
+									pins => pins.SceneName == actionData.sceneName
+										&& pins.NewX == (int) actionData.x
+										&& pins.NewY == (int) actionData.y
+										&& pins.NewShiny == true
+									).FirstOrDefault();
+								newName = actionData.newShinyName;
+								break;
+							case JSONAction.Type.ChangeChestGeo:
+								pinD = PinData_S.All.Values.Where(
+									pins => pins.SceneName == actionData.sceneName
+										&& pins.InChest == true
+									).FirstOrDefault();
+								newName = actionData.objectName;
+								break;
+							case JSONAction.Type.NONE:
+							default:
+								DebugLog.Error( "What the crap just happened...? This enum is weeeeird." );
+								break;
+						}
+						if ( pinD != null && newName != "" ) {
+							//DebugLog.Write( "ONC Added: Item '" + pinD.ID + "' ObjectName '" + newName + "' Type '" + type + "'" );
+							Add( pinD.ID, newName );
 						}
 					}
 				} catch ( Exception ex ) {
@@ -68,6 +111,15 @@ namespace RandoMapMod {
 					DebugLog.Error( ex.ToString() );
 				}
 			} ) );
+		}
+
+		private static JSONAction.Type getActionType( string key ) {
+			foreach ( JSONAction.Type type in Enum.GetValues(typeof(JSONAction.Type)).Cast<JSONAction.Type>() ) {
+				if ( type != JSONAction.Type.NONE && key.Contains( type.ToString() ) ) {
+					return type;
+				}
+			}
+			return JSONAction.Type.NONE;
 		}
 	}
 }

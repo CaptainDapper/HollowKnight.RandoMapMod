@@ -6,8 +6,11 @@ using UnityEngine;
 namespace RandoMapMod {
 	public class RandoMapMod : Mod {
 		//TODO: I need to change RandomizerMod in a few places, in order to ultimately clean this all up
-		//		LogicManager all public'd, and maybe change the parser to accept a callback function instead of the list of 'obtained' items.
-		//		Either the SaveSettings needs to hang onto the StringValues a bit longer before removing the actions, or all the action types need to be public'd.
+		//			LogicManager all public'd, and maybe change the parser to accept a callback function instead of the list of 'obtained' items.
+		//			Either the SaveSettings needs to hang onto the StringValues a bit longer before removing the actions, or all the action types need to be public'd.
+		//		Add option to the New Game setup screen to unlock all maps at start
+		//		Fix Fury Chest
+		//		Purchase a Pin item from Iselda to unlock Pins?
 		private GameObject custPinGroup = null;
 		private GameMap theMap;
 
@@ -23,7 +26,7 @@ namespace RandoMapMod {
 		}
 
 		public override string GetVersion() {
-			string ver = "0.0.1";
+			string ver = "0.0.2";
 			int minAPI = 45;
 
 			bool apiTooLow = Convert.ToInt32( ModHooks.Instance.ModVersion.Split( '-' )[1] ) < minAPI;
