@@ -9,8 +9,15 @@ namespace RandoMapMod {
 		//			LogicManager all public'd, and maybe change the parser to accept a callback function instead of the list of 'obtained' items.
 		//			Either the SaveSettings needs to hang onto the StringValues a bit longer before removing the actions, or all the action types need to be public'd.
 		//		Add option to the New Game setup screen to unlock all maps at start
-		//		Fix Fury Chest
 		//		Purchase a Pin item from Iselda to unlock Pins?
+		//		Pre Req colors (Grub count, keys, etc)
+		//		Give the randomizer a custom end screen (
+		//			Skip credits, 
+		//			add hash [of randomizer actions?],
+		//			location check count percentage [as opposed to masks, and other stuff...]
+		//			checks per hour
+		//		)
+		//		Unlock the Max Scroll Boundaries for map, if not the whole map...
 		private GameObject custPinGroup = null;
 		private GameMap theMap;
 
