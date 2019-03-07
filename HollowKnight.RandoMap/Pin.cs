@@ -6,8 +6,10 @@ using UnityEngine;
 class Pin : MonoBehaviour {
 	private PinData pinData;
 	private bool isPossible = true;
+	private bool isPrereqMet = true;
 
 	private SpriteRenderer sr = null;
+	private Sprite origSprite = null;
 	private Vector3 origScale;
 	private Color origColor;
 
@@ -21,14 +23,20 @@ class Pin : MonoBehaviour {
 
 	void Awake() {
 		this.sr = this.gameObject.GetComponent<SpriteRenderer>();
+		this.origSprite = this.sr.sprite;
 		this.origScale = this.transform.localScale;
 		this.origColor = this.sr.color;
 	}
 
 	void OnEnable() {
-		//Set Pin's display state according to location's logic.
 		try {
+			//Set Pin's display state according to location's logic.
 			this.setLogicState( this.pinData.Possible );
+
+			if ( this.isPossible ) {
+				//Set Pin state according to prereqs.
+				this.setPrereqState( this.pinData.PreReqMet );
+			}
 		} catch ( Exception e ) {
 			DebugLog.Error( e.ToString() );
 		}
@@ -64,6 +72,16 @@ class Pin : MonoBehaviour {
 			this.transform.localScale = this.origScale * 0.5f;
 			this.sr.color = Color.gray;
 			this.isPossible = false;
+		}
+	}
+
+	private void setPrereqState( bool val ) {
+		if ( val == true && this.isPrereqMet == false ) {
+			this.sr.sprite = this.origSprite;
+			this.isPrereqMet = true;
+		} else if ( val == false && this.isPrereqMet == true ) {
+			this.sr.sprite = RandoMapMod.Resources.Sprite( "Map.prereqPin" );
+			this.isPrereqMet = false;
 		}
 	}
 

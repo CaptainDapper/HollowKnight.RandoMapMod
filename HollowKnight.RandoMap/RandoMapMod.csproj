@@ -88,6 +88,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Map\randoPin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Map\prereqPin.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetPath)" "E:\Games\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\RandoMapMod.dll"</PostBuildEvent>

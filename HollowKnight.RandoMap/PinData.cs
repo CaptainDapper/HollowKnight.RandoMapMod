@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace RandoMapMod {
 	class PinData {
@@ -22,6 +23,10 @@ namespace RandoMapMod {
 			internal set;
 		}
 		public string CheckBool {
+			get;
+			internal set;
+		}
+		public string PrereqRaw {
 			get;
 			internal set;
 		}
@@ -51,7 +56,7 @@ namespace RandoMapMod {
 			get;
 			internal set;
 		}
-		public string LogicBool {
+		public string ObtainedBool {
 			get;
 			internal set;
 		}
@@ -82,14 +87,31 @@ namespace RandoMapMod {
 				return pLogic;
 			}
 		}
+		private string[] pPrereq = null;
+		public string[] Prereq {
+			get {
+				if ( pPrereq == null ) {
+					pPrereq = LogicManager.ShuntingYard( this.PrereqRaw );
+				}
+				return pPrereq;
+			}
+		}
 		public bool Obtained {
 			get {
-				return PlayerData.instance.GetBool( this.LogicBool );
+				return PlayerData.instance.GetBool( this.ObtainedBool );
 			}
 		}
 		public bool Possible {
 			get {
-				return LogicManager.ParseLogic( this.Logic );
+				return LogicManager.ParseLogic( this.Logic, ( val => { return PinData_S.All[val].Obtained; } ) );
+			}
+		}
+		public bool PreReqMet {
+			get {
+				if ( this.PrereqRaw == null ) {
+					return true;
+				}
+				return LogicManager.ParseLogic( this.Prereq, LogicManager.ParsePrereqNode );
 			}
 		}
 		public string ObjectName {
@@ -109,7 +131,7 @@ namespace RandoMapMod {
 			this.SceneName = "";
 			this.OriginalName = "";
 			this.LogicRaw = "";
-			this.LogicBool = "";
+			this.ObtainedBool = "";
 			this.NewShiny = false;
 		}
 

@@ -27,11 +27,13 @@
   <pin name="Shade_Cloak">
     <pinScene>Abyss_10</pinScene>
     <checkType>sceneData</checkType>
+    <prereq>hasKingsBrand</prereq>
     <offsetX>1.35</offsetX>
   </pin>
   <pin name="Isma's_Tear">
     <pinScene>Waterways_13</pinScene>
     <checkType>sceneData</checkType>
+    <prereq>(waterwaysAcidDrained | hasAcidArmour) + (simpleKeys>0 | openedWaterwaysManhole)</prereq>
     <offsetX>0.55</offsetX>
     <offsetY>-0.85</offsetY>
   </pin>
@@ -42,6 +44,7 @@
   <pin name="Dream_Gate">
     <pinScene>RestingGrounds_05</pinScene>
     <checkType>sceneData</checkType>
+    <prereq>dreamOrbs>899</prereq>
     <offsetX>-0.75</offsetX>
     <offsetY>0.95</offsetY>
     <offsetZ>-0.05</offsetZ>
@@ -79,6 +82,7 @@
   <pin name="Abyss_Shriek">
     <pinScene>Abyss_12</pinScene>
     <checkType>sceneData</checkType>
+    <prereq>hasKingsBrand</prereq>
     <offsetX>-1.5</offsetX>
   </pin>
   <pin name="Gathering_Swarm">
@@ -98,6 +102,7 @@
   <pin name="Grubsong">
     <pinScene>Crossroads_38</pinScene>
     <checkType>sceneData</checkType>
+    <prereq>grubsCollected>9</prereq>
     <offsetY>0.2</offsetY>
     <offsetZ>0.05</offsetZ>
   </pin>
@@ -138,11 +143,13 @@
   <pin name="Defender's_Crest">
     <pinScene>Waterways_05</pinScene>
     <checkType>sceneData</checkType>
+    <prereq>simpleKeys>0 | openedWaterwaysManhole</prereq>
     <offsetX>0.4</offsetX>
   </pin>
   <pin name="Flukenest">
     <pinScene>Waterways_12</pinScene>
     <checkType>sceneData</checkType>
+    <prereq>simpleKeys>0 | openedWaterwaysManhole</prereq>
     <offsetX>-0.8</offsetX>
   </pin>
   <pin name="Thorns_of_Agony">
@@ -169,6 +176,7 @@
     <pinScene>Town</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>gaveSlykey</checkBool>
+    <prereq>hasSlykey</prereq>
     <offsetX>-0.85</offsetX>
   </pin>
   <pin name="Sharp_Shadow">
@@ -257,12 +265,14 @@
   <pin name="Hiveblood">
     <pinScene>Hive_05</pinScene>
     <checkType>sceneData</checkType>
+    <prereq>hasTramPass</prereq>
     <offsetX>0.7</offsetX>
     <offsetY>-0.35</offsetY>
   </pin>
   <pin name="Dream_Wielder">
     <pinScene>RestingGrounds_05</pinScene>
     <checkType>sceneData</checkType>
+    <prereq>dreamOrbs>499</prereq>
     <offsetX>-0.75</offsetX>
     <offsetY>1.15</offsetY>
     <offsetZ>0.05</offsetZ>
@@ -298,6 +308,7 @@
     <pinScene>Town</pinScene>
     <checkType>playerData.bool</checkType>
     <checkBool>gaveSlykey</checkBool>
+    <prereq>hasSlykey</prereq>
     <offsetX>-0.85</offsetX>
     <offsetY>0.2</offsetY>
     <offsetZ>0.05</offsetZ>

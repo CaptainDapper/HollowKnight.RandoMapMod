@@ -119,7 +119,7 @@ namespace RandoMapMod {
 					}
 
 					if ( chld.Name == "boolName" ) {
-						pinD.LogicBool = chld.InnerText;
+						pinD.ObtainedBool = chld.InnerText;
 						continue;
 					}
 
@@ -170,6 +170,10 @@ namespace RandoMapMod {
 						case "checkBool":
 							line += ", checkBool = " + chld.InnerText;
 							newPin.CheckBool = chld.InnerText;
+							break;
+						case "prereq":
+							line += ", prereq = " + chld.InnerText;
+							newPin.PrereqRaw = chld.InnerText;
 							break;
 						case "offsetX":
 							line += ", offsetX = " + chld.InnerText;

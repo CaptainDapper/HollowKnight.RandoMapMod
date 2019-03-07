@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RandoMapMod {
@@ -59,7 +60,18 @@ namespace RandoMapMod {
 			return postfix.ToArray();
 		}
 
-		public static bool ParseLogic( string[] logic ) {
+		public static bool ParsePrereqNode( string node ) {
+			PlayerData pd = PlayerData.instance;
+			if ( node.Contains( '>' ) ) {
+				string[] str = node.Split( '>' );
+				int testVal = int.Parse( str[1] );
+				return ( pd.GetInt( str[0] ) > testVal );
+			} else {
+				return pd.GetBool( node );
+			}
+		}
+
+		public static bool ParseLogic( string[] logic, Predicate<string> eval ) {
 			if ( logic == null || logic.Length == 0 ) {
 				return true;
 			}
@@ -121,8 +133,8 @@ namespace RandoMapMod {
 						results[i] = stack.Peek().ToString();
 						break;
 					default:
-						stack.Push( PinData_S.All[logic[i]].Obtained );
-						results[i] = stack.Peek().ToString().Substring( 0, 1 ) + "#" + PinData_S.All[logic[i]].LogicBool;
+						stack.Push( eval( logic[i] ) );
+						results[i] = stack.Peek().ToString();
 						break;
 				}
 			}

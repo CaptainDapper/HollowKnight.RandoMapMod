@@ -5,19 +5,20 @@ using UnityEngine;
 
 namespace RandoMapMod {
 	public class RandoMapMod : Mod {
-		//TODO: I need to change RandomizerMod in a few places, in order to ultimately clean this all up
+		//TODO:
+		//		Add option to the New Game setup screen to unlock all maps at start
+		//			Or maybe add a YN shiny to the floor at Iselda's?
+		//		Pretty up the sprites
+		//		HOLD - I need to change RandomizerMod in a few places, in order to ultimately clean this all up
 		//			LogicManager all public'd, and maybe change the parser to accept a callback function instead of the list of 'obtained' items.
 		//			Either the SaveSettings needs to hang onto the StringValues a bit longer before removing the actions, or all the action types need to be public'd.
-		//		Add option to the New Game setup screen to unlock all maps at start
-		//		Purchase a Pin item from Iselda to unlock Pins?
-		//		Pre Req colors (Grub count, keys, etc)
-		//		Give the randomizer a custom end screen (
+		//		HOLD - Give the randomizer a custom end screen (
 		//			Skip credits, 
 		//			add hash [of randomizer actions?],
 		//			location check count percentage [as opposed to masks, and other stuff...]
 		//			checks per hour
 		//		)
-		//		Unlock the Max Scroll Boundaries for map, if not the whole map...
+		//		HOLD - Add pins to the Legend??
 		private GameObject custPinGroup = null;
 		private GameMap theMap;
 
@@ -33,7 +34,7 @@ namespace RandoMapMod {
 		}
 
 		public override string GetVersion() {
-			string ver = "0.0.2";
+			string ver = "0.0.3";
 			int minAPI = 45;
 
 			bool apiTooLow = Convert.ToInt32( ModHooks.Instance.ModVersion.Split( '-' )[1] ) < minAPI;
@@ -78,6 +79,7 @@ namespace RandoMapMod {
 				return;
 			}
 
+			//Create the custom pin group, and add all the new pins
 			if ( this.custPinGroup == null ) {
 				this.theMap = self;
 
@@ -90,6 +92,13 @@ namespace RandoMapMod {
 					this.addPinToRoom( pin );
 				}
 			}
+
+			//Set the maximum scroll boundaries, so we can scroll the entire map, even if we don't have the maps unlocked.
+			self.panMinX = -24.16f;
+			self.panMaxX = 17.3f;
+			self.panMinY = -12.58548f;
+			self.panMaxY = 15.6913f;
+
 			orig( self );
 		}
 
