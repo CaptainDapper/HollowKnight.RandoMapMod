@@ -1,4 +1,5 @@
 ﻿using Modding;
+using On;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,8 @@ namespace RandoMapMod {
 		//		Add option to the New Game setup screen to unlock all maps at start
 		//			Or maybe add a YN shiny to the floor at Iselda's?
 		//		Pretty up the sprites
-		//		HOLD - I need to change RandomizerMod in a few places, in order to ultimately clean this all up
+		//		Add a pin-sprite for Sequence Breaking
+		//		HOLD - I need RandomizerMod to be elsewise in a few places, in order to ultimately clean this all up
 		//			LogicManager all public'd, and maybe change the parser to accept a callback function instead of the list of 'obtained' items.
 		//			Either the SaveSettings needs to hang onto the StringValues a bit longer before removing the actions, or all the action types need to be public'd.
 		//		HOLD - Give the randomizer a custom end screen (
@@ -19,6 +21,11 @@ namespace RandoMapMod {
 		//			checks per hour
 		//		)
 		//		HOLD - Add pins to the Legend??
+		const float MAP_MIN_X = -24.16f;
+		const float MAP_MAX_X = 17.3f;
+		const float MAP_MIN_Y = -12.58548f;
+		const float MAP_MAX_Y = 15.6913f;
+
 		private GameObject custPinGroup = null;
 		private GameMap theMap;
 
@@ -34,7 +41,7 @@ namespace RandoMapMod {
 		}
 
 		public override string GetVersion() {
-			string ver = "0.0.3";
+			string ver = "0.3.2";
 			int minAPI = 45;
 
 			bool apiTooLow = Convert.ToInt32( ModHooks.Instance.ModVersion.Split( '-' )[1] ) < minAPI;
@@ -55,12 +62,13 @@ namespace RandoMapMod {
 
 			Resources.Initialize();
 			
-			On.GameMap.Start += this.GameMap_Start;
-			On.GameMap.SetupMapMarkers += this.GameMap_SetupMapMarkers;
-			On.GameMap.DisableMarkers += this.GameMap_DisableMarkers;
+			On.GameMap.Start += this.GameMap_Start;							//Set up custom pins
+			On.GameMap.WorldMap += this.GameMap_WorldMap;					//Set big map boundaries
+			On.GameMap.SetupMapMarkers += this.GameMap_SetupMapMarkers;		//Enable the custom pins
+			On.GameMap.DisableMarkers += this.GameMap_DisableMarkers;		//Disable the custom pins
 
-			ModHooks.Instance.SavegameLoadHook += this.SavegameLoadHook;
-			ModHooks.Instance.SavegameSaveHook += this.SavegameSaveHook;
+			ModHooks.Instance.SavegameLoadHook += this.SavegameLoadHook;	//Load object name changes
+			ModHooks.Instance.SavegameSaveHook += this.SavegameSaveHook;	//Load object name changes
 
 			DebugLog.Log("RandoMapMod Initialize complete!");
 		}
@@ -84,6 +92,7 @@ namespace RandoMapMod {
 				this.theMap = self;
 
 				this.custPinGroup = new GameObject( "Custom Pins" );
+				this.custPinGroup.AddComponent<PinGroup>();
 				this.custPinGroup.transform.parent = self.transform;
 				this.custPinGroup.transform.position = new Vector3( 0f, 0f, 0f );
 				this.custPinGroup.SetActive( false );
@@ -93,21 +102,29 @@ namespace RandoMapMod {
 				}
 			}
 
-			//Set the maximum scroll boundaries, so we can scroll the entire map, even if we don't have the maps unlocked.
-			self.panMinX = -24.16f;
-			self.panMaxX = 17.3f;
-			self.panMinY = -12.58548f;
-			self.panMaxY = 15.6913f;
-
 			orig( self );
 		}
 
-		private void GameMap_SetupMapMarkers( On.GameMap.orig_SetupMapMarkers orig, GameMap self ) {
-			if ( !IsRando ) {
-				orig( self );
-				return;
-			}
+		private void GameMap_WorldMap( On.GameMap.orig_WorldMap orig, GameMap self ) {
 			orig( self );
+			if ( !IsRando )
+				return;
+
+			//Set the maximum scroll boundaries, so we can scroll the entire map, even if we don't have the maps unlocked.
+			if ( self.panMinX > MAP_MIN_X )
+				self.panMinX = MAP_MIN_X;
+			if ( self.panMaxX < MAP_MAX_X )
+				self.panMaxX = MAP_MAX_X;
+			if ( self.panMinY > MAP_MIN_Y )
+				self.panMinY = MAP_MIN_Y;
+			if ( self.panMaxY < MAP_MAX_Y )
+				self.panMaxY = MAP_MAX_Y;
+		}
+
+		private void GameMap_SetupMapMarkers( On.GameMap.orig_SetupMapMarkers orig, GameMap self ) {
+			orig( self );
+			if ( !IsRando )
+				return;
 
 			this.custPinGroup.SetActive( true );
 		}
