@@ -76,8 +76,6 @@ namespace RandoMapMod {
 				return true;
 			}
 
-			string[] results = new string[logic.Length];
-
 			Stack<bool> stack = new Stack<bool>();
 
 			for ( int i = 0; i < logic.Length; i++ ) {
@@ -89,7 +87,6 @@ namespace RandoMapMod {
 						}
 
 						stack.Push( stack.Pop() & stack.Pop() );
-						results[i] = "+";
 						break;
 					case "|":
 						if ( stack.Count < 2 ) {
@@ -98,43 +95,33 @@ namespace RandoMapMod {
 						}
 
 						stack.Push( stack.Pop() | stack.Pop() );
-						results[i] = "|";
 						break;
 					case "SHADESKIPS":
 						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.ShadeSkips );
-						results[i] = stack.Peek().ToString();
 						break;
 					case "ACIDSKIPS":
 						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.AcidSkips );
-						results[i] = stack.Peek().ToString();
 						break;
 					case "SPIKETUNNELS":
 						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.SpikeTunnels );
-						results[i] = stack.Peek().ToString();
 						break;
 					case "MISCSKIPS":
 						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.MiscSkips );
-						results[i] = stack.Peek().ToString();
 						break;
 					case "FIREBALLSKIPS":
 						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.FireballSkips );
-						results[i] = stack.Peek().ToString();
 						break;
 					case "MAGSKIPS":
 						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.MagSkips );
-						results[i] = stack.Peek().ToString();
 						break;
 					case "NOCLAW":
 						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.NoClaw );
-						results[i] = stack.Peek().ToString();
 						break;
 					case "EVERYTHING":
 						stack.Push( false );
-						results[i] = stack.Peek().ToString();
 						break;
 					default:
 						stack.Push( eval( logic[i] ) );
-						results[i] = stack.Peek().ToString();
 						break;
 				}
 			}
