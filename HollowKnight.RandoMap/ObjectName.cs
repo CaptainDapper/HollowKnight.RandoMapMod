@@ -46,6 +46,7 @@ namespace RandoMapMod {
 		}
 
 		public static void Load(int saveSlot) {
+			//TODO: USE THE PUBLIC FIELD PLZ
 			/*
 			 * GOOD LORD WHY REMOVE THE STRINGVALUES
 			foreach ( string val in RandomizerMod.RandomizerMod.Instance.Settings.StringValues.Values ) {

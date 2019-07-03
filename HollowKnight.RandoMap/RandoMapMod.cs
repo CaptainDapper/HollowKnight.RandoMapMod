@@ -9,7 +9,22 @@ using UnityEngine.SceneManagement;
 
 namespace RandoMapMod {
 	public class RandoMapMod : Mod {
+		//Item Pools:
+		//	Dreamer
+		//	Skill
+		//	Charm
+		//	Key
+		//	Mask
+		//	Vessel
+		//	Notch
+		//	Ore
+		//	Geo
+		//	Egg
+		//	Relic
+		//	Fake
+
 		//TODO:
+		//		BUG: When starting a new game, SAFETY needs to be reset...
 		//		With skips enabled, set a special Pin sprite for each type of skip needed
 		//		Pretty up the sprites
 		//		Add a pin-sprite for Sequence Breaking
@@ -43,7 +58,7 @@ namespace RandoMapMod {
 		}
 
 		public override string GetVersion() {
-			string ver = "0.3.4";
+			string ver = "0.3.5";
 			int minAPI = 45;
 
 			bool apiTooLow = Convert.ToInt32( ModHooks.Instance.ModVersion.Split( '-' )[1] ) < minAPI;
@@ -207,6 +222,10 @@ namespace RandoMapMod {
 
 			//DebugLog.Log( "New Scene: " + to.name );
 			if ( to.name == "Town" ) {
+				if ( PlayerData.instance.GetBool( "mapAllRooms" ) == false ) {
+					_SAFETY = 0;
+				}
+
 				PlayMakerFSM elder = FSMUtility.LocateFSM( GameObject.Find( "Elderbug" ), "npc_control" );
 				FsmState target = null;
 				foreach ( FsmState state in elder.FsmStates ) {

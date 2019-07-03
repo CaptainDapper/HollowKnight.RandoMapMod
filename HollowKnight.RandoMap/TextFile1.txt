@@ -1,0 +1,115 @@
+﻿DASH | WINGS | CLAW | ACID | ((FIREBALL | (SCREAM + BALDURS)) + FIREBALLSKIPS) | (SUPERDASH + BALDURS)
+
+0    1 2     3 4    5 6    7 890        1 23      4 5      67 8 9            0 1 23         4 5      6
+0    1 2     3 4    5 6    7   8        9  0      1 2         3 4              5  6         7 8
+
+DASH Monarch_Wings | Mantis_Claw | Isma's_Tear | FIREBALL SCREAM BALDURS + | FIREBALLSKIPS + | SUPERDASH BALDURS + |
+0    1             2 3           4 5           6 7        8      9       0 1 2             3 4 5         6       7 8
+
+
+
+((FIREBALL | (SCREAM + BALDURS)) + FIREBALLSKIPS)
+
+  0        1  2      3 4         5 6
+
+FIREBALL SCREAM BALDURS + | FIREBALLSKIPS +
+
+((SCREAM + BALDURS) | FIREBALL) + FIREBALLSKIPS
+
+
+
+(CLAW + (DASH | SUPERDASH | WINGS | ((FIREBALL | SCREAM) + FIREBALLSKIPS))) | (WINGS + (DASH | ((FIREBALL | SCREAM) + FIREBALLSKIPS)) + SPIKETUNNELS + SHADESKIPS)
+ 0    1  2    3 4         5 6     7   8        9 a       b c                d  e     f  g    h   i        j k       l m               n o            p q
+
+CLAW DASH SUPERDASH | WINGS | FIREBALL SCREAM | FIREBALLSKIPS + | + WINGS DASH FIREBALL SCREAM | FIREBALLSKIPS + | + SPIKETUNNELS + SHADESKIPS + |
+0    2    4         3 6     5 8        a      9 c             b 7 1
+0    1    2         3 4     5 6        7      8 9             a b c d     e    f        g      h i             j k l m            n o          p q
+
+(CLAW + (DASH | SUPERDASH | WINGS | ((FIREBALL | SCREAM) + FIREBALLSKIPS)))
+
+(WINGS + (DASH | ((FIREBALL | SCREAM) + FIREBALLSKIPS)) + SPIKETUNNELS + SHADESKIPS)
+
+
+
+<item> <item> | => [].new
+[x] <item> | => [x].append(<item>)
+[x] [y] | => [x].appendEach([y]); [y].delete
+[x] <item> + => [y] = [].new; [y].append(<item>); [y].nest([x])
+
+
+[0] DASH SUPERDASH WINGS [1] FIREBALLSKIPS
+[1] FIREBALL SCREAM
+[2] CLAW [0]
+[3] FIREBALL SCREAM
+[4] DASH [3] FIREBALLSKIPS
+[5] WINGS [4]
+[6] [5] SPIKETUNNELS
+[7] [6] SHADESKIPS
+[8] [2] [7]
+
+
+
+
+
+[0] DASH SUPERDASH WINGS FIREBALLSKIPS [1]
+[1] FIREBALL SCREAM
+[2] CLAW [0]
+[3] FIREBALL SCREAM
+[4] DASH FIREBALLSKIPS [3]
+[5] WINGS [4]
+[6] SPIKETUNNELS [5]
+[7] SHADESKIPS [6]
+[root?] [2] [7]
+
+
+root=
+	[2]
+		CLAW
+		[0]
+			DASH
+			SUPERDASH
+			WINGS
+			FIREBALLSKIPS
+			[1]
+				FIREBALL
+				SCREAM
+	[7]
+		SHADESKIPS
+		[6]
+			SPIKETUNNELS
+			[5]
+				WINGS
+				[4]
+					DASH
+					FIREBALLSKIPS
+					[3]
+						FIREBALL
+						SCREAM
+
+root=
+	[2]
+		[0]
+			DASH
+			SUPERDASH
+			WINGS
+			[1]
+				FIREBALL
+				SCREAM
+			FIREBALLSKIPS
+		CLAW
+	[7]
+		[6]
+			[5]
+				[4]
+					DASH
+					[3]
+						FIREBALL
+						SCREAM
+					FIREBALLSKIPS
+				WINGS
+			SPIKETUNNELS
+		SHADESKIPS
+
+(CLAW + (DASH | SUPERDASH | WINGS | ((FIREBALL | SCREAM) + FIREBALLSKIPS))) | (WINGS + (DASH | ((FIREBALL | SCREAM) + FIREBALLSKIPS)) + SPIKETUNNELS + SHADESKIPS)
+(CLAW + (DASH | SUPERDASH | WINGS | (FIREBALLSKIPS + (FIREBALL | SCREAM)))) | (SHADESKIPS + SPIKETUNNELS + WINGS + (DASH | (FIREBALLSKIPS + (FIREBALL | SCREAM))))
+((DASH | SUPERDASH | WINGS | ((FIREBALL | SCREAM) + FIREBALLSKIPS)) + CLAW) | ((DASH | ((FIREBALL | SCREAM) + FIREBALLSKIPS)) + WINGS + SPIKETUNNELS + SHADESKIPS)
