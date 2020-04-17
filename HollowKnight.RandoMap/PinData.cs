@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModCommon;
+using System;
 using UnityEngine;
 
 namespace RandoMapMod {
@@ -76,6 +77,23 @@ namespace RandoMapMod {
 			get;
 			internal set;
 		}
+        public string Pool
+        {
+            get;
+            internal set;
+        }
+
+        public bool hasPrereq
+        {
+            get;
+            internal set;
+        }
+
+        public bool isShop
+        {
+            get;
+            internal set;
+        }
 
 		//Stuff and things
 		private string[] pLogic = null;
@@ -98,20 +116,52 @@ namespace RandoMapMod {
 		}
 		public bool Obtained {
 			get {
-				return PlayerData.instance.GetBool( this.ObtainedBool );
+                //return PlayerData.instance.GetBool( this.ObtainedBool );
+                return LogicManager.checkedItems.Contains(this.ID.Replace('_', ' '));
 			}
 		}
 		public bool Possible {
 			get {
-				return LogicManager.ParseLogic( this.Logic, ( val => { return PinData_S.All[val].Obtained; } ) );
+                bool test = LogicManager.reachableItems.Contains(this.ID.Replace('_', ' '));
+                //Dev.Log(this.ID + " Possible? " + test);
+                return test;
 			}
 		}
 		public bool PreReqMet {
 			get {
-				if ( this.PrereqRaw == null ) {
-					return true;
-				}
-				return LogicManager.ParseLogic( this.Prereq, LogicManager.ParsePrereqNode );
+                if(!this.hasPrereq)
+                {
+                    return true;
+                }
+                else
+                {
+                    int cost = 0;
+                    (string, int)[] costs = RandomizerMod.RandomizerMod.Instance.Settings.VariableCosts;
+                    for (int i = 0; i < costs.Length; i++)
+                    {
+                        if (costs[i].Item1 == this.ID)
+                        {
+                            cost = costs[i].Item2;
+                            break;
+                        }
+                    }
+                    if (cost == 0) return true;
+                    if (RandoMapMod.grubfatherItems.Contains(this.ID.Replace('_', ' '))) 
+                    {
+                        //Dev.Log("Grub Cost for " + this.ID + " is " + cost + ". You have " + PlayerData.instance.grubsCollected);
+                        return PlayerData.instance.grubsCollected > cost;
+                    }
+                    if(RandoMapMod.seerItems.Contains(this.ID.Replace('_',' ')))
+                    {
+                        //Dev.Log("Essence Cost for " + this.ID + " is " + cost + ". You have " + PlayerData.instance.dreamOrbs);
+                        return PlayerData.instance.dreamOrbs > cost;
+                    }
+                    return false;
+                }
+				//if ( this.PrereqRaw == null ) {
+				//	return true;
+				//}
+				//return LogicManager.ParseLogic( this.Prereq, LogicManager.ParsePrereqNode );
 			}
 		}
 		public string ObjectName {

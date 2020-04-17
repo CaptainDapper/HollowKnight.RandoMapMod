@@ -8,13 +8,17 @@ Let me know if you find any bugs, have any feature requests, or just have questi
 
 ## How it works
 
-There are three different types of pins: Small Dark (?) Pins, Big Red (?) Pins, and Yellow (!) Pins.
+There are five different types of pins: Small Dark (?) Pins, Big Red (?) Pins, Yellow (!) Pins, Small Dark ($) Pins, and Big Green ($) Pins.
 
 The Small (?) indicate item locations that are currently out-of-logic. It's possible they are still obtainable through sequence breaks. 
 
 The Big (?) indicate item locations that are currently in logic, and one of these will contain the progression you are looking for, unless you're already in go mode.
 
-The Yellow (!) indicate item locations that are currently in logic but still require some form of prerequisite to obtain; I.E. Sly's Shopkeeper Key, or the 10 grubs for the Grubsong location, or essence for Senorita Mothface, etc.
+The Yellow (!) indicate item locations that are currently in logic but still require some form of prerequisite to obtain; I.E. Grubs for Grubfather or Essence for Seer.
+
+The Small ($) indicate shop locations that are currently out-of-logic. It's possible they are still reachable through sequence breaks.
+
+The Green ($) indicate shop locations that are currently in logic, as a reminder to the player that the shop may still have items for sale they may need.
 
 ## Dependencies
 
@@ -35,3 +39,7 @@ And shout outs to the [Hollow Knight Racing Discord](https://discord.gg/F3upRRu)
 ### v0.3.2
 
 First "official" release. Fixed the map boundaries so the map ACTUALLY scrolls to the edges without having to purchase every map first.
+
+### v0.3.5
+
+Compatibility for Rando 3

@@ -1,8 +1,10 @@
 ﻿using HutongGames.PlayMaker;
+using ModCommon;
 using Modding;
 using On;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,7 +33,92 @@ namespace RandoMapMod {
 		private GameObject custPinGroup = null;
 		private GameMap theMap;
 
-		public static RandoMapMod Instance {
+        public static List<string> shopNames = new List<string>()
+        {
+            "Sly",
+            "Sly (Key)",
+            "Iselda",
+            "Salubra",
+            "Leg Eater",
+            "Grubfather",
+            "Seer"
+        };
+
+        public static List<string> slyItems = new List<string>()
+        {
+            "Gathering Swarm",
+            "Stalwart Shell",
+            "Lumafly Lantern",
+            "Simple Key-Sly",
+            "Mask Shard-Sly1",
+            "Mask Shard-Sly2",
+            "Vessel Fragment-Sly1",
+            "Rancid Egg-Sly",
+        };
+
+        public static List<string> slyKeyItems = new List<string>()
+        {
+            "Gathering Swarm",
+            "Stalwart Shell",
+            "Lumafly Lantern",
+            "Simple Key-Sly",
+            "Mask Shard-Sly1",
+            "Mask Shard-Sly2",
+            "Mask Shard-Sly3",
+            "Mask Shard-Sly4",
+            "Vessel Fragment-Sly1",
+            "Vessel Fragment-Sly2",
+            "Rancid Egg-Sly",
+            "Heavy Blow",
+            "Sprintmaster",
+            "Elegant Key",
+        };
+
+        public static List<string> iseldaItems = new List<string>()
+        {
+            "Wayward Compass",
+        };
+
+        public static List<string> salubraItems = new List<string>()
+        {
+            "Quick Focus",
+            "Lifeblood Heart",
+            "Steady Body",
+            "Long Nail",
+            "Shaman Stone",
+        };
+
+        public static List<string> legEaterItems = new List<string>()
+        {
+            "Fragile Heart",
+            "Fragile Greed",
+            "Fragile Strength",
+        };
+
+        public static List<string> grubfatherItems = new List<string>()
+        {
+            "Mask Shard-5 Grubs",
+            "Pale Ore-Grubs",
+            "Rancid Egg-Grubs",
+            "Hallownest Seal-Grubs",
+            "King's Idol-Grubs",
+            "Grubsong",
+            "Grubberfly's Elegy"
+        };
+
+        public static List<string> seerItems = new List<string>()
+        {
+            "Arcane Egg-Seer",
+            "Vessel Fragment-Seer",
+            "Pale Ore-Seer",
+            "Hallownest Seal-Seer",
+            "Dream Gate",
+            "Awoken Dream Nail",
+            "Dream Wielder"
+        };
+
+
+        public static RandoMapMod Instance {
 			get; private set;
 		}
 
@@ -43,7 +130,7 @@ namespace RandoMapMod {
 		}
 
 		public override string GetVersion() {
-			string ver = "0.3.4";
+			string ver = "0.3.5";
 			int minAPI = 45;
 
 			bool apiTooLow = Convert.ToInt32( ModHooks.Instance.ModVersion.Split( '-' )[1] ) < minAPI;
@@ -92,9 +179,11 @@ namespace RandoMapMod {
 				orig( self );
 				return;
 			}
-
-			//Create the custom pin group, and add all the new pins
-			if ( this.custPinGroup == null ) {
+            //Dev.Log("START THE MAP!");
+            LogicManager.reachableItems = new List<string>();
+            LogicManager.checkedItems = new List<string>();
+            //Create the custom pin group, and add all the new pins
+            if ( this.custPinGroup == null ) {
 				this.theMap = self;
 
 				this.custPinGroup = new GameObject( "Custom Pins" );
@@ -115,9 +204,9 @@ namespace RandoMapMod {
 			orig( self );
 			if ( !IsRando )
 				return;
-
-			//Set the maximum scroll boundaries, so we can scroll the entire map, even if we don't have the maps unlocked.
-			if ( self.panMinX > MAP_MIN_X )
+            //Dev.Log("WORLD THE MAP!");
+            //Set the maximum scroll boundaries, so we can scroll the entire map, even if we don't have the maps unlocked.
+            if ( self.panMinX > MAP_MIN_X )
 				self.panMinX = MAP_MIN_X;
 			if ( self.panMaxX < MAP_MAX_X )
 				self.panMaxX = MAP_MAX_X;
@@ -131,8 +220,185 @@ namespace RandoMapMod {
 			orig( self );
 			if ( !IsRando )
 				return;
+            //Dev.Log("MARK THE MAP!");
+            // Parse Helper Log
+            //File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt"), message + Environment.NewLine);
+            string line;
+            bool hitReachables = false;
+            bool hitChecked = false;
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt"));
+            //Dev.Log("Sly MS1" + PlayerData.instance.slyShellFrag1);
+            //Dev.Log("Sly MS2" + PlayerData.instance.slyShellFrag2);
+            //Dev.Log("Sly MS3" + PlayerData.instance.slyShellFrag3);
+            //Dev.Log("Sly MS4" + PlayerData.instance.slyShellFrag4);
+            //Dev.Log("Sly SK" + PlayerData.instance.slySimpleKey);
+            //Dev.Log("Sly VF1" + PlayerData.instance.slyVesselFrag1);
+            //Dev.Log("Sly VF2" + PlayerData.instance.slyVesselFrag2);
+            //Dev.Log("Sly VF3" + PlayerData.instance.slyVesselFrag3);
+            //Dev.Log("Sly VF4" + PlayerData.instance.slyVesselFrag4);
+            //Dev.Log("Sly CN1" + PlayerData.instance.slyNotch1);
+            //Dev.Log("Sly CN2" + PlayerData.instance.slyNotch2);
+            //Dev.Log("Sly RE" + PlayerData.instance.slyRancidEgg);
+            //Dev.Log("Dream Reward1: " + PlayerData.instance.dreamReward1);
+            //Dev.Log("Dream Reward2: " + PlayerData.instance.dreamReward2);
+            //Dev.Log("Dream Reward3: " + PlayerData.instance.dreamReward3);
+            //Dev.Log("Dream Reward4: " + PlayerData.instance.dreamReward4);
+            //Dev.Log("Dream Reward5: " + PlayerData.instance.dreamReward5);
+            //Dev.Log("Dream Reward5b: " + PlayerData.instance.dreamReward5b);
+            //Dev.Log("Dream Reward6: " + PlayerData.instance.dreamReward6);
+            //Dev.Log("Dream Reward7: " + PlayerData.instance.dreamReward7);
+            //Dev.Log("Dream Reward8: " + PlayerData.instance.dreamReward8);
+            //Dev.Log("Dream Reward9: " + PlayerData.instance.dreamReward9);
 
-			this.custPinGroup.SetActive( true );
+            //Dev.Log("Shop Costs");
+            //foreach((string, int) cost in RandomizerMod.RandomizerMod.Instance.Settings.ShopCosts)
+            //{
+            //    Dev.Log(cost.Item1 + ":" + cost.Item2);
+            //    //Dev.Log(PlayerData.instance.)
+            //    //ShopMenuStock stock = GameObject.Find("Shop Menu").GetComponent<ShopMenuStock>();
+            //}
+            //Dev.Log("Variable Costs");
+            //foreach ((string, int) cost in RandomizerMod.RandomizerMod.Instance.Settings.VariableCosts)
+            //{
+            //    Dev.Log(cost.Item1 + ":" + cost.Item2);
+            //}
+            //Dev.Log("Loaded Helper Log? " + (file != null));
+            while ((line = file.ReadLine()) != null)
+            {
+                //Dev.Log("File Line: " + line);
+                if (hitChecked)
+                {
+                    if (line.StartsWith(" - "))
+                    {
+                        // if shop is in checked, the pins all shrink, so this fixes that
+                        if (shopNames.Contains(line.Substring(3)))
+                        {
+                            List<string> shopItems = new List<string>();
+                            switch (line.Substring(3))
+                            {
+                                case "Sly":
+                                    //Dev.Log("Sly is open!");
+                                    shopItems = slyItems.ToList();
+                                    break;
+                                case "Sly (Key)":
+                                    //Dev.Log("Sly (Key) is open!");
+                                    shopItems = slyKeyItems.ToList();
+                                    break;
+                                case "Iselda":
+                                    //Dev.Log("Iselda is open!");
+                                    shopItems = iseldaItems.ToList();
+                                    break;
+                                case "Salubra":
+                                    //Dev.Log("Salubra is open!");
+                                    shopItems = salubraItems.ToList();
+                                    break;
+                                case "Leg Eater":
+                                    //Dev.Log("Leg Eater is open!");
+                                    shopItems = legEaterItems.ToList();
+                                    break;
+                                case "Grubfather":
+                                    //Dev.Log("Grubfater is open!");
+                                    shopItems = grubfatherItems.ToList();
+                                    break;
+                                case "Seer":
+                                    //Dev.Log("Seer is open!");
+                                    shopItems = seerItems.ToList();
+                                    break;
+                            }
+                            foreach (string item in shopItems)
+                            {
+                                Dev.Log("Reachable: " + item);
+                                LogicManager.reachableItems.Add(item);
+                            }
+                        }
+                        else
+                        {
+                            //Dev.Log("Checked: " + line.Substring(3));
+                            LogicManager.checkedItems.Add(line.Substring(3));
+                        }
+                    }
+                } else
+                if (hitReachables)
+                {
+                    if (line.StartsWith(" - "))
+                    {
+                        if (shopNames.Contains(line.Substring(3)))
+                        {
+                            List<string> shopItems = new List<string>();
+                            switch (line.Substring(3))
+                            {
+                                case "Sly":
+                                    //Dev.Log("Sly is open!");
+                                    shopItems = slyItems.ToList();
+                                    break;
+                                case "Sly (Key)":
+                                    //Dev.Log("Sly (Key) is open!");
+                                    shopItems = slyKeyItems.ToList();
+                                    break;
+                                case "Iselda":
+                                    //Dev.Log("Iselda is open!");
+                                    shopItems = iseldaItems.ToList();
+                                    break;
+                                case "Salubra":
+                                    //Dev.Log("Salubra is open!");
+                                    shopItems = salubraItems.ToList();
+                                    break;
+                                case "Leg Eater":
+                                    //Dev.Log("Leg Eater is open!");
+                                    shopItems = legEaterItems.ToList();
+                                    break;
+                                case "Grubfather":
+                                    //Dev.Log("Grubfater is open!");
+                                    shopItems = grubfatherItems.ToList();
+                                    break;
+                                case "Seer":
+                                    //Dev.Log("Seer is open!");
+                                    shopItems = seerItems.ToList();
+                                    break;
+                            }
+                            foreach (string item in shopItems)
+                            {
+                                //Dev.Log("Reachable: " + item);
+                                LogicManager.reachableItems.Add(item);
+                            }
+                        }
+                        else
+                        {
+                            //Dev.Log("Reachable: " + line.Substring(3));
+                            LogicManager.reachableItems.Add(line.Substring(3));
+                        }
+                    }
+                }
+                if (line.Contains("REACHABLE ITEM LOCATIONS"))
+                {
+                    LogicManager.reachableItems = new List<string>();
+                    hitReachables = true;
+                }
+                if (line.Contains("CHECKED ITEM LOCATIONS"))
+                {
+                    LogicManager.checkedItems = new List<string>();
+                    hitChecked = true;
+                }
+            }
+
+            file.Close();
+
+            //foreach(string reachable in LogicManager.reachableItems)
+            //{
+            //    Dev.Log("REACHABLE ITEM: +" + reachable + "+");
+            //}
+
+            //foreach (string check in LogicManager.checkedItems)
+            //{
+            //    Dev.Log("CHECKED ITEM: +" + check + "+");
+            //}
+            //Dev.Log("Variable Costs: ");
+            //foreach((string, int) shopCost in RandomizerMod.RandomizerMod.Instance.Settings.VariableCosts)
+            //{
+            //    Dev.Log(shopCost.Item1 + ": " + shopCost.Item2);
+            //}
+            this.custPinGroup.SetActive( true );
 		}
 
 		private void GameMap_DisableMarkers( On.GameMap.orig_DisableMarkers orig, GameMap self ) {
@@ -140,13 +406,14 @@ namespace RandoMapMod {
 				orig( self );
 				return;
 			}
-			this.custPinGroup.SetActive( false );
+            //Dev.Log("UNMARK THE MAP!");
+            this.custPinGroup.SetActive( false );
 
 			orig( self );
 		}
 
 		private void addPinToRoom( PinData pin ) {
-			string roomName = pin.PinScene;
+			string roomName = (pin.PinScene != null) ? pin.PinScene : PinData_S.All[pin.ID].SceneName;
 
 			GameObject newPin = new GameObject( "pin_rando" );
 			newPin.transform.parent = this.custPinGroup.transform;
@@ -154,7 +421,10 @@ namespace RandoMapMod {
 			newPin.transform.localScale *= 1.2f;
 
 			SpriteRenderer sr = newPin.AddComponent<SpriteRenderer>();
-			sr.sprite = Resources.Sprite( "Map.randoPin" );
+            if (pin.isShop)
+                sr.sprite = Resources.Sprite("Map.shopPin");
+            else
+			    sr.sprite = Resources.Sprite( "Map.randoPin" );
 			sr.sortingLayerName = "HUD";
 			sr.size = new Vector2( 1f, 1f );
 
@@ -233,16 +503,19 @@ namespace RandoMapMod {
 
 				if ( sheetTitle == "Elderbug" ) {
 					if ( _SAFETY == 0 && key == "ELDERBUG_INTRO_MAIN" ) {
-						return "Welcome to RandoMapMod!\nA BIG pin means look there for progression. LITTLE means the next key item won't be there. \"!\" means you need something else, maybe grubs or a key?\nTalk to me 2 more times, and I'll give you all the maps.\nIf you're playing BINGO, you should probably not do that.";
+						return "Welcome to RandoMapMod!\nA BIG pin means look there for progression. LITTLE means the next key item won't be there. \"!\" means you need something else, maybe grubs or a key? \"$\" indicates a shop that may have items.\nTalk to me 2 more times, and I'll give you all the maps.\nIf you're playing BINGO, you should probably not do that.";
 					} else if ( _SAFETY == 1 ) {
-						return "I frequently *ahem* \"visit\" Cornifer's wife... She tells me he lies to travelers to get money for an inferior product... The ass. I've taken his completed originals. Maybe once they're bankrupt she'll run off with me.<page>I'll let you have the maps, the quill, and a compass since you're new around here if you talk to me 1 more time.";
-					} else if ( _SAFETY == 2 ) {
+						//return "I frequently *ahem* \"visit\" Cornifer's wife... She tells me he lies to travelers to get money for an inferior product... The ass. I've taken his completed originals. Maybe once they're bankrupt she'll run off with me.<page>I'll let you have the maps, the quill, and a compass since you're new around here if you talk to me 1 more time.";
+                        return "I'll let you have the maps, the quill, and a compass since you're new around here if you talk to me 1 more time.";
+
+                    } else if ( _SAFETY == 2 ) {
 						string maps = "Okay hang on";
 						for ( int i = 0; i < 10; i++ ) {
 							maps += "...\n...\n...\n...\n";
 						}
-						maps += "<page>...Here you go! Now, if you'd keep Iselda's infidelity to yourself, I won't have to kill you. Hm, don't you wonder how the King died...?";
-						return maps;
+                        //maps += "<page>...Here you go! Now, if you'd keep Iselda's infidelity to yourself, I won't have to kill you. Hm, don't you wonder how the King died...?";
+                        maps += "<page> ...Here you go!";
+                        return maps;
 					} else {
 						return Language.Language.GetInternal( key, sheetTitle );
 					}

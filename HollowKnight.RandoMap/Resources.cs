@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModCommon;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -55,45 +56,154 @@ namespace RandoMapMod {
 				}
 			}
 
+            //Dev.Log("Initialize macros");
 			Assembly randoDLL = typeof( RandomizerMod.RandomizerMod ).Assembly;
 			foreach ( string resource in randoDLL.GetManifestResourceNames() ) {
-				if ( resource.EndsWith( "items.xml" ) ) {
-					try {
-						using ( Stream stream = randoDLL.GetManifestResourceStream( resource ) ) {
+                //Dev.Log("Macro 1");
+				if ( resource.EndsWith( "items.xml" )) {
+
+                    try {
+                        //Dev.Log("Item 1");
+                        using ( Stream stream = randoDLL.GetManifestResourceStream( resource ) ) {
 							XmlDocument xml = new XmlDocument();
 							xml.Load( stream );
-							loadItemData( xml.SelectNodes( "randomizer/item" ) );
-							loadMacroData( xml.SelectNodes( "randomizer/macro" ), xml.SelectNodes( "randomizer/additiveItemSet" ) );
-						}
+                            //Dev.Log("Item 2");
+                            loadItemData( xml.SelectNodes( "randomizer/item" ) );
+                            //Dev.Log("Item 3");
+                            //loadMacroData( xml.SelectNodes( "randomizer/macro" ), xml.SelectNodes( "randomizer/additiveItemSet" ) );
+                        }
 					} catch ( Exception e ) {
 						DebugLog.Error( "items.xml Load Failed!" );
 						DebugLog.Error( e.ToString() );
 					}
 				}
-			}
+                if (resource.EndsWith("macros.xml"))
+                {
+                    try
+                    {
+                        //Dev.Log("Macro 1");
+                        using (Stream stream = randoDLL.GetManifestResourceStream(resource))
+                        {
+                            XmlDocument xml = new XmlDocument();
+                            xml.Load(stream);
+                            //Dev.Log("Macro 2");
+                            //loadItemData(xml.SelectNodes("randomizer/item"));
+                            loadMacroData(xml.SelectNodes("randomizer/macro"));
+                            //Dev.Log("Macro 3");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        DebugLog.Error("macros.xml Load Failed!");
+                        DebugLog.Error(e.ToString());
+                    }
+                }
+                //if (resource.EndsWith("waypoints.xml"))
+                //{
+                //    try
+                //    {
+                //        //Dev.Log("Macro 1");
+                //        using (Stream stream = randoDLL.GetManifestResourceStream(resource))
+                //        {
+                //            XmlDocument xml = new XmlDocument();
+                //            xml.Load(stream);
+                //            //Dev.Log("Macro 2");
+                //            //loadItemData(xml.SelectNodes("randomizer/item"));
+                //            loadMacroWaypointData(xml.SelectNodes("randomizer/item"));
+                //            //Dev.Log("Macro 3");
+                //        }
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        DebugLog.Error("waypoints.xml Load Failed!");
+                //        DebugLog.Error(e.ToString());
+                //    }
+                //}
+                if (resource.EndsWith("additive.xml"))
+                {
+                    try
+                    {
+                        //Dev.Log("Macro 1");
+                        using (Stream stream = randoDLL.GetManifestResourceStream(resource))
+                        {
+                            XmlDocument xml = new XmlDocument();
+                            xml.Load(stream);
+                            //Dev.Log("Macro 2");
+                            //loadItemData(xml.SelectNodes("randomizer/item"));
+                            loadAdditiveMacroData(xml.SelectNodes("randomizer/additiveItemSet"));
+                            //Dev.Log("Macro 3");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        DebugLog.Error("macros.xml Load Failed!");
+                        DebugLog.Error(e.ToString());
+                    }
+                }
+            }
 		}
 
 
+        private static void loadMacroData(XmlNodeList nodes)
+        {
+            foreach (XmlNode node in nodes)
+            {
+                string name = node.Attributes["name"].Value;
+                //Dev.Log("Load Macro: " + name + " as " + node.InnerText);
+                LogicManager.AddMacro(name, node.InnerText);
+            }
+        }
+        private static void loadAdditiveMacroData(XmlNodeList additiveItems)
+        {
+            foreach (XmlNode node in additiveItems)
+            {
+                string name = node.Attributes["name"].Value;
+                //Dev.Log("Load Macro: " + name);
 
-		private static void loadMacroData( XmlNodeList nodes, XmlNodeList additiveItems ) {
+                string[] additiveSet = new string[node.ChildNodes.Count];
+                for (int i = 0; i < additiveSet.Length; i++)
+                {
+                    additiveSet[i] = node.ChildNodes[i].InnerText;
+                    //Dev.Log("Load " + name + ": " + additiveSet[i]);
+                }
+
+                LogicManager.AddMacro(name, string.Join(" | ", additiveSet));
+            }
+        }
+
+        private static void loadMacroData( XmlNodeList nodes, XmlNodeList additiveItems ) {
+            //Dev.Log("Load Macros");
 			foreach ( XmlNode node in additiveItems ) {
 				string name = node.Attributes["name"].Value;
+                //Dev.Log("Load Macro: " + name);
 
-				string[] additiveSet = new string[node.ChildNodes.Count];
+                string[] additiveSet = new string[node.ChildNodes.Count];
 				for ( int i = 0; i < additiveSet.Length; i++ ) {
 					additiveSet[i] = node.ChildNodes[i].InnerText;
-				}
+                    //Dev.Log("Load " + name + ": " + additiveSet[i]);
+                }
 
 				LogicManager.AddMacro( name, string.Join( " | ", additiveSet ) );
 			}
 
 			foreach ( XmlNode node in nodes ) {
-				string name = node.Attributes["name"].Value;
-				LogicManager.AddMacro( name, node.InnerText );
+                string name = node.Attributes["name"].Value;
+                //Dev.Log("Load Macro: " + name + " as " + node.InnerText);
+                LogicManager.AddMacro( name, node.InnerText );
 			}
 		}
 
-		private static void loadItemData( XmlNodeList nodes ) {
+        private static void loadMacroWaypointData(XmlNodeList nodes)
+        {
+            foreach (XmlNode node in nodes)
+            {
+                string name = node.Attributes["name"].Value;
+                //Dev.Log("Load Macro: " + name + " as " + node["itemLogic"].InnerText);
+                LogicManager.AddMacro(name, node["itemLogic"].InnerText);
+            }
+        }
+
+        private static void loadItemData( XmlNodeList nodes ) {
 			foreach ( XmlNode node in nodes ) {
 				string itemName = node.Attributes["name"].Value;
 				if ( !pPinData.ContainsKey( itemName ) ) {
@@ -113,7 +223,7 @@ namespace RandoMapMod {
 						continue;
 					}
 
-					if ( chld.Name == "logic" ) {
+					if ( chld.Name == "itemLogic") {
 						pinD.LogicRaw = chld.InnerText;
 						continue;
 					}
@@ -134,15 +244,22 @@ namespace RandoMapMod {
 					}
 
 					if ( chld.Name == "x" ) {
-						pinD.NewX = XmlConvert.ToInt32( chld.InnerText );
+						pinD.NewX = (int)XmlConvert.ToDouble( chld.InnerText );
 						continue;
 					}
 
 					if ( chld.Name == "y" ) {
-						pinD.NewY = XmlConvert.ToInt32( chld.InnerText );
+						pinD.NewY = (int)XmlConvert.ToDouble( chld.InnerText );
 						continue;
 					}
-				}
+
+                    if ( chld.Name == "pool")
+                    {
+                        pinD.Pool = chld.InnerText;
+                        continue;
+                    }
+
+                }
 			}
 		}
 
@@ -154,7 +271,7 @@ namespace RandoMapMod {
 			foreach ( XmlNode node in xml.SelectNodes( "randomap/pin" ) ) {
 				PinData newPin = new PinData();
 				newPin.ID = node.Attributes["name"].Value;
-
+                //Dev.Log("Load Pin Data: " + newPin.ID);
 				string line = "";
 
 				foreach ( XmlNode chld in node.ChildNodes ) {
@@ -187,14 +304,23 @@ namespace RandoMapMod {
 							line += ", offsetZ = " + chld.InnerText;
 							newPin.OffsetZ = XmlConvert.ToSingle( chld.InnerText );
 							break;
+                        case "hasPrereq":
+                            line += ", hasPrereq = " + chld.InnerText;
+                            newPin.hasPrereq = XmlConvert.ToBoolean(chld.InnerText);
+                            break;
+                        case "isShop":
+                            line += ", isShop = " + chld.InnerText;
+                            newPin.isShop = XmlConvert.ToBoolean(chld.InnerText);
+                            break;
 						default:
 							DebugLog.Error( "Pin '" + newPin.ID + "' in XML had node '" + chld.Name + "' not parsable!" );
 							break;
 					}
 				}
-
+                
 				pPinData.Add( newPin.ID, newPin );
-			}
+                //Dev.Log(newPin.ID + " Pin added: " + pPinData.ContainsKey(newPin.ID));
+            }
 		}
 
 		private static PinData.Types selectCheckType( string text ) {
