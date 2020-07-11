@@ -88,6 +88,7 @@
     <Compile Include="RandoMapMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
+    <Compile Include="SaveSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\pindata.xml">
