@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -530,33 +531,38 @@ namespace RandoMapMod {
 		}
 
 		private class ElderbugIsACoolDude : FsmStateAction {
-			private static bool locked = false;
+			private static bool _locked;
 
 			public override void OnEnter() {
 				_SAFETY++;
 
-				if ( _SAFETY >= SAFE & !locked ) {
+				if ( _SAFETY >= SAFE & !_locked ) {
+					
 					PlayerData pd = PlayerData.instance;
-					pd.SetBool( "gotCharm_2", true );
-					pd.SetBool( "hasMap", true );
-					pd.SetBool( "hasQuill", true );
-					pd.SetBool( "mapDirtmouth", true );
-					pd.SetBool( "mapCrossroads", true );
-					pd.SetBool( "mapGreenpath", true );
-					pd.SetBool( "mapFogCanyon", true );
-					pd.SetBool( "mapRoyalGardens", true );
-					pd.SetBool( "mapFungalWastes", true );
-					pd.SetBool( "mapCity", true );
-					pd.SetBool( "mapWaterways", true );
-					pd.SetBool( "mapMines", true );
-					pd.SetBool( "mapDeepnest", true );
-					pd.SetBool( "mapCliffs", true );
-					pd.SetBool( "mapOutskirts", true );
-					pd.SetBool( "mapRestingGrounds", true );
-					pd.SetBool( "mapAbyss", true );
-					pd.SetBool( "mapAllRooms", true );
+					Type playerData = typeof(PlayerData);
 
-					locked = true;
+					// Give the maps to the player
+					pd.SetBool(nameof(pd.hasMap), true);
+					
+					foreach (FieldInfo field in playerData.GetFields().Where(field => field.Name.StartsWith("map") && field.FieldType == typeof(bool)))
+					{
+						pd.SetBool(field.Name, true);
+					}
+					
+					//Give them compass and Quill
+					pd.SetBool( nameof(pd.gotCharm_2), true );
+					pd.SetBool( nameof(pd.hasQuill), true );
+					
+					// Set cornifer as having left all the areas. This could be condensed into the previous foreach for one less GetFields(), but I value the clarity more.
+					foreach (FieldInfo field in playerData.GetFields().Where(field => field.Name.StartsWith("corn") && field.Name.EndsWith("Left")))
+					{
+						pd.SetBool(field.Name, true);
+					}
+					
+					// Set Cornifer as sleeping at home
+					pd.SetBool(nameof(pd.corniferAtHome), true);
+					
+					_locked = true;
 				}
 
 				Finish();
