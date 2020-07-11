@@ -2,6 +2,7 @@
 using ModCommon;
 using Modding;
 using On;
+using SeanprCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,7 +35,15 @@ namespace RandoMapMod {
 		private GameObject custPinGroup = null;
 		private GameMap theMap;
 
-        public static List<string> shopNames = new List<string>()
+		public SaveSettings Settings { get; set; } = new SaveSettings();
+		public override ModSettings SaveSettings
+		{
+			get => Settings = Settings ?? new SaveSettings();
+			set => Settings = value is SaveSettings saveSettings ? saveSettings : Settings;
+		}
+
+
+		public static List<string> shopNames = new List<string>()
         {
             "Sly",
             "Sly (Key)",
@@ -131,7 +140,7 @@ namespace RandoMapMod {
 		}
 
 		public override string GetVersion() {
-			string ver = "0.3.5";
+			string ver = "0.3.8";
 			int minAPI = 45;
 
 			bool apiTooLow = Convert.ToInt32( ModHooks.Instance.ModVersion.Split( '-' )[1] ) < minAPI;
@@ -384,22 +393,26 @@ namespace RandoMapMod {
             }
 
             file.Close();
+			//for (int i = 1; i >= 40; i++)
+			//{
+			//    PlayerData.instance.GetType().GetProperty("charmCost_" + i).SetValue(PlayerData.instance, 1, null);
+			//}
 
-            //foreach(string reachable in LogicManager.reachableItems)
-            //{
-            //    Dev.Log("REACHABLE ITEM: +" + reachable + "+");
-            //}
+			//foreach(string reachable in LogicManager.reachableItems)
+			//{
+			//    Dev.Log("REACHABLE ITEM: +" + reachable + "+");
+			//}
 
-            //foreach (string check in LogicManager.checkedItems)
-            //{
-            //    Dev.Log("CHECKED ITEM: +" + check + "+");
-            //}
-            //Dev.Log("Variable Costs: ");
-            //foreach((string, int) shopCost in RandomizerMod.RandomizerMod.Instance.Settings.VariableCosts)
-            //{
-            //    Dev.Log(shopCost.Item1 + ": " + shopCost.Item2);
-            //}
-            this.custPinGroup.SetActive( true );
+			//foreach (string check in LogicManager.checkedItems)
+			//{
+			//    Dev.Log("CHECKED ITEM: +" + check + "+");
+			//}
+			//Dev.Log("Variable Costs: ");
+			//foreach((string, int) shopCost in RandomizerMod.RandomizerMod.Instance.Settings.VariableCosts)
+			//{
+			//    Dev.Log(shopCost.Item1 + ": " + shopCost.Item2);
+			//}
+			this.custPinGroup.SetActive( true );
 		}
 
 		private void GameMap_DisableMarkers( On.GameMap.orig_DisableMarkers orig, GameMap self ) {
@@ -470,14 +483,16 @@ namespace RandoMapMod {
 		//Give compass, quill, maps
 		private static int _SAFETY = 0;
 		private const int SAFE = 3;
+		private static bool _locked = false;
 
 		private void HandleSceneChanges( Scene from, Scene to ) {
 			if ( !IsRando ) {
 				return;
 			}
 
-			//DebugLog.Log( "New Scene: " + to.name );
 			if ( to.name == "Town" ) {
+				_SAFETY = 0;
+				_locked = false;
 				PlayMakerFSM elder = FSMUtility.LocateFSM( GameObject.Find( "Elderbug" ), "npc_control" );
 				FsmState target = null;
 				foreach ( FsmState state in elder.FsmStates ) {
@@ -493,6 +508,10 @@ namespace RandoMapMod {
 					target.Actions = actions.ToArray();
 				}
 			}
+			if (to.name == SceneNames.Menu_Title)
+			{
+				Settings.MapsGiven = false;
+			}
 			//throw new NotImplementedException();
 		}
 		
@@ -503,19 +522,54 @@ namespace RandoMapMod {
 				}
 
 				if ( sheetTitle == "Elderbug" ) {
-					if ( _SAFETY == 0 && key == "ELDERBUG_INTRO_MAIN" ) {
+					//if (_SAFETY == 0 && !Settings.MapsGiven)
+					Dev.Log("Map Check! Safety: " + _SAFETY + ", locked: " + _locked + ", Key: " + key + ", " + Settings.MapsGiven);
+					if ( _SAFETY == 0 && key == "ELDERBUG_INTRO_MAIN" && !Settings.MapsGiven)
+					{
+						_SAFETY++;
 						return "Welcome to RandoMapMod!\nA BIG pin means look there for progression. LITTLE means the next key item won't be there. \"!\" means you need something else, maybe grubs or a key? \"$\" indicates a shop that may have items.\nTalk to me 2 more times, and I'll give you all the maps.\nIf you're playing BINGO, you should probably not do that.";
-					} else if ( _SAFETY == 1 ) {
+					} else if ( _SAFETY == 1 && !Settings.MapsGiven) {
+						_SAFETY++;
 						//return "I frequently *ahem* \"visit\" Cornifer's wife... She tells me he lies to travelers to get money for an inferior product... The ass. I've taken his completed originals. Maybe once they're bankrupt she'll run off with me.<page>I'll let you have the maps, the quill, and a compass since you're new around here if you talk to me 1 more time.";
-                        return "I'll let you have the maps, the quill, and a compass since you're new around here if you talk to me 1 more time.";
+						return "I'll let you have the maps, the quill, and a compass since you're new around here if you talk to me 1 more time.";
 
-                    } else if ( _SAFETY == 2 ) {
+                    } else if ( _SAFETY == 2 && !Settings.MapsGiven) {
 						string maps = "Okay hang on";
 						for ( int i = 0; i < 10; i++ ) {
 							maps += "...\n...\n...\n...\n";
 						}
-                        //maps += "<page>...Here you go! Now, if you'd keep Iselda's infidelity to yourself, I won't have to kill you. Hm, don't you wonder how the King died...?";
-                        maps += "<page> ...Here you go!";
+						_SAFETY++;
+
+						if (_SAFETY >= SAFE & !_locked)
+						{
+							PlayerData pd = PlayerData.instance;
+							Type playerData = typeof(PlayerData);
+
+							// Give the maps to the player
+							pd.SetBool(nameof(pd.hasMap), true);
+
+							foreach (FieldInfo field in playerData.GetFields().Where(field => field.Name.StartsWith("map") && field.FieldType == typeof(bool)))
+							{
+								pd.SetBool(field.Name, true);
+							}
+
+							//Give them compass and Quill
+							pd.SetBool(nameof(pd.gotCharm_2), true);
+							pd.SetBool(nameof(pd.hasQuill), true);
+
+							// Set cornifer as having left all the areas. This could be condensed into the previous foreach for one less GetFields(), but I value the clarity more.
+							foreach (FieldInfo field in playerData.GetFields().Where(field => field.Name.StartsWith("corn") && field.Name.EndsWith("Left")))
+							{
+								pd.SetBool(field.Name, true);
+							}
+
+							// Set Cornifer as sleeping at home
+							pd.SetBool(nameof(pd.corniferAtHome), true);
+
+							_locked = true;
+						}
+						//maps += "<page>...Here you go! Now, if you'd keep Iselda's infidelity to yourself, I won't have to kill you. Hm, don't you wonder how the King died...?";
+						maps += "<page> ...Here you go!";
                         return maps;
 					} else {
 						return Language.Language.GetInternal( key, sheetTitle );
@@ -531,10 +585,9 @@ namespace RandoMapMod {
 		}
 
 		private class ElderbugIsACoolDude : FsmStateAction {
-			private static bool _locked;
 
 			public override void OnEnter() {
-				_SAFETY++;
+				//_SAFETY++;
 
 				if ( _SAFETY >= SAFE & !_locked ) {
 					
