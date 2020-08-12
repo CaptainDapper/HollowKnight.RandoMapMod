@@ -569,7 +569,6 @@ namespace RandoMapMod {
 
 							_locked = true;
 						}
-						//maps += "<page>...Here you go! Now, if you'd keep Iselda's infidelity to yourself, I won't have to kill you. Hm, don't you wonder how the King died...?";
 						maps += "<page> ...Here you go!";
                         return maps;
 					} else {

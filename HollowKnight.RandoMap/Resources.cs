@@ -141,6 +141,10 @@ namespace RandoMapMod
 			}
 		}
 
+		/// <summary>
+		/// Loads items from RandomizerMod's item list, and merges it with our own pindata.xml
+		/// </summary>
+		/// <param name="nodes">The item nodes from Randomizer Mod's items.xml file</param>
 		private void loadItemData(XmlNodeList nodes)
 		{
 			foreach (XmlNode node in nodes)
@@ -148,7 +152,7 @@ namespace RandoMapMod
 				string itemName = node.Attributes["name"].Value;
 				if (!pPinData.ContainsKey(itemName))
 				{
-					logger.Error("Could not find item '" + itemName + "' in PinData Dict!");
+					logger.Log($"RandomizerMod has an item.xml entry for {itemName} but there is no matching entry in RandoMapMod's pindata.xml. This is probably intentional to avoid pins that would otherwise mislead the player.");
 					continue;
 				}
 
@@ -213,6 +217,9 @@ namespace RandoMapMod
 			}
 		}
 
+		/// <summary>
+		/// Parses our `pindata.xml` file.
+		/// </summary>
 		private static Dictionary<string, PinData> loadPinData(Stream stream)
 		{
 			Dictionary<string, PinData> retVal = new Dictionary<string, PinData>();
@@ -223,9 +230,6 @@ namespace RandoMapMod
 			{
 				PinData newPin = new PinData();
 				newPin.ID = node.Attributes["name"].Value;
-				//Dev.Log("Load Pin Data: " + newPin.ID);
-
-
 				foreach (XmlNode chld in node.ChildNodes)
 				{
 					if (chld.NodeType == XmlNodeType.Comment)
@@ -236,9 +240,6 @@ namespace RandoMapMod
 					{
 						case "pinScene":
 							newPin.PinScene = chld.InnerText;
-							break;
-						case "checkType":
-							newPin.CheckType = selectCheckType(chld.InnerText);
 							break;
 						case "checkBool":
 							newPin.CheckBool = chld.InnerText;
@@ -269,21 +270,6 @@ namespace RandoMapMod
 				retVal.Add(newPin.ID, newPin);
 			}
 			return retVal;
-		}
-
-		private static PinData.Types selectCheckType(string text)
-		{
-			//There used to be more of these things... This is probably useless now.
-			switch (text)
-			{
-				case "sceneData":
-					return global::RandoMapMod.PinData.Types.SceneData;
-				case "playerData.bool":
-					return global::RandoMapMod.PinData.Types.PlayerBool;
-				default:
-					logger.Error("Error parsing Pin Check Type. '" + text + "'");
-					return global::RandoMapMod.PinData.Types.PlayerBool;
-			}
 		}
 	}
 }

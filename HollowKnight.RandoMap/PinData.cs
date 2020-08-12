@@ -24,11 +24,6 @@ namespace RandoMapMod
 			internal set;
 		}
 
-		public Types CheckType
-		{
-			get;
-			internal set;
-		}
 		public string CheckBool
 		{
 			get;
