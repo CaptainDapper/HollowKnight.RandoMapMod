@@ -12,8 +12,8 @@ namespace RandoMapMod
 	{
 		private static readonly DebugLog logger = new DebugLog(nameof(Resources));
 
-		private Dictionary<string, Sprite> pSprites = null;
-		private Dictionary<string, PinData> pPinData = null;
+		private readonly Dictionary<string, Sprite> pSprites;
+		private readonly Dictionary<string, PinData> pPinData;
 
 		public Dictionary<string, PinData> PinData()
 		{
@@ -22,7 +22,7 @@ namespace RandoMapMod
 
 		public Sprite Sprite(string pSpriteName)
 		{
-			if (pSprites != null && pSprites.TryGetValue(pSpriteName, out Sprite sprite))
+			if (pSprites.TryGetValue(pSpriteName, out Sprite sprite))
 			{
 				return sprite;
 			}
@@ -59,7 +59,7 @@ namespace RandoMapMod
 					{
 						using (Stream stream = theDLL.GetManifestResourceStream(resource))
 						{
-							loadPinData(stream);
+							pPinData = loadPinData(stream);
 						}
 					}
 					catch (Exception e)
@@ -213,9 +213,9 @@ namespace RandoMapMod
 			}
 		}
 
-		private void loadPinData(Stream stream)
+		private static Dictionary<string, PinData> loadPinData(Stream stream)
 		{
-			pPinData = new Dictionary<string, PinData>();
+			Dictionary<string, PinData> retVal = new Dictionary<string, PinData>();
 
 			XmlDocument xml = new XmlDocument();
 			xml.Load(stream);
@@ -224,57 +224,51 @@ namespace RandoMapMod
 				PinData newPin = new PinData();
 				newPin.ID = node.Attributes["name"].Value;
 				//Dev.Log("Load Pin Data: " + newPin.ID);
-				string line = "";
+
 
 				foreach (XmlNode chld in node.ChildNodes)
 				{
+					if (chld.NodeType == XmlNodeType.Comment)
+					{
+						continue;
+					}
 					switch (chld.Name)
 					{
 						case "pinScene":
-							line += ", pinScene = " + chld.InnerText;
 							newPin.PinScene = chld.InnerText;
 							break;
 						case "checkType":
-							line += ", checkType = " + chld.InnerText;
 							newPin.CheckType = selectCheckType(chld.InnerText);
 							break;
 						case "checkBool":
-							line += ", checkBool = " + chld.InnerText;
 							newPin.CheckBool = chld.InnerText;
 							break;
 						case "prereq":
-							line += ", prereq = " + chld.InnerText;
 							newPin.PrereqRaw = chld.InnerText;
 							break;
 						case "offsetX":
-							line += ", offsetX = " + chld.InnerText;
 							newPin.OffsetX = XmlConvert.ToSingle(chld.InnerText);
 							break;
 						case "offsetY":
-							line += ", offsetY = " + chld.InnerText;
 							newPin.OffsetY = XmlConvert.ToSingle(chld.InnerText);
 							break;
 						case "offsetZ":
-							line += ", offsetZ = " + chld.InnerText;
 							newPin.OffsetZ = XmlConvert.ToSingle(chld.InnerText);
 							break;
 						case "hasPrereq":
-							line += ", hasPrereq = " + chld.InnerText;
 							newPin.hasPrereq = XmlConvert.ToBoolean(chld.InnerText);
 							break;
 						case "isShop":
-							line += ", isShop = " + chld.InnerText;
 							newPin.isShop = XmlConvert.ToBoolean(chld.InnerText);
 							break;
 						default:
-							logger.Error("Pin '" + newPin.ID + "' in XML had node '" + chld.Name + "' not parsable!");
+							logger.Error($"Pin '{newPin.ID}' in XML had node '{chld.Name}' not parsable!");
 							break;
 					}
 				}
-
-				pPinData.Add(newPin.ID, newPin);
-				//Dev.Log(newPin.ID + " Pin added: " + pPinData.ContainsKey(newPin.ID));
+				retVal.Add(newPin.ID, newPin);
 			}
+			return retVal;
 		}
 
 		private static PinData.Types selectCheckType(string text)

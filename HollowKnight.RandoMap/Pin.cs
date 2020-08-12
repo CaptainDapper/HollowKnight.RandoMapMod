@@ -64,7 +64,8 @@ class Pin : MonoBehaviour
 		}
 		catch (Exception e)
 		{
-			logger.Error(e.ToString());
+			logger.Error($"Failed to enable pin: {e.Message} {e.StackTrace}");
+			
 		}
 
 		//Disable Pin if we've already obtained / checked this location.
