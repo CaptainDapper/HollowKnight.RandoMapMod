@@ -140,7 +140,7 @@ namespace RandoMapMod {
 		}
 
 		public override string GetVersion() {
-			string ver = "0.3.8";
+			string ver = "0.4.0";
 			int minAPI = 45;
 
 			bool apiTooLow = Convert.ToInt32( ModHooks.Instance.ModVersion.Split( '-' )[1] ) < minAPI;
