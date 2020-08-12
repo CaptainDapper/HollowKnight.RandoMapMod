@@ -162,13 +162,6 @@ namespace RandoMapMod
 				//return LogicManager.ParseLogic( this.Prereq, LogicManager.ParsePrereqNode );
 			}
 		}
-		public string ObjectName
-		{
-			get
-			{
-				return ObjectNames.Get(this);
-			}
-		}
 
 		public Vector3 Offset
 		{

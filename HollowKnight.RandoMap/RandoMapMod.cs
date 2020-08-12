@@ -36,6 +36,7 @@ namespace RandoMapMod {
 
 		private GameObject custPinGroup = null;
 		private GameMap theMap;
+		private Resources resources = null;
 
 		public SaveSettings Settings { get; set; } = new SaveSettings();
 		public override ModSettings SaveSettings
@@ -160,29 +161,18 @@ namespace RandoMapMod {
 			Instance = this;
 			logger.Log( "RandoMapMod Initializing..." );
 
-			Resources.Initialize();
-			
+			this.resources = new Resources();
+
 			On.GameMap.Start += this.GameMap_Start;							//Set up custom pins
 			On.GameMap.WorldMap += this.GameMap_WorldMap;					//Set big map boundaries
 			On.GameMap.SetupMapMarkers += this.GameMap_SetupMapMarkers;		//Enable the custom pins
 			On.GameMap.DisableMarkers += this.GameMap_DisableMarkers;		//Disable the custom pins
-
-			ModHooks.Instance.SavegameLoadHook += this.SavegameLoadHook;	//Load object name changes
-			ModHooks.Instance.SavegameSaveHook += this.SavegameSaveHook;    //Load object name changes
 
 			//Giveaway time
 			UnityEngine.SceneManagement.SceneManager.activeSceneChanged += HandleSceneChanges;
 			ModHooks.Instance.LanguageGetHook += HandleLanguageGet;
 
 			logger.Log("RandoMapMod Initialize complete!");
-		}
-
-		private void SavegameLoadHook( int slot ) {
-			ObjectNames.Load(slot);
-		}
-
-		private void SavegameSaveHook( int slot ) {
-			ObjectNames.Load(slot);
 		}
 
 		private void GameMap_Start( On.GameMap.orig_Start orig, GameMap self ) {
@@ -203,7 +193,7 @@ namespace RandoMapMod {
 				this.custPinGroup.transform.position = new Vector3( 0f, 0f, 0f );
 				this.custPinGroup.SetActive( false );
 
-				foreach ( PinData pin in PinData_S.All.Values ) {
+				foreach ( PinData pin in this.resources.PinData().Values ) {
 					this.addPinToRoom( pin );
 				}
 			}
@@ -428,7 +418,7 @@ namespace RandoMapMod {
 		}
 
 		private void addPinToRoom( PinData pin ) {
-			string roomName = (pin.PinScene != null) ? pin.PinScene : PinData_S.All[pin.ID].SceneName;
+			string roomName = (pin.PinScene != null) ? pin.PinScene : this.resources.PinData()[pin.ID].SceneName;
 
 			GameObject newPin = new GameObject( "pin_rando" );
 			newPin.transform.parent = this.custPinGroup.transform;
@@ -437,14 +427,15 @@ namespace RandoMapMod {
 
 			SpriteRenderer sr = newPin.AddComponent<SpriteRenderer>();
             if (pin.isShop)
-                sr.sprite = Resources.Sprite("Map.shopPin");
+                sr.sprite = this.resources.Sprite("Map.shopPin");
             else
-			    sr.sprite = Resources.Sprite( "Map.randoPin" );
+			    sr.sprite = this.resources.Sprite( "Map.randoPin" );
 			sr.sortingLayerName = "HUD";
 			sr.size = new Vector2( 1f, 1f );
 
 			Pin pinC = newPin.AddComponent<Pin>();
 			pinC.PinData = pin;
+			pinC.Resources = resources;
 
 			Vector3 vec = this.getRoomPos( roomName ) + pin.Offset;
 			newPin.transform.localPosition = new Vector3( vec.x, vec.y, (vec.z - 0.5f) );

@@ -10,16 +10,17 @@ namespace RandoMapMod
 {
 	class Resources
 	{
-		private static Dictionary<string, Sprite> pSprites = null;
-		private static Dictionary<string, PinData> pPinData = null;
 		private static readonly DebugLog logger = new DebugLog(nameof(Resources));
 
-		public static Dictionary<string, PinData> PinData()
+		private Dictionary<string, Sprite> pSprites = null;
+		private Dictionary<string, PinData> pPinData = null;
+
+		public Dictionary<string, PinData> PinData()
 		{
 			return pPinData;
 		}
 
-		public static Sprite Sprite(string pSpriteName)
+		public Sprite Sprite(string pSpriteName)
 		{
 			if (pSprites != null && pSprites.TryGetValue(pSpriteName, out Sprite sprite))
 			{
@@ -30,9 +31,7 @@ namespace RandoMapMod
 			return null;
 		}
 
-
-
-		internal static void Initialize()
+		public Resources()
 		{
 			Assembly theDLL = typeof(RandoMapMod).Assembly;
 			pSprites = new Dictionary<string, Sprite>();
@@ -142,7 +141,7 @@ namespace RandoMapMod
 			}
 		}
 
-		private static void loadItemData(XmlNodeList nodes)
+		private void loadItemData(XmlNodeList nodes)
 		{
 			foreach (XmlNode node in nodes)
 			{
@@ -214,7 +213,7 @@ namespace RandoMapMod
 			}
 		}
 
-		private static void loadPinData(Stream stream)
+		private void loadPinData(Stream stream)
 		{
 			pPinData = new Dictionary<string, PinData>();
 

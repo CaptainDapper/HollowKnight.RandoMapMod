@@ -8,6 +8,7 @@ class Pin : MonoBehaviour
 {
 	private static readonly DebugLog logger = new DebugLog(nameof(Pin));
 	private PinData pinData;
+	private RandoMapMod.Resources resources;
 	private bool isPossible = true;
 	private bool isPrereqMet = true;
 
@@ -21,6 +22,14 @@ class Pin : MonoBehaviour
 		set
 		{
 			this.pinData = value;
+		}
+	}
+
+	public RandoMapMod.Resources Resources
+	{
+		set
+		{
+			this.resources = value;
 		}
 	}
 
@@ -66,7 +75,7 @@ class Pin : MonoBehaviour
 		}
 		else
 		{
-			string pool = PinData_S.All[this.pinData.ID].Pool;
+			string pool = resources.PinData()[this.pinData.ID].Pool;
 			bool isRandomized = false;
 			switch (pool)
 			{
@@ -193,7 +202,11 @@ class Pin : MonoBehaviour
 		}
 		else if (val == false && this.isPrereqMet == true)
 		{
-			this.sr.sprite = RandoMapMod.Resources.Sprite("Map.prereqPin");
+			if (resources == null)
+			{
+				logger.Error("Tried to invoke setPrereqState when resources was null");
+			}
+			this.sr.sprite = resources.Sprite("Map.prereqPin");
 			this.isPrereqMet = false;
 		}
 	}
