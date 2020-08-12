@@ -514,6 +514,14 @@ namespace RandoMapMod {
 			}
 			//throw new NotImplementedException();
 		}
+
+		private static void giveCollectorsMapIfGrubsAreNotRandomized() {
+			if (RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGrubs) {
+				// Do nothing
+			} else {
+				PlayerData.instance.SetBool(nameof(PlayerData.instance.hasPinGrub), true);
+			}
+		}
 		
 		private string HandleLanguageGet( string key, string sheetTitle ) {
 			if ( IsRando && _SAFETY < SAFE ) {
@@ -556,6 +564,7 @@ namespace RandoMapMod {
 							//Give them compass and Quill
 							pd.SetBool(nameof(pd.gotCharm_2), true);
 							pd.SetBool(nameof(pd.hasQuill), true);
+							giveCollectorsMapIfGrubsAreNotRandomized();
 
 							// Set cornifer as having left all the areas. This could be condensed into the previous foreach for one less GetFields(), but I value the clarity more.
 							foreach (FieldInfo field in playerData.GetFields().Where(field => field.Name.StartsWith("corn") && field.Name.EndsWith("Left")))
@@ -605,7 +614,8 @@ namespace RandoMapMod {
 					//Give them compass and Quill
 					pd.SetBool( nameof(pd.gotCharm_2), true );
 					pd.SetBool( nameof(pd.hasQuill), true );
-					
+					giveCollectorsMapIfGrubsAreNotRandomized();
+
 					// Set cornifer as having left all the areas. This could be condensed into the previous foreach for one less GetFields(), but I value the clarity more.
 					foreach (FieldInfo field in playerData.GetFields().Where(field => field.Name.StartsWith("corn") && field.Name.EndsWith("Left")))
 					{
