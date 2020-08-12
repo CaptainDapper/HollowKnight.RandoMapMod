@@ -32,6 +32,8 @@ namespace RandoMapMod {
 		const float MAP_MIN_Y = -12.58548f;
 		const float MAP_MAX_Y = 15.6913f;
 
+		private static readonly DebugLog logger = new DebugLog(nameof(RandoMapMod));
+
 		private GameObject custPinGroup = null;
 		private GameMap theMap;
 
@@ -127,7 +129,6 @@ namespace RandoMapMod {
             "Dream Wielder"
         };
 
-
         public static RandoMapMod Instance {
 			get; private set;
 		}
@@ -153,11 +154,11 @@ namespace RandoMapMod {
 
 		public override void Initialize() {
 			if ( Instance != null ) {
-				DebugLog.Warn( "Initialized twice... Stop that." );
+				logger.Warn( "Initialized twice... Stop that." );
 				return;
 			}
 			Instance = this;
-			DebugLog.Log( "RandoMapMod Initializing..." );
+			logger.Log( "RandoMapMod Initializing..." );
 
 			Resources.Initialize();
 			
@@ -173,7 +174,7 @@ namespace RandoMapMod {
 			UnityEngine.SceneManagement.SceneManager.activeSceneChanged += HandleSceneChanges;
 			ModHooks.Instance.LanguageGetHook += HandleLanguageGet;
 
-			DebugLog.Log("RandoMapMod Initialize complete!");
+			logger.Log("RandoMapMod Initialize complete!");
 		}
 
 		private void SavegameLoadHook( int slot ) {

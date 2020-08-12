@@ -26,6 +26,7 @@ namespace RandoMapMod {
 	}
 
 	static class ObjectNames {
+		private static readonly DebugLog logger = new DebugLog(nameof(ObjectNames));
 		private static Dictionary<string, string> dict = null;
 
 		public static string Get( PinData pinD ) {
@@ -98,7 +99,7 @@ namespace RandoMapMod {
 								break;
 							case JSONAction.Type.NONE:
 							default:
-								DebugLog.Error( "What the crap just happened...? This enum is weeeeird." );
+								logger.Error( "What the crap just happened...? This enum is weeeeird." );
 								break;
 						}
 						if ( pinD != null && newName != "" ) {
@@ -107,8 +108,8 @@ namespace RandoMapMod {
 						}
 					}
 				} catch ( Exception ex ) {
-					DebugLog.Error( "Error trying to MANUALLY FREAKING LOAD the save data" );
-					DebugLog.Error( ex.ToString() );
+					logger.Error( "Error trying to MANUALLY FREAKING LOAD the save data" );
+					logger.Error( ex.ToString() );
 				}
 			} ) );
 		}
