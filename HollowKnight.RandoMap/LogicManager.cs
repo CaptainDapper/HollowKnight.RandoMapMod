@@ -9,99 +9,102 @@ namespace RandoMapMod
 	static class LogicManager
 	{
 		private static readonly DebugLog logger = new DebugLog(nameof(LogicManager));
-		private static Dictionary<string, string[]> macros = null;
 
-		public static List<string> reachableItems;
-		public static List<string> checkedItems;
-
-		public static void AddMacro(string macroName, string rawMacro)
+		private static readonly Dictionary<string, string> shopItems = new Dictionary<string, string>()
 		{
-			if (macros == null)
+			{"Gathering Swarm", "Sly"},
+			{"Stalwart Shell", "Sly"},
+			{"Lumafly Lantern", "Sly"},
+			{"Simple Key-Sly", "Sly"},
+			{"Mask Shard-Sly1", "Sly"},
+			{"Mask Shard-Sly2", "Sly"},
+			{"Vessel Fragment-Sly1", "Sly"},
+			{"Rancid Egg-Sly", "Sly"},
+			{"Heavy Blow", "Sly (Key)" },
+			{"Sprintmaster", "Sly (Key)" },
+			{"Elegant Key", "Sly (Key)" },
+			{"Wayward Compass", "Iselda" },
+			{"Quick Focus", "Salubra" },
+			{"Lifeblood Heart", "Salubra" },
+			{"Steady Body", "Salubra" },
+			{"Long Nail", "Salubra" },
+			{"Shaman Stone", "Salubra" },
+			{"Fragile Heart", "Leg Eater" },
+			{"Fragile Greed", "Leg Eater" },
+			{"Fragile Strength", "Leg Eater" },
+			{"Mask Shard-5 Grubs", "Grubfather" },
+			{"Pale Ore-Grubs", "Grubfather" },
+			{"Rancid Egg-Grubs", "Grubfather" },
+			{"Hallownest Seal-Grubs", "Grubfather" },
+			{"King's Idol-Grubs", "Grubfather" },
+			{"Grubsong", "Grubfather" },
+			{"Grubberfly's Elegy", "Grubfather" },
+			{"Arcane Egg-Seer", "Seer" },
+			{"Vessel Fragment-Seer", "Seer" },
+			{"Pale Ore-Seer", "Seer" },
+			{"Hallownest Seal-Seer", "Seer" },
+			{"Dream Gate", "Seer" },
+			{"Awoken Dream Nail", "Seer" },
+			{"Dream Wielder", "Seer" },
+		};
+
+		public static HelperData helperData;
+		
+		public static bool ItemIsChecked(string itemName) 
+		{
+			if (helperData == null)
 			{
-				macros = new Dictionary<string, string[]>();
+				return false;
 			}
-			macros.Add(macroName, ShuntingYard(rawMacro));
+			return helperData.checkedd.Values.Any(location => location.items.Contains(itemName));
 		}
 
-		/// <summary>
-		/// Translate an infix expression into a postfix expression. For example, given an expression like
-		/// <c>"(Cliffs_02[bot1] + (CLAW | WINGS)) | Cliffs_02[door1] | Cliffs_02[left1] | Cliffs_02[left2]"</c>,
-		/// this will return a array <c>"Cliffs_02[bot1]", "Mantis_Claw", "Monarch_Wings", "|", "+",
-		/// "Cliffs_02[door1]", "|", "Cliffs_02[left1]", "|", "Cliffs_02[left2]", "|"</c>.
-		/// </summary>
-		/// <param name="infix">A string representation of an infix expression.</param>
-		/// <returns>The corresponding parsed postfix expression.</returns>
-		public static string[] ShuntingYard(string infix)
+		public static bool ItemIsReachable(string itemName) 
 		{
-			int i = 0;
-			Stack<string> stack = new Stack<string>();
-			List<string> postfix = new List<string>();
-
-			while (i < infix.Length)
+			if (helperData == null)
 			{
-				string op = getNextOperator(infix, ref i);
-				// Easiest way to deal with whitespace between operators
-				if (op.Trim(' ') == string.Empty)
+				return false;
+			}
+			if (helperData.reachable.Values.Any(location => {
+				return location.items.Contains(itemName);
+				}))
+			{
+				return true;
+			}
+			if (shopItems.ContainsKey(itemName))
+			{
+				/*
+				 * If this is a shop item, we need to say it's reachable whether the item
+				 * is in HelperData's "checked" or "reachable", or else after the player
+				 * checks the shop once, the pins will all shrink.
+				 */
+				string shopName = shopItems[itemName];
+				if (helperData.checkedd.ContainsKey("Shops"))
 				{
-					continue;
-				}
-				if (op == "+" || op == "|")
-				{
-					while (stack.Count != 0 && (op == "|" || (op == "+" && stack.Peek() != "|")) && stack.Peek() != "(")
-					{
-						postfix.Add(stack.Pop());
+					Location location = helperData.checkedd["Shops"];
+					if (location.items.Contains(shopName)) {
+						return true;
 					}
-					stack.Push(op);
 				}
-				else if (op == "(")
+				if (helperData.reachable.ContainsKey("Shops"))
 				{
-					stack.Push(op);
-				}
-				else if (op == ")")
-				{
-					while (stack.Peek() != "(")
-					{
-						postfix.Add(stack.Pop());
-					}
-
-					stack.Pop();
-				}
-				else
-				{
-					// Parse macros
-					if (macros.TryGetValue(op, out string[] macro))
-					{
-						postfix.AddRange(macro);
-					}
-					else
-					{
-						postfix.Add(op);
+					Location location = helperData.reachable["Shops"];
+					if (location.items.Contains(shopName)) {
+						return true;
 					}
 				}
 			}
-			while (stack.Count != 0)
-			{
-				postfix.Add(stack.Pop());
-			}
-			return postfix.ToArray();
+			return false;
 		}
 
-		private static string getNextOperator(string infix, ref int i)
+		public static bool isGrubFatherItem(string itemName)
 		{
-			int start = i;
+			return "Grubfather".Equals(shopItems[itemName]);
+		}
 
-			if (infix[i] == '(' || infix[i] == ')' || infix[i] == '+' || infix[i] == '|')
-			{
-				i++;
-				return infix[i - 1].ToString();
-			}
-
-			while (i < infix.Length && infix[i] != '(' && infix[i] != ')' && infix[i] != '+' && infix[i] != '|')
-			{
-				i++;
-			}
-
-			return infix.Substring(start, i - start).Trim(' ');
+		public static bool isSeerItem(string itemName)
+		{
+			return "Seer".Equals(shopItems[itemName]);
 		}
 	}
 }

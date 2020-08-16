@@ -3,6 +3,7 @@ using RandoMapMod;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static RandoMapMod.Resources;
 
 class Pin : MonoBehaviour
 {
@@ -13,6 +14,9 @@ class Pin : MonoBehaviour
 	private bool isPrereqMet = true;
 
 	private SpriteRenderer sr = null;
+	/// <summary>
+	/// This is the sprite to show if all the pre-requisites are met (this is usually either randoPin.png or shopPin.png).
+	/// </summary>
 	private Sprite origSprite = null;
 	private Vector3 origScale;
 	private Color origColor;
@@ -52,119 +56,53 @@ class Pin : MonoBehaviour
 	{
 		try
 		{
-			//Set Pin's display state according to location's logic.
-			//this.setLogicState(RandomizerMod.Randomization)
-			this.setLogicState(this.pinData.Possible);
-
+			//First off, if this item is not randomized, don't show it.
+			string pool = resources.PinData()[this.pinData.ID].Pool;
+			var isRandomized = pool switch
+			{
+				"Dreamer" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeDreamers,
+				"Skill" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeSkills,
+				"Charm" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharms,
+				"Key" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeKeys,
+				"Geo" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGeoChests,
+				"Mask" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaskShards,
+				"Vessel" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeVesselFragments,
+				"Ore" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizePaleOre,
+				"Notch" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharmNotches,
+				"Egg" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRancidEggs,
+				"Relic" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRelics,
+				"Map" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaps,
+				"Stag" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeStags,
+				"Grub" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGrubs,
+				"Root" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeWhisperingRoots,
+				_ => true,
+			};
+			if (!isRandomized)
+			{
+				this.disableSelf();
+				return;
+			}
+			//Otherwise, check if it's reachable and/or if it has any prerequisites.
+			this.SetIsPossible(this.pinData.Possible);
 			if (this.isPossible)
 			{
 				//Set Pin state according to prereqs.
 				this.setPrereqState(this.pinData.PreReqMet);
 			}
+			//Disable Pin if we've already obtained / checked this location.
+			if (LogicManager.ItemIsChecked(this.pinData.ID.Replace('_', ' ')))
+			{
+				this.disableSelf();
+			}
+			else
+			{
+
+			}
 		}
 		catch (Exception e)
 		{
 			logger.Error($"Failed to enable pin: {e.Message} {e.StackTrace}");
-			
 		}
-
-		//Disable Pin if we've already obtained / checked this location.
-		if (LogicManager.checkedItems.Contains(this.pinData.ID.Replace('_', ' ')))
-		{
-			//Dev.Log(this.pinData.ID + " is checked");
-			this.disableSelf();
-		}
-		else
-		{
-			string pool = resources.PinData()[this.pinData.ID].Pool;
-			bool isRandomized = false;
-			switch (pool)
-			{
-				case "Dreamer":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeDreamers;
-					break;
-
-				case "Skill":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeSkills;
-					break;
-
-				case "Charm":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharms;
-					break;
-
-				case "Key":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeKeys;
-					break;
-
-				case "Geo":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGeoChests;
-					break;
-
-				case "Mask":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaskShards;
-					break;
-
-				case "Vessel":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeVesselFragments;
-					break;
-
-				case "Ore":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizePaleOre;
-					break;
-
-				case "Notch":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharmNotches;
-					break;
-
-				case "Egg":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRancidEggs;
-					break;
-
-				case "Relic":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRelics;
-					break;
-
-				case "Map":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaps;
-					break;
-
-				case "Stag":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeStags;
-					break;
-
-				case "Grub":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGrubs;
-					break;
-
-				case "Root":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeWhisperingRoots;
-					break;
-
-				default:
-					isRandomized = true;
-					break;
-			}
-			if (!isRandomized)
-			{
-				//Dev.Log(this.pinData.ID + " is not randomized");
-				this.disableSelf();
-			}
-		}
-		//switch ( this.pinData.CheckType ) {
-		//	case PinData.Types.PlayerBool:
-		//		if ( this.checkPlayerData( this.pinData.CheckBool ) ) {
-		//			this.disableSelf();
-		//		}
-		//		break;
-		//	case PinData.Types.SceneData:
-		//		if ( this.checkSceneData( this.pinData.SceneName, this.pinData.ObjectName ) ) {
-		//			this.disableSelf();
-		//		}
-		//		break;
-		//	default:
-		//		DebugLog.Warn( "Pin CheckType not defined?" );
-		//		break;
-		//}
 	}
 
 	private void disableSelf()
@@ -175,66 +113,42 @@ class Pin : MonoBehaviour
 	/// <summary>
 	/// Shrinks and/or greys out a pin if it is not possible to get the pin at the current time.
 	/// </summary>
-	/// <param name="val">TODO: Figure out what this parameter means.</param>
-	private void setLogicState(bool val)
+	private void SetIsPossible(bool newValue)
 	{
 		//Dev.Log("Set Logic State: " + val);
-		if (val == true && this.isPossible == false)
+		if (newValue == true && this.isPossible == false)
 		{
 			this.transform.localScale = this.origScale;
 			this.sr.color = this.origColor;
 			this.isPossible = true;
 		}
-		else if (val == false && this.isPossible == true)
+		else if (newValue == false && this.isPossible == true)
 		{
-			//Dev.Log("Shrink!");
 			this.transform.localScale = this.origScale * 0.5f;
 			this.sr.color = Color.gray;
 			this.isPossible = false;
 		}
 	}
 
-	private void setPrereqState(bool val)
+	/// <summary>
+	/// Sets whether the prereq is met for the current pin. Has the side effect
+	/// of changing SpriteRenderer's pin to the "prereq pin" if the prereqs are not met.
+	/// </summary>
+	private void setPrereqState(bool newValue)
 	{
-		if (val == true && this.isPrereqMet == false)
+		if (newValue == true && this.isPrereqMet == false)
 		{
 			this.sr.sprite = this.origSprite;
 			this.isPrereqMet = true;
 		}
-		else if (val == false && this.isPrereqMet == true)
+		else if (newValue == false && this.isPrereqMet == true)
 		{
 			if (resources == null)
 			{
 				logger.Error("Tried to invoke setPrereqState when resources was null");
 			}
-			this.sr.sprite = resources.Sprite("Map.prereqPin");
+			this.sr.sprite = resources.Sprite(SpriteId.MissingPrereq);
 			this.isPrereqMet = false;
 		}
-	}
-
-	private bool checkPlayerData(string checkBool)
-	{
-		logger.Log("checkPlayerData invoked.");
-		bool ret = PlayerData.instance.GetBool(checkBool);
-
-		return ret;
-	}
-
-	private bool checkSceneData(string pSceneName, string pObjectName)
-	{
-		logger.Log("checkSceneData invoked.");
-		bool ret = false;
-		List<PersistentBoolData> pbis = SceneData.instance.persistentBoolItems;
-
-		foreach (PersistentBoolData pbd in pbis)
-		{
-			if (pbd.sceneName == pSceneName && pbd.id == pObjectName)
-			{
-				ret = pbd.activated;
-				break;
-			}
-		}
-
-		return ret;
 	}
 }

@@ -58,3 +58,5 @@ Ensure you have the above dependencies installed, then place the .dll file in th
   * Talking to Elderbug now causes Cornifer to immediately go home and sleep.
 * v0.4.0
   * Elderbug now also gives Collector's Map, indicating the location of the grubs, if grubs are not randomized.
+* v0.5.0
+  * There is now an overlay on the map that shows how many reachable checks there are in each location.

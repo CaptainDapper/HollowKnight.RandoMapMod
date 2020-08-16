@@ -12,7 +12,25 @@ namespace RandoMapMod
 	{
 		private static readonly DebugLog logger = new DebugLog(nameof(Resources));
 
-		private readonly Dictionary<string, Sprite> pSprites;
+		public enum SpriteId
+		{
+			/// <summary>
+			/// The pin to use for a normal check (e.g. a red question mark).
+			/// </summary>
+			Rando,
+			/// <summary>
+			/// The pin to use for shop checks (e.g. a dollar symbol)
+			/// </summary>
+			Shop,
+			/// <summary>
+			/// The pin to use for a check with an unmet prereq, which usually
+			/// means a Grubfather check but you don't have enough grubs, or a Seer
+			/// check but you don't have enough essence.
+			/// </summary>
+			MissingPrereq,
+		}
+
+		private readonly Dictionary<SpriteId, Sprite> pSprites;
 		private readonly Dictionary<string, PinData> pPinData;
 
 		public Dictionary<string, PinData> PinData()
@@ -20,7 +38,7 @@ namespace RandoMapMod
 			return pPinData;
 		}
 
-		public Sprite Sprite(string pSpriteName)
+		public Sprite Sprite(SpriteId pSpriteName)
 		{
 			if (pSprites.TryGetValue(pSpriteName, out Sprite sprite))
 			{
@@ -34,7 +52,7 @@ namespace RandoMapMod
 		public Resources()
 		{
 			Assembly theDLL = typeof(RandoMapMod).Assembly;
-			pSprites = new Dictionary<string, Sprite>();
+			pSprites = new Dictionary<SpriteId, Sprite>();
 			foreach (string resource in theDLL.GetManifestResourceNames())
 			{
 				if (resource.EndsWith(".png"))
@@ -47,10 +65,23 @@ namespace RandoMapMod
 
 					Texture2D texture = new Texture2D(1, 1);
 					texture.LoadImage(buff, true);
-
-					pSprites.Add(
-						Path.GetFileNameWithoutExtension(resource.Replace("RandoMapMod.Resources.", string.Empty)),
-						UnityEngine.Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f)));
+					SpriteId? key = resource switch
+					{
+						"RandoMapMod.Resources.Map.prereqPin.png" => SpriteId.MissingPrereq,
+						"RandoMapMod.Resources.Map.randoPin.png" => SpriteId.Rando,
+						"RandoMapMod.Resources.Map.shopPin.png" => SpriteId.Shop,
+						_ => null
+					};
+					if (key == null)
+					{
+						logger.Warn($"Found unrecognized sprite {resource}. Ignoring.");
+					} else
+					{
+						pSprites.Add(
+							(SpriteId)key,
+							UnityEngine.Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f)));
+					}
+					
 				}
 				else if (resource.EndsWith("pindata.xml"))
 				{
@@ -76,16 +107,6 @@ namespace RandoMapMod
 				{
 					"items.xml", (xml) => {
 						loadItemData(xml.SelectNodes("randomizer/item"));
-					}
-				},
-				{
-					"macros.xml", (xml) => {
-						loadMacroData(xml.SelectNodes("randomizer/macro"));
-					}
-				},
-				{
-					"additive.xml", (xml) => {
-						loadAdditiveMacroData(xml.SelectNodes("randomizer/additiveItemSet"));
 					}
 				}
 			};
@@ -116,31 +137,6 @@ namespace RandoMapMod
 			}
 		}
 
-		private static void loadMacroData(XmlNodeList nodes)
-		{
-			logger.Log($"Logging {nodes.Count} macros from macroData...");
-			foreach (XmlNode node in nodes)
-			{
-				string name = node.Attributes["name"].Value;
-				LogicManager.AddMacro(name, node.InnerText);
-			}
-		}
-
-		private static void loadAdditiveMacroData(XmlNodeList additiveItems)
-		{
-			logger.Log($"Loading {additiveItems.Count} macros from additiveItems...");
-			foreach (XmlNode node in additiveItems)
-			{
-				string name = node.Attributes["name"].Value;
-				string[] additiveSet = new string[node.ChildNodes.Count];
-				for (int i = 0; i < additiveSet.Length; i++)
-				{
-					additiveSet[i] = node.ChildNodes[i].InnerText;
-				}
-				LogicManager.AddMacro(name, string.Join(" | ", additiveSet));
-			}
-		}
-
 		/// <summary>
 		/// Loads items from RandomizerMod's item list, and merges it with our own pindata.xml
 		/// </summary>
@@ -152,7 +148,7 @@ namespace RandoMapMod
 				string itemName = node.Attributes["name"].Value;
 				if (!pPinData.ContainsKey(itemName))
 				{
-					logger.Log($"RandomizerMod has an item.xml entry for {itemName} but there is no matching entry in RandoMapMod's pindata.xml. This is probably intentional to avoid pins that would otherwise mislead the player.");
+					//logger.Log($"RandomizerMod has an item.xml entry for {itemName} but there is no matching entry in RandoMapMod's pindata.xml. This is probably intentional to avoid pins that would otherwise mislead the player.");
 					continue;
 				}
 
@@ -243,9 +239,6 @@ namespace RandoMapMod
 							break;
 						case "checkBool":
 							newPin.CheckBool = chld.InnerText;
-							break;
-						case "prereq":
-							newPin.PrereqRaw = chld.InnerText;
 							break;
 						case "offsetX":
 							newPin.OffsetX = XmlConvert.ToSingle(chld.InnerText);
