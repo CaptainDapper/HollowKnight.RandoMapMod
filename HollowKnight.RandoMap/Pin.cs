@@ -115,7 +115,15 @@ class Pin : MonoBehaviour {
                     isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeWhisperingRoots;
                     break;
 
-                default:
+				case "Rock":
+					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRocks;
+					break;
+
+				case "DupeRock":
+					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeDupeRocks;
+					break;
+
+				default:
                     isRandomized = true;
                     break;
             }
