@@ -205,6 +205,8 @@ namespace RandoMapMod {
 				foreach ( PinData pin in PinData_S.All.Values ) {
 					this.addPinToRoom( pin );
 				}
+				//PinData test = new PinData();
+				//test.NewX = 
 			}
 
 			orig( self );
@@ -420,8 +422,13 @@ namespace RandoMapMod {
 				orig( self );
 				return;
 			}
-            //Dev.Log("UNMARK THE MAP!");
-            this.custPinGroup.SetActive( false );
+			//Dev.Log("UNMARK THE MAP!");
+			Dev.Log("Current Hero Map Position: " + (this.custPinGroup.transform.position.x- self.compassIcon.transform.position.x) + ", " + (this.custPinGroup.transform.position.y- self.compassIcon.transform.position.y));
+			this.custPinGroup.SetActive( false );
+			
+			//Dev.Log("Current Hero Map Position: " + self.compassIcon.transform.position.x + ", " + self.compassIcon.transform.position.y);
+			//Dev.Log("Current Hero Map Position: " + self.mapMarkersBlue[0].transform.position.x + ", " + self.mapMarkersBlue[0].transform.position.y);
+			//self.
 
 			orig( self );
 		}
@@ -438,7 +445,10 @@ namespace RandoMapMod {
             if (pin.isShop)
                 sr.sprite = Resources.Sprite("Map.shopPin");
             else
-			    sr.sprite = Resources.Sprite( "Map.randoPin" );
+				if(pin.Pool == "Rock" || pin.Pool == "DupeRock")
+					sr.sprite = Resources.Sprite("Map.rockPin");
+				else
+					sr.sprite = Resources.Sprite( "Map.randoPin" );
 			sr.sortingLayerName = "HUD";
 			sr.size = new Vector2( 1f, 1f );
 
