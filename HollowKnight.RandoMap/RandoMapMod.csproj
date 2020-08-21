@@ -104,6 +104,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Map\shopPin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Map\rockPin.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
