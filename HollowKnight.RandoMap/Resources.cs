@@ -99,6 +99,28 @@ namespace RandoMapMod {
 						DebugLog.Error(e.ToString());
 					}
 				}
+				if (resource.EndsWith("soul_lore.xml"))
+				{
+
+					try
+					{
+						//Dev.Log("Item 1");
+						using (Stream stream = randoDLL.GetManifestResourceStream(resource))
+						{
+							XmlDocument xml = new XmlDocument();
+							xml.Load(stream);
+							//Dev.Log("Item 2");
+							loadItemData(xml.SelectNodes("randomizer/item"));
+							//Dev.Log("Item 3");
+							//loadMacroData( xml.SelectNodes( "randomizer/macro" ), xml.SelectNodes( "randomizer/additiveItemSet" ) );
+						}
+					}
+					catch (Exception e)
+					{
+						DebugLog.Error("soul_lore.xml Load Failed!");
+						DebugLog.Error(e.ToString());
+					}
+				}
 				if (resource.EndsWith("macros.xml"))
                 {
                     try

@@ -119,9 +119,17 @@ class Pin : MonoBehaviour {
 					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRocks;
 					break;
 
-				case "DupeRock":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeDupeRocks;
-					break;
+                case "Lifeblood":
+                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeLifebloodCocoons;
+                    break;
+
+                case "Soul":
+                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeSoulTotems;
+                    break;
+
+                case "PalaceSoul":
+                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizePalaceTotems;
+                    break;
 
 				default:
                     isRandomized = true;

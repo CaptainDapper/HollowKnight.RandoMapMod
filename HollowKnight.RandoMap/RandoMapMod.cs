@@ -140,7 +140,7 @@ namespace RandoMapMod {
 		}
 
 		public override string GetVersion() {
-			string ver = "0.3.8";
+			string ver = "0.3.10";
 			int minAPI = 45;
 
 			bool apiTooLow = Convert.ToInt32( ModHooks.Instance.ModVersion.Split( '-' )[1] ) < minAPI;
@@ -445,8 +445,12 @@ namespace RandoMapMod {
             if (pin.isShop)
                 sr.sprite = Resources.Sprite("Map.shopPin");
             else
-				if(pin.Pool == "Rock" || pin.Pool == "DupeRock")
+				if(pin.Pool == "Rock")
 					sr.sprite = Resources.Sprite("Map.rockPin");
+                else if(pin.Pool == "Soul" || pin.Pool == "PalaceSoul")
+                    sr.sprite = Resources.Sprite("Map.totemPin");
+                else if(pin.Pool == "Cocoon")
+                    sr.sprite = Resources.Sprite("Map.lifebloodPin");
 				else
 					sr.sprite = Resources.Sprite( "Map.randoPin" );
 			sr.sortingLayerName = "HUD";

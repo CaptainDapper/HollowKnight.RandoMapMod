@@ -8,13 +8,13 @@
   </pin>
   <pin name="Monomon">
     <pinScene>Fungus3_47</pinScene>
-	<offsetX>0.1</offsetX>
-	<offsetY>-0.15</offsetY>
+  <offsetX>0.1</offsetX>
+  <offsetY>-0.15</offsetY>
   </pin>
   <pin name="Herrah">
     <pinScene>Deepnest_10</pinScene>
-	<offsetX>-0.1</offsetX>
-	<offsetY>1.2</offsetY>
+  <offsetX>-0.1</offsetX>
+  <offsetY>1.2</offsetY>
   </pin>
   
   <!--Skills-->
@@ -104,7 +104,7 @@
   </pin>
   <pin name="Great_Slash">
     <pinScene>Fungus1_15</pinScene>
-	<offsetX>0.2</offsetX>
+  <offsetX>0.2</offsetX>
     <offsetY>0.35</offsetY>
   </pin>
   
@@ -117,8 +117,8 @@
   </pin>-->
   <pin name="Wayward_Compass">
     <pinScene>Town</pinScene>
-	<offsetX>0.4</offsetX>
-	<offsetY>-0.4</offsetY>
+  <offsetX>0.4</offsetX>
+  <offsetY>-0.4</offsetY>
     <isShop>true</isShop>
   </pin>
   <pin name="Grubsong">
@@ -144,7 +144,7 @@
   <pin name="Quick_Focus">
     <pinScene>Crossroads_04</pinScene>
     <offsetX>1.35</offsetX>
-	<offsetY>-0.05</offsetY>
+  <offsetY>-0.05</offsetY>
     <isShop>true</isShop>
   </pin>
   <!--<pin name="Lifeblood_Heart">
@@ -159,11 +159,11 @@
   </pin>
   <pin name="Defender's_Crest">
     <offsetX>0.5</offsetX>
-	<offsetY>-0.2</offsetY>
+  <offsetY>-0.2</offsetY>
   </pin>
   <pin name="Flukenest">
     <offsetX>-0.9</offsetX>
-	<offsetY>0.2</offsetY>
+  <offsetY>0.2</offsetY>
   </pin>
   <pin name="Thorns_of_Agony">
     <offsetX>0.7</offsetX>
@@ -224,7 +224,7 @@
     <offsetZ>0.1</offsetZ>
   </pin>-->
   <pin name="Fragile_Strength">
-	<offsetX>0.4</offsetX>
+  <offsetX>0.4</offsetX>
     <isShop>true</isShop>
   </pin>
   <pin name="Nailmaster's_Glory">
@@ -303,7 +303,7 @@
   <pin name="Grimmchild">
     <pinScene>Town</pinScene>
     <offsetX>-1.3</offsetX>
-	<offsetY>-0.4</offsetY>
+  <offsetY>-0.4</offsetY>
   </pin>
   
   <!--Keys-->
@@ -354,7 +354,7 @@
   </pin>
   <pin name="King's_Brand">
     <pinScene>Deepnest_East_Hornet</pinScene>
-	<offsetX>-0.4</offsetX>
+  <offsetX>-0.4</offsetX>
     <offsetY>-0.8</offsetY>
   </pin>
   <pin name="Godtuner">
@@ -412,11 +412,11 @@
   <pin name="Mask_Shard-Stone_Sanctuary">
     <pinScene>Fungus1_34</pinScene>
     <offsetX>1.05</offsetX>
-	<offsetY>-0.1</offsetY>
+  <offsetY>-0.1</offsetY>
   </pin>
   <pin name="Mask_Shard-Queen's_Station">
     <offsetX>0.4</offsetX>
-	<offsetY>0.05</offsetY>
+  <offsetY>0.05</offsetY>
   </pin>
   <pin name="Mask_Shard-Deepnest">
     <offsetX>0.15</offsetX>
@@ -440,7 +440,7 @@
   <pin name="Mask_Shard-Bretta">
     <pinScene>Town</pinScene>
     <offsetX>0.875</offsetX>
-	<offsetY>-0.4</offsetY>
+  <offsetY>-0.4</offsetY>
   </pin>
   
   <!--Vessel Fragments-->
@@ -467,11 +467,11 @@
     <offsetY>0.4</offsetY>
   </pin>
   <pin name="Vessel_Fragment-City">
-	<offsetX>0.5</offsetX>
+  <offsetX>0.5</offsetX>
   </pin>
   <pin name="Vessel_Fragment-Crossroads">
     <offsetX>-0.55</offsetX>
-	<offsetY>-0.15</offsetY>
+  <offsetY>-0.15</offsetY>
   </pin>
   <pin name="Vessel_Fragment-Basin">
     <offsetX>0.3</offsetX>
@@ -483,17 +483,17 @@
   </pin>
   <pin name="Vessel_Fragment-Stag_Nest">
     <pinScene>Cliffs_02</pinScene>
-	  <offsetX>-2.8</offsetX>
+    <offsetX>-2.8</offsetX>
     <offsetY>1.5</offsetY>
   </pin>
   
   <!--Charm Notches-->
   <pin name="Charm_Notch-Shrumal_Ogres">
-	<offsetX>-0.05</offsetX>
+  <offsetX>-0.05</offsetX>
   </pin>
-  <pin name="Charm_Notch-Fog_Canyon">
-	<offsetX>-0.5</offsetX>
-	<offsetY>-0.3</offsetY>
+  <pin name="Charm_Notch-Fog_Canyon_West">
+  <offsetX>-0.5</offsetX>
+  <offsetY>-0.3</offsetY>
   </pin>
   <pin name="Charm_Notch-Colosseum">
     <pinScene>Deepnest_East_09</pinScene>
@@ -591,7 +591,7 @@
   </pin>
   <pin name="Rancid_Egg-Fungal_Core">
     <offsetX>-0.8</offsetX>
-	<offsetY>0.1</offsetY>
+  <offsetY>0.1</offsetY>
   </pin>
   <pin name="Rancid_Egg-Queen's_Gardens">
     <offsetX>-0.8</offsetX>
@@ -603,7 +603,7 @@
   </pin>
   <pin name="Rancid_Egg-Crystal_Peak_Dive_Entrance">
     <offsetX>0.3</offsetX>
-	<offsetY>0.1</offsetY>
+  <offsetY>0.1</offsetY>
   </pin>
   <pin name="Rancid_Egg-Crystal_Peak_Dark_Room">
     <offsetX>-0.4</offsetX>
@@ -621,22 +621,22 @@
   </pin>
   <pin name="Rancid_Egg-Beast's_Den">
     <pinScene>Deepnest_10</pinScene>
-	<offsetX>-0.1</offsetX>
+  <offsetX>-0.1</offsetX>
     <offsetY>1.6</offsetY>
     <offsetZ>0.1</offsetZ>
   </pin>
   <pin name="Rancid_Egg-Dark_Deepnest">
-	<offsetX>-1.6</offsetX>
-	<offsetY>-0.6</offsetY>
+  <offsetX>-1.6</offsetX>
+  <offsetY>-0.6</offsetY>
   </pin>
   <pin name="Rancid_Egg-Weaver's_Den">
     <pinScene>Deepnest_39</pinScene>
-	<offsetX>2.4</offsetX>
-	<offsetY>0.55</offsetY>
-	<offsetZ>0.1</offsetZ>
+  <offsetX>2.4</offsetX>
+  <offsetY>0.55</offsetY>
+  <offsetZ>0.1</offsetZ>
   </pin>
   <pin name="Rancid_Egg-Near_Quick_Slash">
-	<offsetX>-0.05</offsetX>
+  <offsetX>-0.05</offsetX>
     <offsetY>-0.2</offsetY>
   </pin>
   <pin name="Rancid_Egg-Upper_Kingdom's_Edge">
@@ -665,7 +665,7 @@
     <offsetY>-1.4</offsetY>
   </pin>
   <pin name="Wanderer's_Journal-Greenpath_Stag">
-	<offsetX>0.1</offsetX>
+  <offsetX>0.1</offsetX>
     <offsetY>1.2</offsetY>
   </pin>
   <pin name="Wanderer's_Journal-Greenpath_Lower">
@@ -704,7 +704,7 @@
     <offsetX>-0.5</offsetX>
   </pin>
   <pin name="Wanderer's_Journal-Kingdom's_Edge_Camp">
-	<offsetX>-0.2</offsetX>
+  <offsetX>-0.2</offsetX>
     <offsetY>-0.15</offsetY>
   </pin>
   <pin name="Wanderer's_Journal-Kingdom's_Edge_Requires_Dive">
@@ -713,11 +713,11 @@
 
   <!--Hallownest Seals-->
   <pin name="Hallownest_Seal-Crossroads_Well">
-	<offsetX>-0.2</offsetX>
-	<offsetY>0.2</offsetY>
+  <offsetX>-0.2</offsetX>
+  <offsetY>0.2</offsetY>
   </pin>
   <pin name="Hallownest_Seal-Grubs">
-	<offsetX>-0.4</offsetX>
+  <offsetX>-0.4</offsetX>
     <offsetY>0.4</offsetY>
     <offsetZ>0.1</offsetZ>
     <hasPrereq>true</hasPrereq>
@@ -728,21 +728,21 @@
   </pin>
   <pin name="Hallownest_Seal-Fog_Canyon_West">
     <offsetX>0.1</offsetX>
-	<offsetY>0.1</offsetY>
+  <offsetY>0.1</offsetY>
   </pin>
   <pin name="Hallownest_Seal-Fog_Canyon_East">
     <offsetX>-0.15</offsetX>
     <offsetY>0.9</offsetY>
   </pin>
   <pin name="Hallownest_Seal-Queen's_Station">
-	<offsetX>0.2</offsetX>
+  <offsetX>0.2</offsetX>
   </pin>
   <pin name="Hallownest_Seal-Fungal_Wastes_Sporgs">
     <offsetX>0.8</offsetX>
     <offsetY>0.7</offsetY>
   </pin>
   <pin name="Hallownest_Seal-Mantis_Lords">
-	<offsetY>-0.05</offsetY>
+  <offsetY>-0.05</offsetY>
   </pin>
   <pin name="Hallownest_Seal-Seer"> 
     <pinScene>RestingGrounds_05</pinScene>
@@ -772,11 +772,11 @@
   </pin>
   <pin name="Hallownest_Seal-Deepnest_By_Mantis_Lords">
     <offsetX>0.8</offsetX>
-	<offsetY>0.1</offsetY>
+  <offsetY>0.1</offsetY>
   </pin>
   <pin name="Hallownest_Seal-Beast's_Den">
     <pinScene>Deepnest_10</pinScene>
-	<offsetX>-0.1</offsetX>
+  <offsetX>-0.1</offsetX>
     <offsetY>1.8</offsetY>
     <offsetZ>0.15</offsetZ>
   </pin>
@@ -842,7 +842,7 @@
 
   <!--Whispering Roots-->
   <pin name="Whispering_Root-Crossroads">
-	  <offsetX>-0.3</offsetX>
+    <offsetX>-0.3</offsetX>
     <offsetY>1.0</offsetY>
   </pin>
   <pin name="Whispering_Root-Greenpath">
@@ -854,7 +854,7 @@
     <offsetY>-0.7</offsetY>
   </pin>
   <pin name="Whispering_Root-Mantis_Village">
-	<offsetX>0.1</offsetX>
+  <offsetX>0.1</offsetX>
     <offsetY>-0.25</offsetY>
   </pin>
   <pin name="Whispering_Root-Deepnest">
@@ -889,7 +889,7 @@
     <offsetY>-0.25</offsetY>
   </pin>
   <pin name="Whispering_Root-Howling_Cliffs">
-	  <offsetX>0.8</offsetX>
+    <offsetX>0.8</offsetX>
     <offsetY>-1.9</offsetY>
   </pin>
   <pin name="Whispering_Root-Ancestral_Mound">
@@ -946,186 +946,186 @@
   
 
   <!--Grubs-->
-  <pin name="Grub-Crossroads_35">
+  <pin name="Grub-Crossroads_Acid">
     <offsetX>-0.7</offsetX>
     <offsetY>0.4</offsetY>
   </pin>
-  <pin name="Grub-Crossroads_05">
+  <pin name="Grub-Crossroads_Center">
     <offsetX>0.45</offsetX>
     <offsetY>0.1</offsetY>
   </pin>
-  <pin name="Grub-Crossroads_03">
-	<offsetX>-0.2</offsetX>
+  <pin name="Grub-Crossroads_Stag">
+  <offsetX>-0.2</offsetX>
     <offsetY>0.2</offsetY>
   </pin>
-  <pin name="Grub-Crossroads_31">
+  <pin name="Grub-Crossroads_Spike">
     <offsetX>-0.35</offsetX>
   </pin>
-  <pin name="Grub-Crossroads_48">
+  <pin name="Grub-Crossroads_Guarded">
     <offsetX>0.4</offsetX>
   </pin>
-  <pin name="Grub-Fungus1_06">
+  <pin name="Grub-Greenpath_Cornifer">
     <offsetX>1.4</offsetX>
     <offsetY>0.25</offsetY>
   </pin>
-  <pin name="Grub-Fungus1_07">
+  <pin name="Grub-Greenpath_Journal">
     <offsetX>0.4</offsetX>
     <offsetY>-0.2</offsetY>
   </pin>
-  <pin name="Grub-Fungus1_13">
-	<offsetX>0.6</offsetX>
-	<offsetY>-0.05</offsetY>
+  <pin name="Grub-Greenpath_MMC">
+  <offsetX>0.6</offsetX>
+  <offsetY>-0.05</offsetY>
   </pin>
-  <pin name="Grub-Fungus1_21">
+  <pin name="Grub-Greenpath_Stag">
     <offsetX>0.9</offsetX>
     <offsetY>0.1</offsetY>
   </pin>
-  <pin name="Grub-Fungus3_47">
+  <pin name="Grub-Fog_Canyon">
     <offsetX>-0.85</offsetX>
   </pin>
-  <pin name="Grub-Fungus2_18">
+  <pin name="Grub-Fungal_Bouncy">
     <offsetX>1.45</offsetX>
     <offsetY>0.5</offsetY>
   </pin>
-  <pin name="Grub-Fungus2_20">
-	<offsetX>-0.5</offsetX>
-	<offsetY>0.35</offsetY>
+  <pin name="Grub-Fungal_Spore_Shroom">
+  <offsetX>-0.5</offsetX>
+  <offsetY>0.35</offsetY>
   </pin>
-  <pin name="Grub-Deepnest_36">
+  <pin name="Grub-Deepnest_Mimic">
     <offsetX>0.5</offsetX>
-	<offsetY>-0.05</offsetY>
+  <offsetY>-0.05</offsetY>
   </pin>
-  <pin name="Grub-Deepnest_31">
+  <pin name="Grub-Deepnest_Nosk">
     <offsetX>1.0</offsetX>
-	<offsetY>0.2</offsetY>
+  <offsetY>0.2</offsetY>
   </pin>
-  <pin name="Grub-Deepnest_03">
+  <pin name="Grub-Deepnest_Spike">
     <offsetX>-0.4</offsetX>
     <offsetY>1.2</offsetY>
   </pin>
-  <pin name="Grub-Deepnest_39">
+  <pin name="Grub-Dark_Deepnest">
     <offsetX>0.5</offsetX>
     <offsetY>0.3</offsetY>
   </pin>
-  <pin name="Grub-Deepnest_Spider_Town">
+  <pin name="Grub-Beast's_Den">
     <pinScene>Deepnest_10</pinScene>
-	<offsetX>-0.1</offsetX>
+  <offsetX>-0.1</offsetX>
     <offsetY>1.4</offsetY>
     <offsetZ>0.05</offsetZ>
   </pin>
-  <pin name="Grub-Deepnest_East_14">
+  <pin name="Grub-Kingdom's_Edge_Oro">
     <offsetX>1.95</offsetX>
     <offsetY>-0.15</offsetY>
   </pin>
-  <pin name="Grub-Deepnest_East_11">
+  <pin name="Grub-Kingdom's_Edge_Camp">
     <offsetX>0.2</offsetX>
   </pin>
-  <pin name="Grub-Hive_03">
+  <pin name="Grub-Hive_External">
     <offsetX>-1.2</offsetX>
     <offsetY>0.75</offsetY>
   </pin>
-  <pin name="Grub-Hive_04">
+  <pin name="Grub-Hive_Internal">
     <offsetX>1.1</offsetX>
     <offsetY>0.3</offsetY>
   </pin>
-  <pin name="Grub-Abyss_19">
-	<offsetX>0.05</offsetX>
+  <pin name="Grub-Basin_Requires_Wings">
+  <offsetX>0.05</offsetX>
     <offsetY>1.0</offsetY>
   </pin>
-  <pin name="Grub-Abyss_17">
+  <pin name="Grub-Basin_Requires_Dive">
     <offsetX>1.8</offsetX>
     <offsetY>-0.6</offsetY>
   </pin>
-  <pin name="Grub-Waterways_04">
+  <pin name="Grub-Waterways_Main">
     <offsetX>1.2</offsetX>
     <offsetY>-0.25</offsetY>
   </pin>
-  <pin name="Grub-Waterways_13">
+  <pin name="Grub-Waterways_East">
     <offsetX>1.0</offsetX>
     <offsetY>0.2</offsetY>
   </pin>
-  <pin name="Grub-Waterways_14">
+  <pin name="Grub-Waterways_Requires_Tram">
     <offsetX>1.5</offsetX>
     <offsetY>0.25</offsetY>
   </pin>
-  <pin name="Grub-Ruins1_05">
+  <pin name="Grub-City_of_Tears_Left">
     <offsetX>0.45</offsetX>
     <offsetY>1.5</offsetY>
   </pin>
-  <pin name="Grub-Ruins1_32">
+  <pin name="Grub-Soul_Sanctum">
     <offsetX>-0.4</offsetX>
     <offsetY>-0.8</offsetY>
   </pin>
-  <pin name="Grub-Ruins2_03">
+  <pin name="Grub-Watcher's_Spire">
     <offsetX>-0.35</offsetX>
     <offsetY>-0.2</offsetY>
   </pin>
-  <pin name="Grub-Ruins_House_01">
+  <pin name="Grub-City_of_Tears_Guarded">
     <pinScene>Ruins2_04</pinScene>
     <offsetX>1.1</offsetX>
     <offsetY>-0.2</offsetY>
   </pin>
-  <pin name="Grub-Ruins2_07">
-	<offsetX>0.15</offsetX>
+  <pin name="Grub-King's_Station">
+  <offsetX>0.15</offsetX>
   </pin>
-  <pin name="Grub-RestingGrounds_10">
+  <pin name="Grub-Resting_Grounds">
     <offsetX>0.9</offsetX>
-	<offsetY>0.05</offsetY>
+  <offsetY>0.05</offsetY>
   </pin>
-  <pin name="Grub-Mines_04">
+  <pin name="Grub-Crystal_Peak_Below_Chest">
     <offsetY>1.0</offsetY>
   </pin>
-  <pin name="Grub-Mines_35">
+  <pin name="Grub-Crystallized_Mound">
     <pinScene>Mines_28</pinScene>
     <offsetX>0.8</offsetX>
     <offsetY>1.1</offsetY>
     <offsetZ>0.05</offsetZ>
   </pin>
-  <pin name="Grub-Mines_03">
-	<offsetX>0.05</offsetX>
+  <pin name="Grub-Crystal_Peak_Spike">
+  <offsetX>0.05</offsetX>
     <offsetY>0.9</offsetY>
   </pin>
-  <pin name="Grub-Mines_16">
+  <pin name="Grub-Crystal_Peak_Mimic">
     <offsetX>0.3</offsetX>
     <offsetY>0.2</offsetY>
   </pin>
-  <pin name="Grub-Mines_19">
-	<offsetX>0.1</offsetX>
-	<offsetY>0.15</offsetY>
+  <pin name="Grub-Crystal_Peak_Crushers">
+  <offsetX>0.1</offsetX>
+  <offsetY>0.15</offsetY>
   </pin>
-  <pin name="Grub-Mines_31">
+  <pin name="Grub-Crystal_Heart">
     <offsetX>-2.3</offsetX>
-	<offsetY>0.05</offsetY>
+  <offsetY>0.05</offsetY>
   </pin>
-  <pin name="Grub-Mines_24">
-	<offsetX>0.4</offsetX>
-	<offsetY>0.1</offsetY>
+  <pin name="Grub-Hallownest_Crown">
+  <offsetX>0.4</offsetX>
+  <offsetY>0.1</offsetY>
   </pin>
-  <pin name="Grub-Fungus1_28">
-	<offsetX>0.2</offsetX>
+  <pin name="Grub-Howling_Cliffs">
+  <offsetX>0.2</offsetX>
     <offsetY>0.4</offsetY>
   </pin>
-  <pin name="Grub-Fungus3_10">
+  <pin name="Grub-Queen's_Gardens_Stag">
     <offsetX>-1.0</offsetX>
     <offsetY>0.4</offsetY>
   </pin>
-  <pin name="Grub-Fungus3_48">
+  <pin name="Grub-Queen's_Gardens_Marmu">
     <offsetX>-0.85</offsetX>
     <offsetY>1.2</offsetY>
   </pin> 
-  <pin name="Grub-Fungus3_22">
-	<offsetX>0.15</offsetX>
+  <pin name="Grub-Queen's_Gardens_Top">
+  <offsetX>0.15</offsetX>
     <offsetY>1.6</offsetY>
   </pin>
-  <pin name="Grub-Ruins2_11">
-	<offsetX>0.8</offsetX>
+  <pin name="Grub-Collector_1">
+  <offsetX>0.8</offsetX>
     <offsetY>1.25</offsetY>
   </pin>
-  <pin name="Grub-Ruins2_11(1)">
+  <pin name="Grub-Collector_2">
     <offsetX>0.4</offsetX>
     <offsetY>1.25</offsetY>
   </pin>
-  <pin name="Grub-Ruins2_11(2)">
+  <pin name="Grub-Collector_3">
     <offsetY>1.25</offsetY>
   </pin>
   
@@ -1139,12 +1139,12 @@
     <offsetY>-0.2</offsetY>
   </pin>
   <pin name="Fog_Canyon_Map">
-	<offsetX>-0.3</offsetX>
+  <offsetX>-0.3</offsetX>
     <offsetY>0.2</offsetY>
   </pin>
   <pin name="Fungal_Wastes_Map">
     <offsetX>-1.55</offsetX>
-	<offsetY>0.2</offsetY>
+  <offsetY>0.2</offsetY>
   </pin>
   <pin name="Deepnest_Map-Upper">
     <offsetX>-0.45</offsetX>
@@ -1162,7 +1162,7 @@
     <offsetY>-0.1</offsetY>
   </pin>
   <pin name="City_of_Tears_Map">
-	<offsetX>0.05</offsetX>
+  <offsetX>0.05</offsetX>
     <offsetY>-0.5</offsetY>
   </pin>
   <pin name="Royal_Waterways_Map">
@@ -1176,8 +1176,8 @@
     <offsetX>1.35</offsetX>
   </pin>
   <pin name="Queen's_Gardens_Map">
-	<offsetX>0.15</offsetX>
-	<offsetY>0.1</offsetY>
+  <offsetX>0.15</offsetX>
+  <offsetY>0.1</offsetY>
   </pin>
   <pin name="Resting_Grounds_Map">
     <offsetX>-0.3</offsetX>
@@ -1187,7 +1187,7 @@
   <pin name="Crossroads_Stag">
   </pin>
   <pin name="Greenpath_Stag">
-	<offsetX>-0.05</offsetX>
+  <offsetX>-0.05</offsetX>
   </pin>
   <pin name="Queen's_Station_Stag">
   </pin>
@@ -1195,7 +1195,7 @@
     <offsetX>1.8</offsetX>
   </pin>
   <pin name="City_Storerooms_Stag">
-	<offsetX>0.1</offsetX>
+  <offsetX>0.1</offsetX>
   </pin>
   <pin name="King's_Station_Stag">
     <offsetY>-0.1</offsetY>
@@ -1204,899 +1204,1211 @@
     <offsetX>0.15</offsetX>
   </pin>
   <pin name="Distant_Village_Stag">
-	<offsetX>0.1</offsetX>
+  <offsetX>0.1</offsetX>
   </pin>
   <pin name="Hidden_Station_Stag">
-	<offsetX>-0.2</offsetX>
-	<offsetY>-0.05</offsetY>
+  <offsetX>-0.2</offsetX>
+  <offsetY>-0.05</offsetY>
   </pin>
-	
+  
   <!-- GEO ROCKS O___O -->
-  <pin name="Geo_Rock-Abyss_01_1">
-	<offsetX>-0.4</offsetX>
-	<offsetY>-0.8</offsetY>
+  <pin name="Geo_Rock-Broken_Elevator_1">
+    <offsetX>-0.4</offsetX>
+    <offsetY>-0.8</offsetY>
   </pin>
 
-	<pin name="Geo_Rock-Abyss_01_2">
-		<offsetX>0.1</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Abyss_01_3">
-		<offsetX>0.1</offsetX>
-		<offsetY>0.3</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Abyss_02_1">
-		<offsetX>-0.3</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Abyss_02_2">
-		<offsetX>-1</offsetX>
-		<offsetY>-0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Abyss_06_Core_2">
-		<offsetX>0.3</offsetX>
-		<offsetY>0.9</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Abyss_06_Core_3">
-		<offsetX>-0.2</offsetX>
-		<offsetY>-1.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Abyss_18">
-		<offsetX>-1</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Abyss_19_1">
-		<offsetX>1.4</offsetX>
-		<offsetY>0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Abyss_19_2">
-		<offsetX>0.8</offsetX>
-		<offsetY>-0.8</offsetY>
-	</pin>
-	
-	<pin name="Geo_Rock-Cliffs_01_1">
-		<offsetX>0</offsetX>
-		<offsetY>0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Cliffs_01_2">
-		<offsetX>0.1</offsetX>
-		<offsetY>-0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Cliffs_01_3">
-		<offsetX>1.65</offsetX>
-		<offsetY>-0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Cliffs_01_4">
-		<offsetX>0.6</offsetX>
-		<offsetY>-1.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Cliffs_02_1">
-		<offsetX>-1.7</offsetX>
-		<offsetY>0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Cliffs_02_2">
-		<offsetX>-1.5</offsetX>
-		<offsetY>0.5</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	
-	<pin name="Geo_Rock-Crossroads_01">
-		<offsetX>-0.1</offsetX>
-		<offsetY>-0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_05">
-		<offsetX>-0.3</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_07_1">
-		<offsetX>0.3</offsetX>
-		<offsetY>1.0</offsetY>
-		<offsetZ>0.15</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_07_2">
-		<offsetX>-0.1</offsetX>
-		<offsetY>1.0</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_07_3">
-		<offsetX>0.1</offsetX>
-		<offsetY>1.0</offsetY>
-		<offsetZ>0.1</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_08_1">
-		<offsetX>-0.4</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_08_2">
-		<offsetX>-0.3</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_08_3">
-		<offsetX>-0.2</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_08_4">
-		<offsetX>0.45</offsetX>
-		<offsetY>0.25</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_10">
-		<offsetX>0.5</offsetX>
-		<offsetY>0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_12">
-		<offsetX>0.1</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_13_1">
-		<offsetX>-0.4</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_13_2">
-		<offsetX>0.6</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_16">
-		<offsetX>0.4</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_18_1">
-		<offsetX>0.2</offsetX>
-		<offsetY>-0.1</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_18_2">
-		<offsetX>0</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_18_3">
-		<offsetX>0.4</offsetX>
-		<offsetY>-0.1</offsetY>
-		<offsetZ>0.1</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_19">
-		<offsetX>0.3</offsetX>
-		<offsetY>0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_21">
-		<offsetX>-0.5</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_27">
-		<offsetX>0.2</offsetX>
-		<offsetY>0.7</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_36">
-		<offsetX>0.25</offsetX>
-		<offsetY>0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_37">
-		<offsetX>0.4</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_42_1">
-		<offsetX>0.8</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_42_2">
-		<offsetX>0</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_46">
-		<offsetX>-0.8</offsetX>
-		<offsetY>-0.15</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_52_1">
-		<offsetX>0.2</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_52_2">
-		<offsetX>0</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_ShamanTemple_1">
-		<pinScene>Crossroads_06</pinScene>
-		<offsetX>0</offsetX>
-		<offsetY>0.3</offsetY>
-		<offsetZ>0.1</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_ShamanTemple_3">
-		<pinScene>Crossroads_06</pinScene>
-		<offsetX>0</offsetX>
-		<offsetY>0.5</offsetY>
-		<offsetZ>0.15</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Crossroads_ShamanTemple_4">
-		<pinScene>Crossroads_06</pinScene>
-		<offsetX>0</offsetX>
-		<offsetY>0.7</offsetY>
-		<offsetZ>0.2</offsetZ>
-	</pin>
-	
-	<pin name="Geo_Rock-Deepnest_01_1">
-		<offsetX>-0.1</offsetX>
-		<offsetY>-0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_01_2">
-		<offsetX>-0.3</offsetX>
-		<offsetY>-0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_02_1">
-		<offsetX>0.1</offsetX>
-		<offsetY>-0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_02_2">
-		<offsetX>-0.1</offsetX>
-		<offsetY>-0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_03_1">
-		<offsetX>-0.6</offsetX>
-		<offsetY>0.45</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_03_2">
-		<offsetX>-0.4</offsetX>
-		<offsetY>0.45</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_03_3">
-		<offsetX>0.6</offsetX>
-		<offsetY>1.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_16_1">
-		<offsetX>0.8</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_16_2">
-		<offsetX>1</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_16_3">
-		<offsetX>0.3</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_16_4">
-		<offsetX>-0.4</offsetX>
-		<offsetY>-0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_16_5">
-		<offsetX>-0.7</offsetX>
-		<offsetY>-0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_31_1">
-		<offsetX>-0.3</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_31_2">
-		<offsetX>-0.3</offsetX>
-		<offsetY>-0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_31_3">
-		<offsetX>-0.7</offsetX>
-		<offsetY>-0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_35_1">
-		<offsetX>-0.6</offsetX>
-		<offsetY>0.7</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_35_2">
-		<offsetX>0.05</offsetX>
-		<offsetY>-0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_37_1">
-		<offsetX>0.1</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_37_2">
-		<offsetX>-0.1</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_39_1">
-		<offsetX>0.6</offsetX>
-		<offsetY>0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_39_2">
-		<offsetX>-0.1</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_39_3">
-		<offsetX>-0.8</offsetX>
-		<offsetY>-0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_43_1">
-		<offsetX>-0.35</offsetX>
-		<offsetY>-0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_43_2">
-		<offsetX>0.05</offsetX>
-		<offsetY>-0.45</offsetY>
-	</pin>
-	
-	<pin name="Geo_Rock-Deepnest_East_01_1">
-		<offsetX>-0.5</offsetX>
-		<offsetY>-0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_East_01_2">
-		<offsetX>-0.5</offsetX>
-		<offsetY>0.7</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_East_02_1">
-		<offsetX>-1.1</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_East_02_2">
-		<offsetX>1.45</offsetX>
-		<offsetY>-0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_East_04">
-		<offsetX>-0.3</offsetX>
-		<offsetY>-1.15</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_East_06_1">
-		<offsetX>-3.6</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_East_06_2">
-		<offsetX>-1.2</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_East_07_1">
-		<offsetX>0.65</offsetX>
-		<offsetY>-1.55</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_East_07_2">
-		<offsetX>-0.8</offsetX>
-		<offsetY>-0.9</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_East_08">
-		<offsetX>1.1</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	
-	<!-- with 420 geo rock -->
-	<pin name="Geo_Rock-Deepnest_East_17_1">
-		<pinScene>Deepnest_East_14</pinScene>
-		<offsetX>1.55</offsetX>
-		<offsetY>-0.55</offsetY>
-	</pin>
-	<!-- 420 geo rock -->
-	<pin name="Geo_Rock-Deepnest_East_17_2">
-		<pinScene>Deepnest_East_14</pinScene>
-		<offsetX>1.55</offsetX>
-		<offsetY>-0.75</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	
-	<pin name="Geo_Rock-Deepnest_Spider_Town_1">
-		<pinScene>Deepnest_10</pinScene>
-		<offsetX>-0.1</offsetX>
-		<offsetY>-0.4</offsetY>
-		<offsetZ>-0.4</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_Spider_Town_2">
-		<pinScene>Deepnest_10</pinScene>
-		<offsetX>-0.1</offsetX>
-		<offsetY>1.0</offsetY>
-		<offsetZ>-0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_Spider_Town_3">
-		<pinScene>Deepnest_10</pinScene>
-		<offsetX>-0.1</offsetX>
-		<offsetY>0.8</offsetY>
-		<offsetZ>-0.1</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_Spider_Town_4">
-		<pinScene>Deepnest_10</pinScene>
-		<offsetX>-0.1</offsetX>
-		<offsetY>0.6</offsetY>
-		<offsetZ>-0.15</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_Spider_Town_5">
-		<pinScene>Deepnest_10</pinScene>
-		<offsetX>-0.1</offsetX>
-		<offsetY>0.4</offsetY>
-		<offsetZ>-0.2</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_Spider_Town_6">
-		<pinScene>Deepnest_10</pinScene>
-		<offsetX>-0.1</offsetX>
-		<offsetY>0.2</offsetY>
-		<offsetZ>-0.25</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_Spider_Town_7">
-		<pinScene>Deepnest_10</pinScene>
-		<offsetX>-0.1</offsetX>
-		<offsetY>0</offsetY>
-		<offsetZ>-0.3</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Deepnest_Spider_Town_8">
-		<pinScene>Deepnest_10</pinScene>
-		<offsetX>-0.1</offsetX>
-		<offsetY>-0.2</offsetY>
-		<offsetZ>-0.35</offsetZ>
-	</pin>
-	
-	<pin name="Geo_Rock-Fungus1_01">
-		<offsetX>-0.8</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_01b">
-		<offsetX>-0.3</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_02_1">
-		<offsetX>0.1</offsetX>
-		<offsetY>-0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_02_2">
-		<offsetX>0.3</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_03_1">
-		<offsetX>0.6</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_03_2">
-		<offsetX>0.4</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_03_3">
-		<offsetX>0.4</offsetX>
-		<offsetY>-0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_04">
-		<offsetX>-0.1</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_05">
-		<offsetX>-0.1</offsetX>
-		<offsetY>0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_07">
-		<offsetX>-0.55</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_10">
-		<offsetX>0.9</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_12_1">
-		<offsetX>0.15</offsetX>
-		<offsetY>0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_12_2">
-		<offsetX>0.2</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_12_3">
-		<offsetX>0</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_19">
-		<offsetX>-0.7</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_21_1">
-		<offsetX>-0.4</offsetX>
-		<offsetY>0</offsetY>
-		<offsetZ>0.1</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_21_2">
-		<offsetX>-0.6</offsetX>
-		<offsetY>0</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_21_3">
-		<offsetX>-0.8</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_22_1">
-		<offsetX>0.05</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_22_2">
-		<offsetX>-0.25</offsetX>
-		<offsetY>-1.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_28_1">
-		<offsetX>-0.7</offsetX>
-		<offsetY>-0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_28_2">
-		<offsetX>-1.4</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_29">
-		<offsetX>-0.5</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_31_1">
-		<offsetX>-0.2</offsetX>
-		<offsetY>-1.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_31_2">
-		<offsetX>-0.2</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus1_31_3">
-		<offsetX>-0.4</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	
-	<pin name="Geo_Rock-Fungus2_04">
-		<offsetX>0.2</offsetX>
-		<offsetY>0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_08">
-		<offsetX>-0.25</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_10">
-		<offsetX>0.7</offsetX>
-		<offsetY>0.7</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_11_1">
-		<offsetX>0.2</offsetX>
-		<offsetY>0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_11_2">
-		<offsetX>0</offsetX>
-		<offsetY>0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_13_1">
-		<offsetX>-0.4</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_13_2">
-		<offsetX>-0.2</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_13_3">
-		<offsetX>0</offsetX>
-		<offsetY>-0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_14_1">
-		<offsetX>-0.5</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_14_2">
-		<offsetX>-1.4</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_14_3">
-		<offsetX>-1.6</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_14_4">
-		<offsetX>-1</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_14_5">
-		<offsetX>-0.05</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_15_1">
-		<offsetX>-0.1</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_15_2">
-		<offsetX>-0.7</offsetX>
-		<offsetY>-0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_18_1">
-		<offsetX>0.4</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_18_2">
-		<offsetX>0.6</offsetX>
-		<offsetY>0.1</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_18_3">
-		<offsetX>-0.2</offsetX>
-		<offsetY>-0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_18_4">
-		<offsetX>0</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_21">
-		<offsetX>0.5</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_25_1">
-		<offsetX>-1.6</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_25_2">
-		<offsetX>-1.2</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_25_3">
-		<offsetX>-0.2</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_29">
-		<offsetX>0.3</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_30_1">
-		<offsetX>0.05</offsetX>
-		<offsetY>0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus2_30_2">
-		<offsetX>0.2</offsetX>
-		<offsetY>-0.45</offsetY>
-	</pin>
-	
-	<pin name="Geo_Rock-Fungus3_03">
-		<offsetX>1.2</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus3_10">
-		<offsetX>-0.6</offsetX>
-		<offsetY>0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus3_26">
-		<offsetX>0.3</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus3_39_1">
-		<offsetX>-0.4</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus3_39_2">
-		<offsetX>-1.2</offsetX>
-		<offsetY>-0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Fungus3_48">
-		<offsetX>-0.1</offsetX>
-		<offsetY>-1.0</offsetY>
-	</pin>
-	
-	<pin name="Geo_Rock-GG_Lurker">
-		<offsetX>0</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-GG_Pipeway">
-		<offsetX>-1.2</offsetX>
-		<offsetY>-0.4</offsetY>
-	</pin>
-	
-	<pin name="Geo_Rock-Hive_01">
-		<offsetX>1.3</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Hive_02_1">
-		<offsetX>-0.55</offsetX>
-		<offsetY>-0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Hive_02_2">
-		<offsetX>0.9</offsetX>
-		<offsetY>-0.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Hive_02_3">
-		<offsetX>-0.3</offsetX>
-		<offsetY>0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Hive_03_1">
-		<offsetX>0.9</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Hive_03_2">
-		<offsetX>-0.3</offsetX>
-		<offsetY>0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Hive_03_3">
-		<offsetX>-0.5</offsetX>
-		<offsetY>0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Hive_04_1">
-		<offsetX>0.3</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Hive_04_2">
-		<offsetX>-0.9</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
+  <pin name="Geo_Rock-Broken_Elevator_2">
+    <offsetX>0.1</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Broken_Elevator_3">
+    <offsetX>0.1</offsetX>
+    <offsetY>0.3</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Broken_Bridge_Upper">
+    <offsetX>-0.3</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Broken_Bridge_Lower">
+    <offsetX>-1</offsetX>
+    <offsetY>-0.3</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Broken_Bridge_Lower_Dupe">
+    <offsetX>-1</offsetX>
+    <offsetY>-0.25</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Abyss_1">
+    <offsetX>0.6</offsetX>
+    <offsetY>1.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Abyss_2">
+    <offsetX>0.3</offsetX>
+    <offsetY>0.9</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Abyss_3">
+    <offsetX>-0.2</offsetX>
+    <offsetY>-1.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Basin_Tunnel">
+    <offsetX>-1</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Basin_Grub">
+    <offsetX>1.4</offsetX>
+    <offsetY>0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Basin_Before_Broken_Vessel">
+    <offsetX>0.8</offsetX>
+    <offsetY>-0.8</offsetY>
+  </pin>
+  
+  <pin name="Geo_Rock-Cliffs_Main_1">
+    <offsetX>0</offsetX>
+    <offsetY>0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Cliffs_Main_2">
+    <offsetX>0.1</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Cliffs_Main_3">
+    <offsetX>1.65</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Cliffs_Main_4">
+    <offsetX>0.6</offsetX>
+    <offsetY>-1.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Below_Gorb_Dupe">
+    <offsetX>-1.7</offsetX>
+    <offsetY>0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Below_Gorb">
+    <offsetX>-1.5</offsetX>
+    <offsetY>0.5</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  
+  <pin name="Geo_Rock-Crossroads_Well">
+    <offsetX>-0.1</offsetX>
+    <offsetY>-0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Center_Grub">
+    <offsetX>-0.3</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Root">
+    <offsetX>0.3</offsetX>
+    <offsetY>1.0</offsetY>
+    <offsetZ>0.15</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Root_Dupe_1">
+    <offsetX>-0.1</offsetX>
+    <offsetY>1.0</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Root_Dupe_2">
+    <offsetX>0.1</offsetX>
+    <offsetY>1.0</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Aspid_Arena">
+    <offsetX>-0.4</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Aspid_Arena_Dupe_1">
+    <offsetX>-0.3</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Aspid_Arena_Dupe_2">
+    <offsetX>-0.2</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Aspid_Arena_Hidden">
+    <offsetX>0.45</offsetX>
+    <offsetY>0.25</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Above_False_Knight">
+    <offsetX>0.5</offsetX>
+    <offsetY>0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Before_Acid_Grub">
+    <offsetX>0.1</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Below_Goam_Mask_Shard">
+    <offsetX>-0.4</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_After_Goam_Mask_Shard">
+    <offsetX>0.6</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Above_Lever">
+    <offsetX>0.4</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Before_Fungal">
+    <offsetX>0.2</offsetX>
+    <offsetY>-0.1</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Before_Fungal_Dupe_1">
+    <offsetX>0</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Before_Fungal_Dupe_2">
+    <offsetX>0.4</offsetX>
+    <offsetY>-0.1</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Before_Shops">
+    <offsetX>0.3</offsetX>
+    <offsetY>0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Before_Glowing_Womb">
+    <offsetX>-0.5</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Above_Tram">
+    <offsetX>0.2</offsetX>
+    <offsetY>0.7</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Above_Mawlek">
+    <offsetX>0.25</offsetX>
+    <offsetY>0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Vessel_Fragment">
+    <offsetX>0.4</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Goam_Alcove">
+    <offsetX>0.8</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Goam_Damage_Boost">
+    <offsetX>0</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Tram">
+    <offsetX>-0.8</offsetX>
+    <offsetY>-0.15</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Goam_Journal">
+    <offsetX>0.2</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crossroads_Goam_Journal_Dupe">
+    <offsetX>0</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Ancestral_Mound">
+    <pinScene>Crossroads_06</pinScene>
+    <offsetX>0</offsetX>
+    <offsetY>0.3</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Ancestral_Mound_Dupe">
+    <pinScene>Crossroads_06</pinScene>
+    <offsetX>0</offsetX>
+    <offsetY>0.5</offsetY>
+    <offsetZ>0.15</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Ancestral_Mound_Tree">
+    <pinScene>Crossroads_06</pinScene>
+    <offsetX>0</offsetX>
+    <offsetY>0.7</offsetY>
+    <offsetZ>0.2</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Ancestral_Mound_Tree_Dupe">
+    <pinScene>Crossroads_06</pinScene>
+    <offsetX>0</offsetX>
+    <offsetY>0.9</offsetY>
+    <offsetZ>0.25</offsetZ>
+  </pin>
+  
+  <pin name="Geo_Rock-Moss_Prophet">
+    <offsetX>-0.1</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Moss_Prophet_Dupe">
+    <offsetX>-0.3</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Below_Mimics">
+    <offsetX>0.1</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Below_Mimics_Dupe">
+    <offsetX>-0.1</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Below_Spike_Grub">
+    <offsetX>-0.6</offsetX>
+    <offsetY>0.45</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Below_Spike_Grub_Dupe">
+    <offsetX>-0.4</offsetX>
+    <offsetY>0.45</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Spike_Grub_Right">
+    <offsetX>0.6</offsetX>
+    <offsetY>1.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_By_Mantis_Lords_Garpede_Pogo">
+    <offsetX>0.8</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_By_Mantis_Lords_Garpede_Pogo_Dupe">
+    <offsetX>1</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_By_Mantis_Lords_Requires_Claw_1">
+    <offsetX>0.3</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_By_Mantis_Lords_Requires_Claw_2">
+    <offsetX>-0.4</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_By_Mantis_Lords_Requires_Claw_3">
+    <offsetX>-0.7</offsetX>
+    <offsetY>-0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Nosk_1">
+    <offsetX>-0.3</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Nosk_2">
+    <offsetX>-0.3</offsetX>
+    <offsetY>-0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Nosk_3">
+    <offsetX>-0.7</offsetX>
+    <offsetY>-0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Above_Galien">
+    <offsetX>-0.6</offsetX>
+    <offsetY>0.7</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Galien_Spike">
+    <offsetX>0.05</offsetX>
+    <offsetY>-0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Garpede_1">
+    <offsetX>0.1</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_Garpede_2">
+    <offsetX>-0.1</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Dark_Deepnest_Above_Grub_1">
+    <offsetX>0.6</offsetX>
+    <offsetY>0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Dark_Deepnest_Above_Grub_2">
+    <offsetX>-0.1</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Dark_Deepnest_Bottom_Left">
+    <offsetX>-0.8</offsetX>
+    <offsetY>-0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Above_Mask_Maker_1">
+    <offsetX>-0.35</offsetX>
+    <offsetY>-0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Above_Mask_Maker_2">
+    <offsetX>0.05</offsetX>
+    <offsetY>-0.45</offsetY>
+  </pin>
+  
+  <pin name="Geo_Rock-Lower_Kingdom's_Edge_1">
+    <offsetX>-0.5</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Lower_Kingdom's_Edge_2">
+    <offsetX>-0.5</offsetX>
+    <offsetY>0.7</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Lower_Kingdom's_Edge_3">
+    <offsetX>-1.1</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Lower_Kingdom's_Edge_Dive">
+    <offsetX>1.45</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Kingdom's_Edge_Below_Bardoon">
+    <offsetX>-0.3</offsetX>
+    <offsetY>-1.15</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Kingdom's_Edge_Oro_Far_Left">
+    <offsetX>-3.6</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Kingdom's_Edge_Oro_Middle_Left">
+    <offsetX>-1.2</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Kingdom's_Edge_Above_Root">
+    <offsetX>0.65</offsetX>
+    <offsetY>-1.55</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Kingdom's_Edge_Above_Tower">
+    <offsetX>-0.8</offsetX>
+    <offsetY>-0.9</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Kingdom's_Edge_Below_Colosseum">
+    <offsetX>1.1</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  
+  <!-- with 420 geo rock -->
+  <pin name="Geo_Rock-Kingdom's_Edge_Above_420_Geo_Rock">
+    <pinScene>Deepnest_East_14</pinScene>
+    <offsetX>1.55</offsetX>
+    <offsetY>-0.55</offsetY>
+  </pin>
+  <!-- 420 geo rock -->
+  <pin name="Geo_Rock-Kingdom's_Edge_420_Geo_Rock">
+    <pinScene>Deepnest_East_14</pinScene>
+    <offsetX>1.55</offsetX>
+    <offsetY>-0.75</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  
+  <pin name="Geo_Rock-Beast's_Den_Above_Trilobite">
+    <pinScene>Deepnest_10</pinScene>
+    <offsetX>-0.1</offsetX>
+    <offsetY>-0.4</offsetY>
+    <offsetZ>-0.4</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Beast's_Den_Above_Trilobite_Dupe">
+    <pinScene>Deepnest_10</pinScene>
+    <offsetX>-0.1</offsetX>
+    <offsetY>1.0</offsetY>
+    <offsetZ>-0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Beast's_Den_Below_Herrah">
+    <pinScene>Deepnest_10</pinScene>
+    <offsetX>-0.1</offsetX>
+    <offsetY>0.8</offsetY>
+    <offsetZ>-0.1</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Beast's_Den_Below_Egg">
+    <pinScene>Deepnest_10</pinScene>
+    <offsetX>-0.1</offsetX>
+    <offsetY>0.6</offsetY>
+    <offsetZ>-0.15</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Beast's_Den_Below_Egg_Dupe">
+    <pinScene>Deepnest_10</pinScene>
+    <offsetX>-0.1</offsetX>
+    <offsetY>0.4</offsetY>
+    <offsetZ>-0.2</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Beast's_Den_Bottom">
+    <pinScene>Deepnest_10</pinScene>
+    <offsetX>-0.1</offsetX>
+    <offsetY>0.2</offsetY>
+    <offsetZ>-0.25</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Beast's_Den_Bottom_Dupe">
+    <pinScene>Deepnest_10</pinScene>
+    <offsetX>-0.1</offsetX>
+    <offsetY>0</offsetY>
+    <offsetZ>-0.3</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Beast's_Den_After_Herrah">
+    <pinScene>Deepnest_10</pinScene>
+    <offsetX>-0.1</offsetX>
+    <offsetY>-0.2</offsetY>
+    <offsetZ>-0.35</offsetZ>
+  </pin>
+  
+  <pin name="Geo_Rock-Greenpath_Entrance">
+    <offsetX>-0.8</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Waterfall">
+    <offsetX>-0.3</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Below_Skip_Squit">
+    <offsetX>0.1</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Skip_Squit">
+    <offsetX>0.3</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Second_Skip_Fool_Eater">
+    <offsetX>0.6</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Second_Skip_Fool_Eater_Dupe">
+    <offsetX>0.4</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Second_Skip_Lower">
+    <offsetX>0.4</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Below_Hornet">
+    <offsetX>-0.1</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Above_Thorns">
+    <offsetX>-0.1</offsetX>
+    <offsetY>0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Hunter's_Journal">
+    <offsetX>-0.55</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Acid_Bridge">
+    <offsetX>0.9</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_After_MMC_Hidden">
+    <offsetX>0.15</offsetX>
+    <offsetY>0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_After_MMC">
+    <offsetX>0.2</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_After_MMC_Dupe">
+    <offsetX>0</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Obbles_Fool_Eater">
+    <offsetX>-0.7</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Moss_Knights">
+    <offsetX>-0.4</offsetX>
+    <offsetY>0</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Moss_Knights_Dupe_1">
+    <offsetX>-0.6</offsetX>
+    <offsetY>0</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Moss_Knights_Dupe_2">
+    <offsetX>-0.8</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Below_Stag">
+    <offsetX>0.05</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Below_Stag_Fool_Eater">
+    <offsetX>-0.25</offsetX>
+    <offsetY>-1.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Baldur_Shell_Top_Left">
+    <offsetX>-0.7</offsetX>
+    <offsetY>-0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Baldur_Shell_Alcove">
+    <offsetX>-1.4</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_MMC">
+    <offsetX>-0.5</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Below_Toll">
+    <offsetX>-0.2</offsetX>
+    <offsetY>-1.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Toll_Hidden">
+    <offsetX>-0.2</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Greenpath_Toll_Hidden_Dupe">
+    <offsetX>-0.4</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  
+  <pin name="Geo_Rock-Fungal_Below_Shrumal_Ogres">
+    <offsetX>0.2</offsetX>
+    <offsetY>0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_Above_Cloth">
+    <offsetX>-0.25</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_After_Cloth">
+    <offsetX>0.7</offsetX>
+    <offsetY>0.7</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_Below_Pilgrim's_Way">
+    <offsetX>0.2</offsetX>
+    <offsetY>0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_Below_Pilgrim's_Way_Dupe">
+    <offsetX>0</offsetX>
+    <offsetY>0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Mantis_Outskirts_Guarded">
+    <offsetX>-0.4</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Mantis_Outskirts_Guarded_Dupe">
+    <offsetX>-0.2</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Mantis_Outskirts_Alcove">
+    <offsetX>0</offsetX>
+    <offsetY>-0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Mantis_Village_After_Lever">
+    <offsetX>-0.5</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Mantis_Village_Above_Claw">
+    <offsetX>-1.4</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Mantis_Village_Above_Claw_Dupe">
+    <offsetX>-1.6</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Mantis_Village_Below_Lore">
+    <offsetX>-1</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Mantis_Village_Above_Lever">
+    <offsetX>-0.05</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Above_Mantis_Lords_1">
+    <offsetX>-0.1</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Above_Mantis_Lords_2">
+    <offsetX>-0.7</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_After_Bouncy_Grub">
+    <offsetX>0.4</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_After_Bouncy_Grub_Dupe">
+    <offsetX>0.6</offsetX>
+    <offsetY>0.1</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Fungal_Bouncy_Grub_Lever">
+    <offsetX>-0.2</offsetX>
+    <offsetY>-0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_After_Cornifer">
+    <offsetX>0</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_Above_City_Entrance">
+    <offsetX>0.5</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_By_Mantis_Lords_1">
+    <offsetX>-1.6</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Deepnest_By_Mantis_Lords_2">
+    <offsetX>-1.2</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Depenest_Lower_Cornifer">
+    <offsetX>-0.2</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_Core_Entrance">
+    <offsetX>0.3</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_Core_Hidden">
+    <offsetX>0.05</offsetX>
+    <offsetY>0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fungal_Core_Above_Elder">
+    <offsetX>0.2</offsetX>
+    <offsetY>-0.45</offsetY>
+  </pin>
+  
+  <pin name="Geo_Rock-Queen's_Gardens_Acid_Entrance">
+    <offsetX>1.2</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Queen's_Gardens_Below_Stag">
+    <offsetX>-0.6</offsetX>
+    <offsetY>0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fog_Canyon_East">
+    <offsetX>0.3</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Love_Key">
+    <offsetX>-0.4</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Love_Key_Dupe">
+    <offsetX>-1.2</offsetX>
+    <offsetY>-0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Queen's_Gardens_Above_Marmu">
+    <offsetX>-0.1</offsetX>
+    <offsetY>-1.0</offsetY>
+  </pin>
+  
+  <pin name="Geo_Rock-Pale_Lurker">
+    <offsetX>0</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Godhome_Pipeway">
+    <offsetX>-1.2</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  
+  <pin name="Geo_Rock-Hive_Entrance">
+    <offsetX>1.3</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hive_Outside_Bench">
+    <offsetX>-0.55</offsetX>
+    <offsetY>-0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hive_Below_Root">
+    <offsetX>0.9</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hive_After_Root">
+    <offsetX>-0.3</offsetX>
+    <offsetY>0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hive_Below_Stash">
+    <offsetX>0.9</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hive_Stash">
+    <offsetX>-0.3</offsetX>
+    <offsetY>0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hive_Stash_Dupe">
+    <offsetX>-0.5</offsetX>
+    <offsetY>0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hive_Below_Grub">
+    <offsetX>0.3</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hive_Above_Mask">
+    <offsetX>-0.9</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
 
-	<!-- could not open room in editor, might be wrong order-->
-	<pin name="Geo_Rock-Mines_02_1">
-		<offsetX>1.2</offsetX>
-		<offsetY>0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_02_2">
-		<offsetX>-0.2</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_02_3">
-		<offsetX>0.2</offsetX>
-		<offsetY>-0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_04_1">
-		<offsetX>0.1</offsetX>
-		<offsetY>-0.15</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_04_2">
-		<offsetX>0.3</offsetX>
-		<offsetY>-0.15</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Mines_05">
-		<offsetX>-0.2</offsetX>
-		<offsetY>-0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_16">
-		<offsetX>0.05</offsetX>
-		<offsetY>0.05</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_20_1">
-		<offsetX>-0.55</offsetX>
-		<offsetY>1.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_20_2">
-		<offsetX>-0.35</offsetX>
-		<offsetY>1.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_20_3">
-		<offsetX>0.5</offsetX>
-		<offsetY>1.4</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_25_1">
-		<offsetX>-0.6</offsetX>
-		<offsetY>-0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_25_2">
-		<offsetX>-0.4</offsetX>
-		<offsetY>-0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_25_3">
-		<offsetX>-0.4</offsetX>
-		<offsetY>0.6</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_25_4">
-		<offsetX>-0.2</offsetX>
-		<offsetY>0.6</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Mines_25_5">
-		<offsetX>0.1</offsetX>
-		<offsetY>0.6</offsetY>
-		<offsetZ>0.1</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Mines_31">
-		<offsetX>-2.2</offsetX>
-		<offsetY>-0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_33_1">
-		<offsetX>-0.3</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_33_2">
-		<offsetX>-0.1</offsetX>
-		<offsetY>-0.1</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Mines_33_3">
-		<offsetX>0.3</offsetX>
-		<offsetY>-0.1</offsetY>
-		<offsetZ>0.1</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Mines_37_1">
-		<offsetX>-0.3</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Mines_37_2">
-		<offsetX>-0.3</offsetX>
-		<offsetY>0.25</offsetY>
-	</pin>
-	
-	<pin name="Geo_Rock-RestingGrounds_10_1">
-		<offsetX>0.4</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-RestingGrounds_10_2">
-		<offsetX>-1.2</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-RestingGrounds_10_3">
-		<offsetX>-0.8</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<!-- CHECK ROOM NAME -->
-	<pin name="Geo_Rock-Room_Fungus_Shaman">
-		<pinScene>Fungus3_44</pinScene>
-		<offsetX>-0.70</offsetX>
-		<offsetY>0.55</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	
-	<pin name="Geo_Rock-Room_GG_Shortcut_1">
-		<offsetX>0</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Room_GG_Shortcut_2">
-		<offsetX>0</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Ruins_Elevator">
-		<offsetX>0</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Ruins1_03">
-		<offsetX>-0.8</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Ruins1_05b">
-		<offsetX>-0.5</offsetX>
-		<offsetY>0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Ruins1_05c">
-		<offsetX>0</offsetX>
-		<offsetY>-0.3</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Ruins1_32">
-		<offsetX>0.15</offsetX>
-		<offsetY>0.8</offsetY>
-	</pin>
+  <!-- could not open room in editor, might be wrong order-->
+  <pin name="Geo_Rock-Crystal_Peak_Lower_Middle">
+    <offsetX>1.2</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Lower_Conveyer_1">
+    <offsetX>-0.2</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Lower_Conveyer_2">
+    <offsetX>0.2</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Before_Dark_Room">
+    <offsetX>0.1</offsetX>
+    <offsetY>-0.15</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Before_Dark_Room_Dupe">
+    <offsetX>0.3</offsetX>
+    <offsetY>-0.15</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Above_Spike_Grub">
+    <offsetX>-0.2</offsetX>
+    <offsetY>-0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Mimic_Grub">
+    <offsetX>0.05</offsetX>
+    <offsetY>0.05</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Dive_Egg">
+    <offsetX>-0.55</offsetX>
+    <offsetY>1.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Dive_Egg_Dupe">
+    <offsetX>-0.35</offsetX>
+    <offsetY>1.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Conga_Line">
+    <offsetX>0.5</offsetX>
+    <offsetY>1.4</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hallownest_Crown_Dive">
+    <offsetX>-0.6</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hallownest_Crown_Dive_Dupe">
+    <offsetX>-0.4</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hallownest_Crown_Hidden">
+    <offsetX>-0.4</offsetX>
+    <offsetY>0.6</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Hallownest_Crown_Hidden_Dupe_1">
+    <offsetX>-0.2</offsetX>
+    <offsetY>0.6</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Hallownest_Crown_Hidden_Dupe_2">
+    <offsetX>0.1</offsetX>
+    <offsetY>0.6</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Before_Crystal_Heart">
+    <offsetX>-2.2</offsetX>
+    <offsetY>-0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Entrance">
+    <offsetX>-0.3</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Entrance_Dupe_1">
+    <offsetX>-0.1</offsetX>
+    <offsetY>-0.1</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Entrance_Dupe_2">
+    <offsetX>0.3</offsetX>
+    <offsetY>-0.1</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Above_Crushers_Lower">
+    <offsetX>-0.3</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Crystal_Peak_Above_Crushers_Higher">
+    <offsetX>-0.3</offsetX>
+    <offsetY>0.25</offsetY>
+  </pin>
+  
+  <pin name="Geo_Rock-Resting_Grounds_Catacombs_Grub">
+    <offsetX>0.4</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Resting_Grounds_Catacombs_Left_Dupe">
+    <offsetX>-1.2</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Resting_Grounds_Catacombs_Left">
+    <offsetX>-0.8</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <!-- CHECK ROOM NAME -->
+  <pin name="Geo_Rock-Overgrown_Mound">
+    <pinScene>Fungus3_44</pinScene>
+    <offsetX>-0.70</offsetX>
+    <offsetY>0.55</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  
+  <pin name="Geo_Rock-Fluke_Hermit_Dupe">
+    <offsetX>0</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Fluke_Hermit">
+    <offsetX>0</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Pleasure_House">
+    <offsetX>0</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-City_of_Tears_Quirrel">
+    <offsetX>-0.8</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-City_of_Tears_Lemm">
+    <offsetX>-0.5</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-City_of_Tears_Above_Lemm">
+    <offsetX>0</offsetX>
+    <offsetY>-0.3</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Soul_Sanctum">
+    <offsetX>0.15</offsetX>
+    <offsetY>0.8</offsetY>
+  </pin>
 
-	<pin name="Geo_Rock-Ruins2_01">
-		<offsetX>-0.8</offsetX>
-		<offsetY>0.9</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Ruins2_05">
-		<offsetX>0.05</offsetX>
-		<offsetY>0.05</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Ruins2_06">
-		<offsetX>0.4</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	
-	<pin name="Geo_Rock-Tutorial_01_1">
-		<offsetX>-1.9</offsetX>
-		<offsetY>-0.7</offsetY>
-		<offsetZ>0.05</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Tutorial_01_2">
-		<offsetX>0.1</offsetX>
-		<offsetY>-0.7</offsetY>
-		<offsetZ>0.1</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Tutorial_01_3">
-		<offsetX>-1.2</offsetX>
-		<offsetY>0</offsetY>
-		<offsetZ>0.15</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Tutorial_01_4">
-		<offsetX>-0.7</offsetX>
-		<offsetY>0.1</offsetY>
-		<offsetZ>0.2</offsetZ>
-	</pin>
-	<pin name="Geo_Rock-Tutorial_01_5">
-		<offsetX>0.1</offsetX>
-		<offsetY>-0.1</offsetY>
-		<offsetZ>0.25</offsetZ>
-	</pin>
-	
-	<pin name="Geo_Rock-Waterways_01_1">
-		<offsetX>1.5</offsetX>
-		<offsetY>0.5</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Waterways_01_2">
-		<offsetX>0.6</offsetX>
-		<offsetY>0</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Waterways_04b">
-		<offsetX>-0.4</offsetX>
-		<offsetY>0.05</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Waterways_07">
-		<offsetX>-0.9</offsetX>
-		<offsetY>0.2</offsetY>
-	</pin>
-	<pin name="Geo_Rock-Waterways_08">
-		<offsetX>-0.7</offsetX>
-		<offsetY>-0.1</offsetY>
-	</pin>
+  <pin name="Geo_Rock-Watcher's_Spire">
+    <offsetX>-0.8</offsetX>
+    <offsetY>0.9</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Above_King's_Station">
+    <offsetX>0.05</offsetX>
+    <offsetY>0.05</offsetY>
+  </pin>
+  <pin name="Geo_Rock-King's_Station">
+    <offsetX>0.4</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  
+  <pin name="Geo_Rock-King's_Pass_Left">
+    <offsetX>-1.9</offsetX>
+    <offsetY>-0.7</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-King's_Pass_Below_Fury">
+    <offsetX>0.1</offsetX>
+    <offsetY>-0.7</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-King's_Pass_Hidden">
+    <offsetX>-1.2</offsetX>
+    <offsetY>0</offsetY>
+    <offsetZ>0.15</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-King's_Pass_Collapse">
+    <offsetX>-0.7</offsetX>
+    <offsetY>0.1</offsetY>
+    <offsetZ>0.2</offsetZ>
+  </pin>
+  <pin name="Geo_Rock-King's_Pass_Above_Fury">
+    <offsetX>0.1</offsetX>
+    <offsetY>-0.1</offsetY>
+    <offsetZ>0.25</offsetZ>
+  </pin>
+  
+  <pin name="Geo_Rock-Waterways_Tuk">
+    <offsetX>1.5</offsetX>
+    <offsetY>0.5</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Waterways_Tuk_Alcove">
+    <offsetX>0.6</offsetX>
+    <offsetY>0</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Waterways_Left">
+    <offsetX>-0.4</offsetX>
+    <offsetY>0.05</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Waterways_East">
+    <offsetX>-0.9</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Geo_Rock-Waterways_Flukemarm">
+    <offsetX>-0.7</offsetX>
+    <offsetY>-0.1</offsetY>
+  </pin>
 
+
+  <!-- Lifeblood Cocoons -->
+  <pin name="Lifeblood_Cocoon-King's_Pass">
+    <offsetX>-1.25</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Lifeblood_Cocoon-Ancestral_Mound">
+    <pinScene>Crossroads_06</pinScene>
+    <offsetY>-0.5</offsetY>
+    <offsetZ>-0.3</offsetZ>
+  </pin>
+  <pin name="Lifeblood_Cocoon-Greenpath">
+    <offsetX>-0.2</offsetX>
+    <offsetY>0.05</offsetY>
+  </pin>
+  <pin name="Lifeblood_Cocoon-Fog_Canyon_West">
+    <offsetX>-0.35</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Lifeblood_Cocoon-Mantis_Village">
+    <offsetX>-0.85</offsetX>
+    <offsetY>-0.9</offsetY>
+  </pin>
+  <pin name="Lifeblood_Cocoon-Failed_Tramway">
+    <offsetX>0.4</offsetX>
+    <offsetY>0.25</offsetY>
+  </pin>
+  <pin name="Lifeblood_Cocoon-Galien">
+    <offsetX>-0.05</offsetX>
+    <offsetY>0.4</offsetY>
+  </pin>
+  <pin name="Lifeblood_Cocoon-Kingdom's_Edge">
+    <offsetX>0.35</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+
+
+  <!-- Soul Totems -->
+  <pin name="Soul_Totem-Basin">
+    <offsetX>-1</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Cliffs_Main">
+    <offsetX>1.45</offsetX>
+    <offsetY>-1.7</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Cliffs_Gorb">
+    <pinScene>Cliffs_01</pinScene>
+    <offsetX>2.1</offsetX>
+    <offsetY>0.5</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Cliffs_Joni's">
+    <offsetX>0.4</offsetX>
+    <offsetY>0.5</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Crossroads_Goam_Journal">
+    <offsetY>-0.3</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Crossroads_Shops">
+    <offsetX>0.5</offsetX>
+    <offsetY>-0.05</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Crossroads_Mawlek_Upper">
+    <offsetX>-0.3</offsetX>
+  </pin>
+  <pin name="Soul_Totem-Crossroads_Acid">
+    <offsetX>0.4</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Crossroads_Mawlek_Lower">
+    <offsetX>-0.3</offsetX>
+  </pin>
+  <pin name="Soul_Totem-Crossroads_Myla">
+  </pin>
+  <pin name="Soul_Totem-Ancestral_Mound">
+  </pin>
+  <pin name="Soul_Totem-Distant_Village">
+    <offsetX>-1</offsetX>
+    <offsetY>-1.5</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Deepnest_Vessel">
+    <offsetX>2</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Mask_Maker">
+    <offsetX>-0.35</offsetX>
+    <offsetY>-1.3</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Lower_Kingdom's_Edge_1">
+    <offsetX>-0.55</offsetX>
+    <offsetY>-1.05</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Lower_Kingdom's_Edge_2">
+    <offsetX>-0.05</offsetX>
+    <offsetY>-0.25</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Upper_Kingdom's_Edge">
+    <offsetX>0.95</offsetX>
+    <offsetY>1</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Kingdom's_Edge_Camp">
+    <offsetX>-1.25</offsetX>
+    <offsetY>1</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Oro_Dive_2">
+    <offsetX>0.8</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Oro_Dive_1">
+    <offsetX>1.2</offsetX>
+    <offsetY>0.25</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Oro">
+    <offsetX>0.5</offsetX>
+    <offsetY>-0.15</offsetY>
+  </pin>
+  <pin name="Soul_Totem-420_Geo_Rock">
+    <pinScene>Deepnest_East_14</pinScene>
+    <offsetX>1.55</offsetX>
+    <offsetY>-0.95</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Beast's_Den">
+    <pinScene>Deepnest_10</pinScene>
+    <offsetX>-0.3</offsetX>
+    <offsetY>1.2</offsetY>
+    <offsetZ>-0.4</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Greenpath_Hunter's_Journal">
+    <offsetX>-0.2</offsetX>
+  </pin>
+  <pin name="Soul_Totem-Greenpath_MMC">
+    <offsetX>-0.6</offsetX>
+    <offsetY>0.1</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Greenpath_Below_Toll">
+    <offsetX>1</offsetX>
+    <offsetY>-0.2</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Before_Pilgrim's_Way">
+    <offsetX>0.45</offsetX>
+    <offsetY>-0.25</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Pilgrim's_Way">
+    <offsetX>-0.05</offsetX>
+    <offsetY>0.15</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Fungal_Core">
+    <offsetX>-0.85</offsetX>
+    <offsetY>0.5</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Top_Left_Queen's_Gardens">
+    <offsetX>0.7</offsetX>
+    <offsetY>0.05</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Below_Marmu">
+    <offsetX>-0.95</offsetX>
+    <offsetY>-0.4</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Upper_Crystal_Peak">
+    <offsetX>-0.15</offsetX>
+    <offsetY>-0.5</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Hallownest_Crown">
+    <offsetX>0.4</offsetX>
+    <offsetY>-0.75</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Outside_Crystallized_Mound">
+    <offsetX>1</offsetX>
+    <offsetY>0.7</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Crystal_Heart_1">
+    <offsetX>-0.8</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Crystal_Heart_2">
+    <offsetX>2.7</offsetX>
+    <offsetY>0.2</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Crystallized_Mound">
+    <pinScene>Mines_28</pinScene>
+    <offsetX>0.8</offsetX>
+    <offsetY>0.7</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Resting_Grounds">
+    <offsetX>0.25</offsetX>
+    <offsetY>-0.35</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Below_Xero">
+    <offsetX>-1</offsetX>
+  </pin>
+  <pin name="Soul_Totem-Sanctum_Below_Soul_Master">
+    <offsetX>0.55</offsetX>
+    <offsetY>-0.85</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Sanctum_Below_Chest">
+    <offsetX>-0.3</offsetX>
+    <offsetY>0.9</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Sanctum_Above_Grub">
+    <offsetX>-0.35</offsetX>
+    <offsetY>-0.25</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Waterways_Entrance">
+    <offsetX>-1.4</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Top_Left_Waterways">
+    <offsetX>-1.2</offsetX>
+    <offsetY>0.3</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Waterways_East">
+    <offsetX>-0.6</offsetX>
+    <offsetY>-0.3</offsetY>
+  </pin>
+  <pin name="Soul_Totem-Waterways_Flukemarm">
+    <offsetX>1.25</offsetX>
+    <offsetY>-0.45</offsetY>
+  </pin>
+  <pin name="Soul_Totem-White_Palace_Entrance">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.7</offsetX>
+    <offsetY>-0.3</offsetY>
+    <offsetZ>0.05</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-White_Palace_Hub">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.7</offsetX>
+    <offsetY>-0.1</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-White_Palace_Left">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.7</offsetX>
+    <offsetY>0.1</offsetY>
+    <offsetZ>0.15</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-White_Palace_Final">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.7</offsetX>
+    <offsetY>0.3</offsetY>
+    <offsetZ>0.2</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-White_Palace_Right">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.7</offsetX>
+    <offsetY>0.5</offsetY>
+    <offsetZ>0.25</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Path_of_Pain_Below_Lever">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.9</offsetX>
+    <offsetY>-0.5</offsetY>
+    <offsetZ>0.1</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Path_of_Pain_Left_of_Lever">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.9</offsetX>
+    <offsetY>-0.3</offsetY>
+    <offsetZ>0.15</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Path_of_Pain_Entrance">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.9</offsetX>
+    <offsetY>-0.1</offsetY>
+    <offsetZ>0.2</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Path_of_Pain_Second">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.9</offsetX>
+    <offsetY>0.1</offsetY>
+    <offsetZ>0.25</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Path_of_Pain_Hidden">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.9</offsetX>
+    <offsetY>0.3</offsetY>
+    <offsetZ>0.3</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Path_of_Pain_Below_Thornskip">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.9</offsetX>
+    <offsetY>0.5</offsetY>
+    <offsetZ>0.35</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Path_of_Pain_Final">
+    <pinScene>Abyss_05</pinScene>
+    <offsetX>0.9</offsetX>
+    <offsetY>0.7</offsetY>
+    <offsetZ>0.4</offsetZ>
+  </pin>
+  <pin name="Soul_Totem-Pale_Lurker">
+    <offsetX>-1.35</offsetX>
+    <offsetY>0.15</offsetY>
+  </pin>
 
 </randomap>
