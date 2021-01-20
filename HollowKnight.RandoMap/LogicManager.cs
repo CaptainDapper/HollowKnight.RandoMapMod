@@ -1,156 +1,110 @@
-﻿using System;
+﻿using ModCommon;
+using ModCommon.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RandoMapMod {
-	static class LogicManager {
-		//I'm not proud of this, but most of this code was copied right from the Randomizerv2.0 mod...
-		//I could have made use of the original assembly, but they were marked internal in Seanpr's assembly.
-		private static Dictionary<string, string[]> macros = null;
+namespace RandoMapMod
+{
+	static class LogicManager
+	{
+		private static readonly DebugLog logger = new DebugLog(nameof(LogicManager));
 
-		public static void AddMacro( string macroName, string rawMacro ) {
-			if ( macros == null ) {
-				macros = new Dictionary<string, string[]>();
-			}
+		private static readonly Dictionary<string, string> shopItems = new Dictionary<string, string>()
+		{
+			{"Gathering Swarm", "Sly"},
+			{"Stalwart Shell", "Sly"},
+			{"Lumafly Lantern", "Sly"},
+			{"Simple Key-Sly", "Sly"},
+			{"Mask Shard-Sly1", "Sly"},
+			{"Mask Shard-Sly2", "Sly"},
+			{"Vessel Fragment-Sly1", "Sly"},
+			{"Rancid Egg-Sly", "Sly"},
+			{"Heavy Blow", "Sly (Key)" },
+			{"Sprintmaster", "Sly (Key)" },
+			{"Elegant Key", "Sly (Key)" },
+			{"Wayward Compass", "Iselda" },
+			{"Quick Focus", "Salubra" },
+			{"Lifeblood Heart", "Salubra" },
+			{"Steady Body", "Salubra" },
+			{"Long Nail", "Salubra" },
+			{"Shaman Stone", "Salubra" },
+			{"Fragile Heart", "Leg Eater" },
+			{"Fragile Greed", "Leg Eater" },
+			{"Fragile Strength", "Leg Eater" },
+			{"Mask Shard-5 Grubs", "Grubfather" },
+			{"Pale Ore-Grubs", "Grubfather" },
+			{"Rancid Egg-Grubs", "Grubfather" },
+			{"Hallownest Seal-Grubs", "Grubfather" },
+			{"King's Idol-Grubs", "Grubfather" },
+			{"Grubsong", "Grubfather" },
+			{"Grubberfly's Elegy", "Grubfather" },
+			{"Arcane Egg-Seer", "Seer" },
+			{"Vessel Fragment-Seer", "Seer" },
+			{"Pale Ore-Seer", "Seer" },
+			{"Hallownest Seal-Seer", "Seer" },
+			{"Dream Gate", "Seer" },
+			{"Awoken Dream Nail", "Seer" },
+			{"Dream Wielder", "Seer" },
+		};
 
-			macros.Add( macroName, ShuntingYard( rawMacro ) );
-		}
-
-		public static string[] ShuntingYard( string infix ) {
-			int i = 0;
-			Stack<string> stack = new Stack<string>();
-			List<string> postfix = new List<string>();
-
-			while ( i < infix.Length ) {
-				string op = getNextOperator( infix, ref i );
-
-				// Easiest way to deal with whitespace between operators
-				if ( op.Trim( ' ' ) == string.Empty ) {
-					continue;
-				}
-
-				if ( op == "+" || op == "|" ) {
-					while ( stack.Count != 0 && ( op == "|" || ( op == "+" && stack.Peek() != "|" ) ) && stack.Peek() != "(" ) {
-						postfix.Add( stack.Pop() );
-					}
-
-					stack.Push( op );
-				} else if ( op == "(" ) {
-					stack.Push( op );
-				} else if ( op == ")" ) {
-					while ( stack.Peek() != "(" ) {
-						postfix.Add( stack.Pop() );
-					}
-
-					stack.Pop();
-				} else {
-					// Parse macros
-					if ( macros.TryGetValue( op, out string[] macro ) ) {
-						postfix.AddRange( macro );
-					} else {
-						postfix.Add( op );
-					}
-				}
-			}
-
-			while ( stack.Count != 0 ) {
-				postfix.Add( stack.Pop() );
-			}
-
-			return postfix.ToArray();
-		}
-
-		public static bool ParsePrereqNode( string node ) {
-			PlayerData pd = PlayerData.instance;
-			if ( node.Contains( '>' ) ) {
-				string[] str = node.Split( '>' );
-				int testVal = int.Parse( str[1] );
-				return ( pd.GetInt( str[0] ) > testVal );
-			} else {
-				return pd.GetBool( node );
-			}
-		}
-
-		public static bool ParseLogic( string[] logic, Predicate<string> eval ) {
-			if ( logic == null || logic.Length == 0 ) {
-				return true;
-			}
-
-			Stack<bool> stack = new Stack<bool>();
-
-			for ( int i = 0; i < logic.Length; i++ ) {
-				switch ( logic[i] ) {
-					case "+":
-						if ( stack.Count < 2 ) {
-							DebugLog.Warn( $"Could not parse logic: Found + when stack contained less than 2 items" );
-							return false;
-						}
-
-						stack.Push( stack.Pop() & stack.Pop() );
-						break;
-					case "|":
-						if ( stack.Count < 2 ) {
-							DebugLog.Warn( $"Could not parse logic: Found | when stack contained less than 2 items" );
-							return false;
-						}
-
-						stack.Push( stack.Pop() | stack.Pop() );
-						break;
-					case "SHADESKIPS":
-						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.ShadeSkips );
-						break;
-					case "ACIDSKIPS":
-						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.AcidSkips );
-						break;
-					case "SPIKETUNNELS":
-						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.SpikeTunnels );
-						break;
-					case "MISCSKIPS":
-						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.MiscSkips );
-						break;
-					case "FIREBALLSKIPS":
-						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.FireballSkips );
-						break;
-					case "MAGSKIPS":
-						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.MagSkips );
-						break;
-					case "NOCLAW":
-						stack.Push( RandomizerMod.RandomizerMod.Instance.Settings.NoClaw );
-						break;
-					case "EVERYTHING":
-						stack.Push( false );
-						break;
-					default:
-						stack.Push( eval( logic[i] ) );
-						break;
-				}
-			}
-
-			if ( stack.Count == 0 ) {
-				DebugLog.Warn( $"Could not parse logic: Stack empty after parsing" );
+		public static HelperData helperData;
+		
+		public static bool ItemIsChecked(string itemName) 
+		{
+			if (helperData == null)
+			{
 				return false;
 			}
-
-			if ( stack.Count != 1 ) {
-				DebugLog.Warn( $"Extra items in stack after parsing logic" );
-			}
-
-			return stack.Pop();
+			return helperData.checkedd.Values.Any(location => location.items.Contains(itemName));
 		}
 
-		private static string getNextOperator( string infix, ref int i ) {
-			int start = i;
-
-			if ( infix[i] == '(' || infix[i] == ')' || infix[i] == '+' || infix[i] == '|' ) {
-				i++;
-				return infix[i - 1].ToString();
+		public static bool ItemIsReachable(string itemName) 
+		{
+			if (helperData == null)
+			{
+				return false;
 			}
-
-			while ( i < infix.Length && infix[i] != '(' && infix[i] != ')' && infix[i] != '+' && infix[i] != '|' ) {
-				i++;
+			if (helperData.reachable.Values.Any(location => {
+				return location.items.Contains(itemName);
+				}))
+			{
+				return true;
 			}
+			if (shopItems.ContainsKey(itemName))
+			{
+				/*
+				 * If this is a shop item, we need to say it's reachable whether the item
+				 * is in HelperData's "checked" or "reachable", or else after the player
+				 * checks the shop once, the pins will all shrink.
+				 */
+				string shopName = shopItems[itemName];
+				if (helperData.checkedd.ContainsKey("Shops"))
+				{
+					Location location = helperData.checkedd["Shops"];
+					if (location.items.Contains(shopName)) {
+						return true;
+					}
+				}
+				if (helperData.reachable.ContainsKey("Shops"))
+				{
+					Location location = helperData.reachable["Shops"];
+					if (location.items.Contains(shopName)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
 
-			return infix.Substring( start, i - start ).Trim( ' ' );
+		public static bool isGrubFatherItem(string itemName)
+		{
+			return "Grubfather".Equals(shopItems[itemName]);
+		}
+
+		public static bool isSeerItem(string itemName)
+		{
+			return "Seer".Equals(shopItems[itemName]);
 		}
 	}
 }
