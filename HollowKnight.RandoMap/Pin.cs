@@ -2,6 +2,7 @@
 using RandoMapMod;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 class Pin : MonoBehaviour {
@@ -19,7 +20,62 @@ class Pin : MonoBehaviour {
 			this.pinData = value;
 		}
 	}
+	private static bool areSettingsLoaded = false;
+	public static Dictionary<string, bool> IsRandomizedInSettings = new Dictionary<string, bool>();
+	private static List<(string,string)> RandomizableItems = new List<(string,string)>
+	{
+		("RandomizeDreamers", "Dreamer"),
+		("RandomizeSkills", "Skill"),
+		("RandomizeCharms", "Charm"),
+		("RandomizeKeys", "Key"),
+		("RandomizeGeoChests", "Geo"),
+		("RandomizeMaskShards", "Mask"),
+		("RandomizeVesselFragments", "Vessel"),
+		("RandomizeCharmNotches", "Notch"),
+		("RandomizePaleOre", "Ore"),
+		("RandomizeRancidEggs", "Egg"),
+		("RandomizeRelics", "Relic"),
+		("RandomizeMaps", "Map"),
+		("RandomizeStags", "Stag"),
+		("RandomizeGrubs", "Grub"),
+		("RandomizeWhisperingRoots", "Root"),
+		("RandomizeRocks", "Rock"),
+		("RandomizeSoulTotems", "Soul"),
+		("RandomizePalaceTotems", "PalaceSoul"),
+		("RandomizeLoreTablets", "Lore"),
+		("RandomizeLifebloodCocoons", "Cocoon"),
+		("RandomizeGrimmkinFlames", "Flame"),
+		("RandomizeBossEssence", "Essence_Boss")
+		
+	};
+	//private static Type managerType = typeof(RandomizerMod.Randomization.ProgressionManager);
 
+	public static void Setup() {
+		//Dev.Log("Entering setup");
+		//IsRandomizedInSettings = new Dictionary<string, bool>();
+		Type settings = typeof(RandomizerMod.SaveSettings);
+		foreach ((string, string) randomizable in RandomizableItems)
+		{
+			//Dev.Log(randomizable.Item1 + " " + randomizable.Item2);
+			PropertyInfo property = settings.GetProperty(randomizable.Item1);
+			//Dev.Log(" Property is " + property);
+			if (property != null)
+			{
+				//Dev.Log(" Object randomizable " + randomizable.Item1 + " , " + randomizable.Item2);
+				IsRandomizedInSettings.Add(randomizable.Item2, (bool)property.GetValue(RandomizerMod.RandomizerMod.Instance.Settings, null));
+				//Dev.Log(" " + RandomizerMod.RandomizerMod.Instance.Settings.RandomizeDreamers);
+				
+			}
+		}
+		//Dev.Log("Completing setup");
+		areSettingsLoaded = true;
+	}
+
+	public static void Reset()
+	{
+		IsRandomizedInSettings = new Dictionary<string, bool>();
+		areSettingsLoaded = false;
+	}
 
 
 	void Awake() {
@@ -51,95 +107,123 @@ class Pin : MonoBehaviour {
         }
         else
         {
-            string pool = PinData_S.All[this.pinData.ID].Pool;
-            bool isRandomized = false;
-            switch (pool)
-            {
-                case "Dreamer":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeDreamers;
-                    break;
-
-                case "Skill":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeSkills;
-                    break;
-
-                case "Charm":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharms;
-                    break;
-
-                case "Key":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeKeys;
-                    break;
-
-                case "Geo":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGeoChests;
-                    break;
-
-                case "Mask":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaskShards;
-                    break;
-
-                case "Vessel":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeVesselFragments;
-                    break;
-
-                case "Ore":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizePaleOre;
-                    break;
-
-                case "Notch":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharmNotches;
-                    break;
-
-                case "Egg":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRancidEggs;
-                    break;
-
-                case "Relic":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRelics;
-                    break;
-
-                case "Map":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaps;
-                    break;
-
-                case "Stag":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeStags;
-                    break;
-
-                case "Grub":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGrubs;
-                    break;
-
-                case "Root":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeWhisperingRoots;
-                    break;
-
-				case "Rock":
-					isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRocks;
-					break;
-
-                case "Lifeblood":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeLifebloodCocoons;
-                    break;
-
-                case "Soul":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizeSoulTotems;
-                    break;
-
-                case "PalaceSoul":
-                    isRandomized = RandomizerMod.RandomizerMod.Instance.Settings.RandomizePalaceTotems;
-                    break;
-
-				default:
-                    isRandomized = true;
-                    break;
-            }
+			//Dev.Log("RAWR");
+			string pool = PinData_S.All[this.pinData.ID].Pool;
+			if (pool == null)
+				return;
+			//Dev.Log("Pin pool: " + pool);
+			bool isRandomized = false;
+			//if (!areSettingsLoaded)
+			//	Setup();
+			if (pool != null)
+			{
+				IsRandomizedInSettings.TryGetValue(pool, out isRandomized);
+				//Dev.Log("Pool " + pool + " is randomized? " + isRandomized);
+			}
+            
             if (!isRandomized)
             {
-                //Dev.Log(this.pinData.ID + " is not randomized");
-                this.disableSelf();
+				//Dev.Log(this.pinData.ID + " is reachable? " + RandomizerMod.RandoLogger.pm.CanGet(this.pinData.ID));
+				if (pool == "Grub" || pool == "Root" || pool == "Essence_Boss")
+				{
+					if(RandomizerMod.RandoLogger.pm.CanGet(this.pinData.ID))
+					{
+						//if (RandomizerMod.RandoLogger.pm.Has(this.pinData.ID))
+						//	this.disableSelf();
+						this.transform.localScale = this.origScale;
+						this.sr.color = this.origColor;
+						this.isPossible = true;
+						//this.origSprite = Resources.Sprite("Map.randoPin");
+					}
+					if (pool == "Grub")
+					{
+						string roomName = PinData_S.All[this.pinData.ID].SceneName;
+						if (PlayerData.instance.scenesGrubRescued.Contains(roomName))
+							this.disableSelf();
+					}
+					if (pool == "Root")
+					{
+						string roomName = PinData_S.All[this.pinData.ID].SceneName;
+						if (PlayerData.instance.scenesEncounteredDreamPlantC.Contains(roomName))
+							this.disableSelf();
+					}
+
+					if (pool == "Essence_Boss")
+					{
+						bool removePin = false;
+						switch (this.pinData.ID)
+						{
+							case "Boss_Essence-Elder_Hu":
+								removePin = HeroController.instance.playerData.elderHuDefeated == 2;
+								break;
+							case "Boss_Essence-Xero":
+								removePin = HeroController.instance.playerData.xeroDefeated == 2;
+								break;
+							case "Boss_Essence-Gorb":
+								removePin = HeroController.instance.playerData.aladarSlugDefeated == 2;
+								break;
+							case "Boss_Essence-Marmu":
+								removePin = HeroController.instance.playerData.mumCaterpillarDefeated == 2;
+								break;
+							case "Boss_Essence-No_Eyes":
+								removePin = HeroController.instance.playerData.noEyesDefeated == 2;
+								break;
+							case "Boss_Essence-Galien":
+								removePin = HeroController.instance.playerData.galienDefeated == 2;
+								break;
+							case "Boss_Essence-Markoth":
+								removePin = HeroController.instance.playerData.markothDefeated == 2;
+								break;
+							case "Boss_Essence-Failed_Champion":
+								removePin = HeroController.instance.playerData.falseKnightOrbsCollected;
+								break;
+							case "Boss_Essence-Soul_Tyrant":
+								removePin = HeroController.instance.playerData.mageLordOrbsCollected;
+								break;
+							case "Boss_Essence-Lost_Kin":
+								removePin = HeroController.instance.playerData.infectedKnightOrbsCollected;
+								break;
+							case "Boss_Essence-White_Defender":
+								removePin = HeroController.instance.playerData.whiteDefenderOrbsCollected;
+								break;
+							case "Boss_Essence-Grey_Prince_Zote":
+								removePin = HeroController.instance.playerData.greyPrinceOrbsCollected;
+								break;
+						}
+						if (removePin)
+							this.disableSelf();
+					}
+					//Dev.Log(this.pinData.ID + " is reachable? " + RandomizerMod.RandoLogger.pm.CanGet(this.pinData.ID));
+				}
+				else
+				{
+					this.disableSelf();
+				}
             }
+
+			//if(this.pinData.isShop)
+			//{
+			//	string shopName = "";
+			//	switch (this.pinData.ID)
+			//	{
+			//		case "Stalwart_Shell":
+			//			break;
+
+			//		case "Wayward_Compass":
+			//			break;
+
+			//		case "Quick_Focus":
+			//			break;
+
+			//		case "Fragile_Strength":
+			//			break;
+
+			//		case "Sprintmaster":
+			//			break;
+			//	}
+				
+			//	//RandomizerMod.RandoLogger.pm.
+			//}
         }
         //switch ( this.pinData.CheckType ) {
         //	case PinData.Types.PlayerBool:

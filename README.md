@@ -8,7 +8,7 @@ Let me know if you find any bugs, have any feature requests, or just have questi
 
 ## How it works
 
-There are five different types of pins: Small Dark (?) Pins, Big (?) Pins, Yellow (!) Pins, Small Dark ($) Pins, and Big Green ($) Pins.
+There are five different types of pins for randomized item checks: Small Dark (?) Pins, Big (?) Pins, Yellow (!) Pins, Small Dark ($) Pins, and Big Green ($) Pins.
 
 The Small (?) indicate item locations that are currently out-of-logic. It's possible they are still obtainable through sequence breaks. 
 
@@ -19,6 +19,8 @@ The Yellow (!) indicate item locations that are currently in logic but still req
 The Small ($) indicate shop locations that are currently out-of-logic. It's possible they are still reachable through sequence breaks.
 
 The Green ($) indicate shop locations that are currently in logic, as a reminder to the player that the shop may still have items for sale they may need.
+
+In addition, non-randomized Grub and Essence sources have pins to indicate whether or not they are currently accessible in logic.
 
 ## Dependencies
 
@@ -47,3 +49,8 @@ Compatibility for Rando 3
 ### v0.3.10
 
 Compatibility for Rando 3.10
+
+### v0.3.11
+
+Non-randomized Grub and Essence pins
+Settings update to handle different randomizer branches

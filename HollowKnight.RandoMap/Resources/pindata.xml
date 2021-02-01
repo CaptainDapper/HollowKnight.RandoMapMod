@@ -33,7 +33,7 @@
     <offsetX>2.7</offsetX>
     <offsetY>-0.4</offsetY>
   </pin>
-  <pin name="Monarch_Wings"> Item Location is way off from where it looks like it should be on the map...
+  <pin name="Monarch_Wings"> 
     <offsetX>-0.75</offsetX>
     <offsetY>0.35</offsetY>
   </pin>
@@ -440,7 +440,7 @@
   <pin name="Mask_Shard-Bretta">
     <pinScene>Town</pinScene>
     <offsetX>0.875</offsetX>
-  <offsetY>-0.4</offsetY>
+    <offsetY>-0.4</offsetY>
   </pin>
   
   <!--Vessel Fragments-->
@@ -491,7 +491,7 @@
   <pin name="Charm_Notch-Shrumal_Ogres">
   <offsetX>-0.05</offsetX>
   </pin>
-  <pin name="Charm_Notch-Fog_Canyon_West">
+  <pin name="Charm_Notch-Fog_Canyon">
   <offsetX>-0.5</offsetX>
   <offsetY>-0.3</offsetY>
   </pin>
@@ -904,45 +904,78 @@
 
   <!--Essence Bosses-->
   <!--All Need Scenes-->
-  <!--<pin name="Elder_Hu">
+  <pin name="Boss_Essence-Elder_Hu">
+	<pinScene>Fungus2_32</pinScene>
+	  <offsetX>0.3</offsetX>
+	<pool>Essence_Boss</pool>
   </pin>
-  <pin name="Xero">
+  <pin name="Boss_Essence-Xero">
     <pinScene>RestingGrounds_02</pinScene>
+	  <offsetX>0.9</offsetX>
+	<pool>Essence_Boss</pool>
   </pin>
-  <pin name="Gorb">
+  <pin name="Boss_Essence-Gorb">
   <pinScene>Cliffs_02</pinScene>
-    <offsetY>0.8</offsetY>
-    <offsetX>-0.8</offsetX>
+    <offsetY>1.1</offsetY>
+    <offsetX>-1.3</offsetX>
+	<pool>Essence_Boss</pool>
   </pin>
-  <pin name="Marmu">
-    <offsetX>-0.3</offsetX>
+  <pin name="Boss_Essence-Marmu">
+	<pinScene>Fungus3_40</pinScene>
+    <offsetX>-0.5</offsetX>
     <offsetY>-0.1</offsetY>
+	<pool>Essence_Boss</pool>
   </pin>
-  <pin name="No_Eyes">
-    <pinScene>Fungus1_34</pinScene>
-    <offsetX>0.8</offsetX>
-    <offsetY>0.25</offsetY>
-    <offsetZ>0.1</offsetZ>
+  <pin name="Boss_Essence-No_Eyes">
+	  <pinScene>Fungus1_34</pinScene>
+	  <offsetX>1.05</offsetX>
+	  <offsetY>0.1</offsetY>
+	  <offsetZ>0.05</offsetZ>
+	<pool>Essence_Boss</pool>
   </pin>
-  <pin name="Galien">
+  <pin name="Boss_Essence-Galien">
     <pinScene>Deepnest_40</pinScene>
-    <offsetX>-0.8</offsetX>
+    <offsetX>-0.7</offsetX>
+	<offsetY>-0.2</offsetY>
+	<pool>Essence_Boss</pool>
   </pin>
-  <pin name="Markoth">
+  <pin name="Boss_Essence-Markoth">
     <pinScene>Deepnest_East_10</pinScene>
-    <offsetY>-0.3</offsetY>
-  </pin>
-  <pin name="Failed_Champion">
-  </pin>
-  <pin name="Soul_Tyrant">
-    <offsetX>0.4</offsetX>
-    <offsetY>-0.4</offsetY>
-  </pin>
-  <pin name="Lost_Kin">
-    <pinScene>Abyss_19</pinScene>
-    <offsetX>-1.2</offsetX>
+	  <offsetX>0.1</offsetX>
     <offsetY>-0.2</offsetY>
-  </pin>-->
+	<pool>Essence_Boss</pool>
+  </pin>
+  <pin name="Boss_Essence-Failed_Champion">
+	<pinScene>Crossroads_10</pinScene>
+	  <offsetY>0.3</offsetY>
+	  <offsetZ>-0.1</offsetZ>
+	<pool>Essence_Boss</pool>
+  </pin>
+  <pin name="Boss_Essence-Soul_Tyrant">
+	<pinScene>Ruins1_24</pinScene>
+    <offsetX>0.4</offsetX>
+    <offsetY>-0.3</offsetY>
+	<pool>Essence_Boss</pool>
+  </pin>
+  <pin name="Boss_Essence-Lost_Kin">
+    <pinScene>Abyss_19</pinScene>
+    <offsetX>-1.3</offsetX>
+    <offsetY>-0.2</offsetY>
+	<pool>Essence_Boss</pool>
+  </pin>
+<pin name="Boss_Essence-White_Defender">
+	<pinScene>Waterways_15</pinScene>
+	<offsetX>-0.1</offsetX>
+	<offsetY>-0.1</offsetY>
+	<pool>Essence_Boss</pool>
+</pin>
+<pin name="Boss_Essence-Grey_Prince_Zote">
+	<pinScene>Town</pinScene>
+	<offsetX>0.875</offsetX>
+	<offsetY>-0.6</offsetY>
+	<offsetZ>0.05</offsetZ>
+	<pool>Essence_Boss</pool>
+</pin>
   
 
   <!--Grubs-->
@@ -2411,4 +2444,49 @@
     <offsetY>0.15</offsetY>
   </pin>
 
+  <!--Grimmkin Flames-->
+	<pin name="Grimmkin_Flame-City_Storerooms">
+		<offsetX>0.1</offsetX>
+	</pin>
+	<pin name="Grimmkin_Flame-Greenpath">
+		<offsetX>-0.2</offsetX>
+	</pin>
+	<pin name="Grimmkin_Flame-Crystal_Peak">
+		<offsetX>0.2</offsetX>
+		<offsetY>-0.1</offsetY>
+	</pin>
+	<pin name="Grimmkin_Flame-King's_Pass">
+		<offsetX>-0.1</offsetX>
+		<offsetY>-0.7</offsetY>
+	</pin>
+	<pin name="Grimmkin_Flame-Resting_Grounds">
+		<offsetX>-0.3</offsetX>
+		<offsetY>0.1</offsetY>
+	</pin>
+	<pin name="Grimmkin_Flame-Kingdom's_Edge">
+
+	</pin>
+	<pin name="Grimmkin_Flame-Fungal_Core">
+		<offsetX>-0.1</offsetX>
+		<offsetY>-0.7</offsetY>
+	</pin>
+	<pin name="Grimmkin_Flame-Ancient_Basin">
+		<offsetX>0.2</offsetX>
+	</pin>
+	<pin name="Grimmkin_Flame-Hive">
+		<offsetX>0.2</offsetX>
+		<offsetY>0.2</offsetY>
+	</pin>
+	<pin name="Grimmkin_Flame-Brumm">
+		<pinScene>Deepnest_10</pinScene>
+		<offsetX>-0.3</offsetX>
+		<offsetY>0.5</offsetY>
+	</pin>
+	
+	<!--Lore Tablet-->
+	<pin name="Lore_Tablet-King's_Pass">
+		
+	</pin>
+	
+	
 </randomap>
