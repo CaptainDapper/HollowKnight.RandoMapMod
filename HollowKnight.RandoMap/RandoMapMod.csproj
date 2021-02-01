@@ -44,7 +44,12 @@
     <Reference Include="RandomizerMod3.0">
       <HintPath>..\..\..\hollow_knight_Data\Managed\Mods\RandomizerMod3.0.dll</HintPath>
     </Reference>
-    <Reference Include="SeanprCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="SeanprCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\hollow_knight_Data\Managed\Mods\SeanprCore.dll</HintPath>
+    </Reference>
+    <Reference Include="SFCore">
+      <HintPath>..\..\..\hollow_knight_Data\Managed\Mods\SFCore.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -103,6 +108,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Map\shopPin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Map\rockPin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Map\totemPin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Map\lifebloodPin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Map\actualGrub.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Map\actualEssence.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Map\TestRoom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

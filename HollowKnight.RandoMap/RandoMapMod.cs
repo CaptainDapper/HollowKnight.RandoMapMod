@@ -44,91 +44,91 @@ namespace RandoMapMod {
 
 
 		public static List<string> shopNames = new List<string>()
-        {
-            "Sly",
-            "Sly (Key)",
-            "Iselda",
-            "Salubra",
-            "Leg Eater",
-            "Grubfather",
-            "Seer"
-        };
+		{
+			"Sly",
+			"Sly (Key)",
+			"Iselda",
+			"Salubra",
+			"Leg Eater",
+			"Grubfather",
+			"Seer"
+		};
 
-        public static List<string> slyItems = new List<string>()
-        {
-            "Gathering Swarm",
-            "Stalwart Shell",
-            "Lumafly Lantern",
-            "Simple Key-Sly",
-            "Mask Shard-Sly1",
-            "Mask Shard-Sly2",
-            "Vessel Fragment-Sly1",
-            "Rancid Egg-Sly",
-        };
+		public static List<string> slyItems = new List<string>()
+		{
+			"Gathering Swarm",
+			"Stalwart Shell",
+			"Lumafly Lantern",
+			"Simple Key-Sly",
+			"Mask Shard-Sly1",
+			"Mask Shard-Sly2",
+			"Vessel Fragment-Sly1",
+			"Rancid Egg-Sly",
+		};
 
-        public static List<string> slyKeyItems = new List<string>()
-        {
-            "Gathering Swarm",
-            "Stalwart Shell",
-            "Lumafly Lantern",
-            "Simple Key-Sly",
-            "Mask Shard-Sly1",
-            "Mask Shard-Sly2",
-            "Mask Shard-Sly3",
-            "Mask Shard-Sly4",
-            "Vessel Fragment-Sly1",
-            "Vessel Fragment-Sly2",
-            "Rancid Egg-Sly",
-            "Heavy Blow",
-            "Sprintmaster",
-            "Elegant Key",
-        };
+		public static List<string> slyKeyItems = new List<string>()
+		{
+			"Gathering Swarm",
+			"Stalwart Shell",
+			"Lumafly Lantern",
+			"Simple Key-Sly",
+			"Mask Shard-Sly1",
+			"Mask Shard-Sly2",
+			"Mask Shard-Sly3",
+			"Mask Shard-Sly4",
+			"Vessel Fragment-Sly1",
+			"Vessel Fragment-Sly2",
+			"Rancid Egg-Sly",
+			"Heavy Blow",
+			"Sprintmaster",
+			"Elegant Key",
+		};
 
-        public static List<string> iseldaItems = new List<string>()
-        {
-            "Wayward Compass",
-        };
+		public static List<string> iseldaItems = new List<string>()
+		{
+			"Wayward Compass",
+		};
 
-        public static List<string> salubraItems = new List<string>()
-        {
-            "Quick Focus",
-            "Lifeblood Heart",
-            "Steady Body",
-            "Long Nail",
-            "Shaman Stone",
-        };
+		public static List<string> salubraItems = new List<string>()
+		{
+			"Quick Focus",
+			"Lifeblood Heart",
+			"Steady Body",
+			"Long Nail",
+			"Shaman Stone",
+		};
 
-        public static List<string> legEaterItems = new List<string>()
-        {
-            "Fragile Heart",
-            "Fragile Greed",
-            "Fragile Strength",
-        };
+		public static List<string> legEaterItems = new List<string>()
+		{
+			"Fragile Heart",
+			"Fragile Greed",
+			"Fragile Strength",
+		};
 
-        public static List<string> grubfatherItems = new List<string>()
-        {
-            "Mask Shard-5 Grubs",
-            "Pale Ore-Grubs",
-            "Rancid Egg-Grubs",
-            "Hallownest Seal-Grubs",
-            "King's Idol-Grubs",
-            "Grubsong",
-            "Grubberfly's Elegy"
-        };
+		public static List<string> grubfatherItems = new List<string>()
+		{
+			"Mask Shard-5 Grubs",
+			"Pale Ore-Grubs",
+			"Rancid Egg-Grubs",
+			"Hallownest Seal-Grubs",
+			"King's Idol-Grubs",
+			"Grubsong",
+			"Grubberfly's Elegy"
+		};
 
-        public static List<string> seerItems = new List<string>()
-        {
-            "Arcane Egg-Seer",
-            "Vessel Fragment-Seer",
-            "Pale Ore-Seer",
-            "Hallownest Seal-Seer",
-            "Dream Gate",
-            "Awoken Dream Nail",
-            "Dream Wielder"
-        };
+		public static List<string> seerItems = new List<string>()
+		{
+			"Arcane Egg-Seer",
+			"Vessel Fragment-Seer",
+			"Pale Ore-Seer",
+			"Hallownest Seal-Seer",
+			"Dream Gate",
+			"Awoken Dream Nail",
+			"Dream Wielder"
+		};
 
 
-        public static RandoMapMod Instance {
+		public static RandoMapMod Instance {
 			get; private set;
 		}
 
@@ -140,11 +140,11 @@ namespace RandoMapMod {
 		}
 
 		public override string GetVersion() {
-			string ver = "0.3.8";
+			string ver = "0.3.11";
 			int minAPI = 45;
 
-			bool apiTooLow = Convert.ToInt32( ModHooks.Instance.ModVersion.Split( '-' )[1] ) < minAPI;
-			if ( apiTooLow ) {
+			bool apiTooLow = Convert.ToInt32(ModHooks.Instance.ModVersion.Split('-')[1]) < minAPI;
+			if (apiTooLow) {
 				return ver + " (Update API)";
 			}
 
@@ -152,21 +152,24 @@ namespace RandoMapMod {
 		}
 
 		public override void Initialize() {
-			if ( Instance != null ) {
-				DebugLog.Warn( "Initialized twice... Stop that." );
+			if (Instance != null) {
+				DebugLog.Warn("Initialized twice... Stop that.");
 				return;
 			}
 			Instance = this;
-			DebugLog.Log( "RandoMapMod Initializing..." );
+			DebugLog.Log("RandoMapMod Initializing...");
 
 			Resources.Initialize();
-			
-			On.GameMap.Start += this.GameMap_Start;							//Set up custom pins
-			On.GameMap.WorldMap += this.GameMap_WorldMap;					//Set big map boundaries
-			On.GameMap.SetupMapMarkers += this.GameMap_SetupMapMarkers;		//Enable the custom pins
-			On.GameMap.DisableMarkers += this.GameMap_DisableMarkers;		//Disable the custom pins
 
-			ModHooks.Instance.SavegameLoadHook += this.SavegameLoadHook;	//Load object name changes
+			On.GameMap.OnEnable += this.GameMap_OnEnable;
+			On.GameMap.Start += this.GameMap_Start;                         //Set up custom pins
+			On.GameMap.WorldMap += this.GameMap_WorldMap;                   //Set big map boundaries
+			//On.GameMap.Update += this.GameMap_Update;
+			On.GameMap.SetupMapMarkers += this.GameMap_SetupMapMarkers;     //Enable the custom pins
+			On.GameMap.DisableMarkers += this.GameMap_DisableMarkers;       //Disable the custom pins
+
+			//ModHooks.Instance.NewGameHook += this.NewGameHook;
+			ModHooks.Instance.SavegameLoadHook += this.SavegameLoadHook;    //Load object name changes
 			ModHooks.Instance.SavegameSaveHook += this.SavegameSaveHook;    //Load object name changes
 
 			//Giveaway time
@@ -176,64 +179,146 @@ namespace RandoMapMod {
 			DebugLog.Log("RandoMapMod Initialize complete!");
 		}
 
-		private void SavegameLoadHook( int slot ) {
+		//private void NewGameHook()
+		//{
+		//	Pin.Reset();
+		//	Pin.Setup();
+		//}
+
+		private void SavegameLoadHook(int slot) {
 			ObjectNames.Load(slot);
 		}
 
-		private void SavegameSaveHook( int slot ) {
+		private void SavegameSaveHook(int slot) {
 			ObjectNames.Load(slot);
 		}
 
-		private void GameMap_Start( On.GameMap.orig_Start orig, GameMap self ) {
-			if ( !IsRando ) {
-				orig( self );
+		private List<string> InteriorNameList = new List<string>()
+		{
+			"Fungus1_35",
+			"Fungus1_36",
+			"Mines_35",
+			"Room_Fungus_Shaman",
+			"Ruins_Elevator",
+			"Crossroads_ShamanTemple",
+			"Room_GG_Shortcut"
+		};
+		private bool isInInterior = false;
+		private string interiorName = "";
+		private void GameMap_Start(On.GameMap.orig_Start orig, GameMap self) {
+			//self.areaGreenpath.transform.Translate(new Vector3(200, 200));
+			//self.GetComponent<Renderer>().enabled = false;
+			//self.enabled = false;
+			//self.areaGreenpath.
+			//var roomMaterial = UnityEngine.Object.Instantiate(self.areaCliffs.transform.GetChild(1).GetComponent<SpriteRenderer>().material);
+
+			//GameObject testRoom = new GameObject("Fungus1_35", typeof(SpriteRenderer), typeof(RoughMapRoom));
+			//testRoom.transform.SetParent(self.areaGreenpath.transform);
+			//testRoom.layer = 31;
+			//testRoom.transform.localScale = Vector3.one;
+			//testRoom.SetActive(true);
+			//var spriteRenderer = testRoom.GetComponent<SpriteRenderer>();
+			//spriteRenderer.material = roomMaterial;
+			//spriteRenderer.sprite = Resources.Sprite("Map.TestRoom");
+			////spriteRenderer.sortingLayerID = 
+			//spriteRenderer.sortingOrder = 1337;
+			//var roughMapRoom = testRoom.GetComponent<RoughMapRoom>();
+			//roughMapRoom.fullSprite = spriteRenderer.sprite;
+			//testRoom.transform.localPosition = self.areaGreenpath.transform.Find("Fungus1_34").transform.localPosition;
+
+			//GameObject testRoomSprite = new GameObject("RF134", typeof(SpriteRenderer));
+			//testRoomSprite.transform.SetParent(testRoom.transform);
+			//testRoomSprite.transform.localPosition = Vector3.zero;
+			//testRoomSprite.layer = 31;
+			//testRoomSprite.transform.localScale = Vector3.one;
+			//testRoomSprite.SetActive(true);
+			//var spriteSpriteRenderer = testRoomSprite.GetComponent<SpriteRenderer>();
+			//spriteSpriteRenderer.material = roomMaterial;
+			//spriteSpriteRenderer.sprite = Resources.Sprite("Map.TestRoom");
+			//spriteSpriteRenderer.sortingOrder = 1337;
+			//if (PlayerData.instance.GetVariable<List<string>>(nameof(PlayerData.instance.scenesMapped)).Contains(testRoom.name))
+			//	PlayerData.instance.GetVariable<List<string>>(nameof(PlayerData.instance.scenesMapped)).Add(testRoom.name);
+
+			//self.areaGreenpath.transform.Find("Fungus1_34").transform.localPosition = new Vector3(2000, 2000);
+
+			if (!IsRando) {
+				orig(self);
 				return;
 			}
-            //Dev.Log("START THE MAP!");
-            LogicManager.reachableItems = new List<string>();
-            LogicManager.checkedItems = new List<string>();
-            //Create the custom pin group, and add all the new pins
-            if ( this.custPinGroup == null ) {
+			Dev.Log("START THE MAP!");
+
+			LogicManager.reachableItems = new List<string>();
+			LogicManager.checkedItems = new List<string>();
+			//Create the custom pin group, and add all the new pins
+			if (this.custPinGroup == null) {
 				this.theMap = self;
 
-				this.custPinGroup = new GameObject( "Custom Pins" );
+				this.custPinGroup = new GameObject("Custom Pins");
 				this.custPinGroup.AddComponent<PinGroup>();
 				this.custPinGroup.transform.parent = self.transform;
-				this.custPinGroup.transform.position = new Vector3( 0f, 0f, 0f );
-				this.custPinGroup.SetActive( false );
+				this.custPinGroup.transform.position = new Vector3(0f, 0f, 0f);
+				this.custPinGroup.SetActive(false);
 
-				foreach ( PinData pin in PinData_S.All.Values ) {
-					this.addPinToRoom( pin );
+				foreach (PinData pin in PinData_S.All.Values) {
+					this.addPinToRoom(pin);
 				}
+				//PinData test = new PinData();
+				//test.NewX = 
 			}
 
-			orig( self );
+			orig(self);
 		}
 
-		private void GameMap_WorldMap( On.GameMap.orig_WorldMap orig, GameMap self ) {
-			orig( self );
-			if ( !IsRando )
+		private void GameMap_OnEnable(On.GameMap.orig_OnEnable orig, GameMap self)
+		{
+			//Dev.Log("ENABLE ZE MAP! Is it Interior? " + isInInterior);
+			//if (isInInterior)
+			//{
+
+			//}
+			//else
+			orig(self);
+
+
+		}
+
+
+		private void GameMap_WorldMap(On.GameMap.orig_WorldMap orig, GameMap self) {
+			//string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+			orig(self);
+			if (!IsRando)
 				return;
-            //Dev.Log("WORLD THE MAP!");
-            //Set the maximum scroll boundaries, so we can scroll the entire map, even if we don't have the maps unlocked.
-            if ( self.panMinX > MAP_MIN_X )
+			//Dev.Log("WORLD THE MAP!");
+			//Set the maximum scroll boundaries, so we can scroll the entire map, even if we don't have the maps unlocked.
+			if (self.panMinX > MAP_MIN_X)
 				self.panMinX = MAP_MIN_X;
-			if ( self.panMaxX < MAP_MAX_X )
+			if (self.panMaxX < MAP_MAX_X)
 				self.panMaxX = MAP_MAX_X;
-			if ( self.panMinY > MAP_MIN_Y )
+			if (self.panMinY > MAP_MIN_Y)
 				self.panMinY = MAP_MIN_Y;
-			if ( self.panMaxY < MAP_MAX_Y )
+			if (self.panMaxY < MAP_MAX_Y)
 				self.panMaxY = MAP_MAX_Y;
 		}
 
+		private void GameMap_Update(On.GameMap.orig_Update orig, GameMap self)
+		{
+			orig(self);
+		}
+		//List<Vector3> blueMarkers = new List<Vector3>();
 		private void GameMap_SetupMapMarkers( On.GameMap.orig_SetupMapMarkers orig, GameMap self ) {
+			bool hasCollectorsMap = PlayerData.instance.GetBoolInternal("hasPinGrub");
+			if (IsRando && hasCollectorsMap)
+				PlayerData.instance.SetBoolInternal("hasPinGrub", false);
 			orig( self );
+			if (IsRando && hasCollectorsMap)
+				PlayerData.instance.SetBoolInternal("hasPinGrub", true);
 			if ( !IsRando )
 				return;
-            //Dev.Log("MARK THE MAP!");
-            // Parse Helper Log
-            //File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt"), message + Environment.NewLine);
-            string line;
+
+			//Dev.Log("MARK THE MAP!");
+			// Parse Helper Log
+			//File.AppendAllText(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt"), message + Environment.NewLine);
+			string line;
             bool hitReachables = false;
             bool hitChecked = false;
             System.IO.StreamReader file =
@@ -318,7 +403,7 @@ namespace RandoMapMod {
                             }
                             foreach (string item in shopItems)
                             {
-                                Dev.Log("Reachable: " + item);
+                                //Dev.Log("Reachable: " + item);
                                 LogicManager.reachableItems.Add(item);
                             }
                         }
@@ -420,10 +505,36 @@ namespace RandoMapMod {
 				orig( self );
 				return;
 			}
-            //Dev.Log("UNMARK THE MAP!");
-            this.custPinGroup.SetActive( false );
+			
+			orig(self);
+			this.custPinGroup.SetActive(false);
+			//blueMarkers = PlayerData.instance.placedMarkers_b;
+			//PlayerData.instance.placedMarkers_b = new List<Vector3>();
+			//foreach (GameObject marker in self.mapMarkersBlue)
+			//{
+			//	marker.SetActive(false);
+			//}
+			//foreach (GameObject marker in self.mapMarkersRed)
+			//{
+			//	marker.SetActive(false);
+			//}
+			//foreach (GameObject marker in self.mapMarkersWhite)
+			//{
+			//	marker.SetActive(false);
+			//}
+			//foreach (GameObject marker in self.mapMarkersYellow)
+			//{
+			//	marker.SetActive(false);
+			//}
+			//Dev.Log("UNMARK THE MAP!");
+			//Dev.Log("Current Hero Map Position: " + (this.custPinGroup.transform.position.x- self.compassIcon.transform.position.x) + ", " + (this.custPinGroup.transform.position.y- self.compassIcon.transform.position.y));
 
-			orig( self );
+
+			//Dev.Log("Current Hero Map Position: " + self.compassIcon.transform.position.x + ", " + self.compassIcon.transform.position.y);
+			//Dev.Log("Current Hero Map Position: " + self.mapMarkersBlue[0].transform.position.x + ", " + self.mapMarkersBlue[0].transform.position.y);
+			//self.
+
+			//orig( self );
 		}
 
 		private void addPinToRoom( PinData pin ) {
@@ -435,10 +546,24 @@ namespace RandoMapMod {
 			newPin.transform.localScale *= 1.2f;
 
 			SpriteRenderer sr = newPin.AddComponent<SpriteRenderer>();
-            if (pin.isShop)
-                sr.sprite = Resources.Sprite("Map.shopPin");
-            else
-			    sr.sprite = Resources.Sprite( "Map.randoPin" );
+			if (pin.isShop)
+				sr.sprite = Resources.Sprite("Map.shopPin");
+			else
+				if (pin.Pool == "Rock")
+				sr.sprite = Resources.Sprite("Map.rockPin");
+			else if (pin.Pool == "Soul" || pin.Pool == "PalaceSoul")
+				sr.sprite = Resources.Sprite("Map.totemPin");
+			else if (pin.Pool == "Cocoon")
+				sr.sprite = Resources.Sprite("Map.lifebloodPin");
+			else if (pin.Pool == "Grub" && !Pin.IsRandomizedInSettings["Grub"])
+				sr.sprite = Resources.Sprite("Map.actualGrub");
+			else if ((pin.Pool == "Root" && !Pin.IsRandomizedInSettings["Root"]) || (pin.Pool == "Essence_Boss" && (!Pin.IsRandomizedInSettings.ContainsKey("Essence_Boss") || !Pin.IsRandomizedInSettings["Essence_Boss"])))
+			{
+				//Dev.Log("Pin " + pin.ID + " in room " + pin.SceneName);
+				sr.sprite = Resources.Sprite("Map.actualEssence");
+			}
+			else
+				sr.sprite = Resources.Sprite("Map.randoPin");
 			sr.sortingLayerName = "HUD";
 			sr.size = new Vector2( 1f, 1f );
 
@@ -511,7 +636,59 @@ namespace RandoMapMod {
 			if (to.name == SceneNames.Menu_Title)
 			{
 				Settings.MapsGiven = false;
+				Pin.Reset();
 			}
+			if (from.name == SceneNames.Menu_Title)
+			{
+				Pin.Reset();
+				Pin.Setup();
+			}
+			//if (InteriorNameList.Contains(to.name) || to.name.Contains("White_Palace"))
+			//{
+			//	isInInterior = true;
+			//	if (to.name.Contains("White_Palace"))
+			//		interiorName = "White Palace";
+			//	else
+			//		switch (to.name)
+			//		{
+			//			case "Fungus1_35":
+			//			case "Fungus1_36":
+			//				Dev.Log("MAP Stone Sancturary");
+			//				interiorName = "Stone Sancturary";
+			//				break;
+
+			//			case "Mines_35":
+			//				Dev.Log("MAP Crystalized Mound");
+			//				interiorName = "Crystalized Mound";
+			//				break;
+
+			//			case "Room_Fungus_Shaman":
+			//				Dev.Log("MAP Overgrown Mound");
+			//				interiorName = "Overgrown Mound";
+			//				break;
+
+			//			case "Ruins_Elevator":
+			//				Dev.Log("MAP Pleasure House Elevator");
+			//				interiorName = "Pleasure House Elevator";
+			//				break;
+
+			//			case "Crossroads_ShamanTemple":
+			//				Dev.Log("MAP Ancestral Mound");
+			//				interiorName = "Ancestral Mound";
+			//				break;
+
+			//			case "Room_GG_Shortcut":
+			//				Dev.Log("MAP Fluke Hermit");
+			//				interiorName = "Fluke Hermit";
+			//				break;
+			//		}
+			//}
+			//else
+			//{
+			//	isInInterior = true;
+			//	interiorName = "";
+			//}
+
 			//throw new NotImplementedException();
 		}
 		
@@ -527,7 +704,7 @@ namespace RandoMapMod {
 					if ( _SAFETY == 0 && key == "ELDERBUG_INTRO_MAIN" && !Settings.MapsGiven)
 					{
 						_SAFETY++;
-						return "Welcome to RandoMapMod!\nA BIG pin means look there for progression. LITTLE means the next key item won't be there. \"!\" means you need something else, maybe grubs or a key? \"$\" indicates a shop that may have items.\nTalk to me 2 more times, and I'll give you all the maps.\nIf you're playing BINGO, you should probably not do that.";
+						return "Welcome to RandoMapMod!\n\n\n\nA large \"?\" pin means look there for progression. A small \"?\" means the next key item won't be there. A \"!\" means that you need additional Grubs or Essence. A large \"$\" indicates a shop is accessible and may have items remaining.\nIn addition, non-randomized Grub and Essence sources now have new pins that indicate whether or not they are currently accessible in logic! As with other pin types, large pins are accessible, small pins are not.\n\nTalk to me 2 more times, and I'll give you all the maps.\nIf you're playing BINGO, you should probably not do that.";
 					} else if ( _SAFETY == 1 && !Settings.MapsGiven) {
 						_SAFETY++;
 						//return "I frequently *ahem* \"visit\" Cornifer's wife... She tells me he lies to travelers to get money for an inferior product... The ass. I've taken his completed originals. Maybe once they're bankrupt she'll run off with me.<page>I'll let you have the maps, the quill, and a compass since you're new around here if you talk to me 1 more time.";
