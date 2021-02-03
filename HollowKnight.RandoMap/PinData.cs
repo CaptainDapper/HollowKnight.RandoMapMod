@@ -1,89 +1,70 @@
-﻿using ModCommon;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace RandoMapMod
-{
-	class PinData
-	{
-		private static readonly DebugLog logger = new DebugLog(nameof(PinData));
+namespace RandoMapMod {
+	class PinData {
+		private static readonly DebugLog _logger = new DebugLog(nameof(PinData));
 
 		//Assigned with pindata.xml
-		public string ID
-		{
+		public string ID {
 			get;
 			internal set;
 		}
-		public string PinScene
-		{
+		public string PinScene {
 			get;
 			internal set;
 		}
 
-		public string CheckBool
-		{
+		public string CheckBool {
 			get;
 			internal set;
 		}
-		public float OffsetX
-		{
+		public float OffsetX {
 			get;
 			internal set;
 		}
-		public float OffsetY
-		{
+		public float OffsetY {
 			get;
 			internal set;
 		}
-		public float OffsetZ
-		{
+		public float OffsetZ {
 			get;
 			internal set;
 		}
 
 		//Assigned with Randomizer's items.xml:
-		public string SceneName
-		{
+		public string SceneName {
 			get;
 			internal set;
 		}
-		public string OriginalName
-		{
+		public string OriginalName {
 			get;
 			internal set;
 		}
-		public string LogicRaw
-		{
+		public string LogicRaw {
 			get;
 			internal set;
 		}
-		public string ObtainedBool
-		{
+		public string ObtainedBool {
 			get;
 			internal set;
 		}
-		public bool InChest
-		{
+		public bool InChest {
 			get;
 			internal set;
 		}
-		public bool NewShiny
-		{
+		public bool NewShiny {
 			get;
 			internal set;
 		}
-		public int NewX
-		{
+		public int NewX {
 			get;
 			internal set;
 		}
-		public int NewY
-		{
+		public int NewY {
 			get;
 			internal set;
 		}
-		public string Pool
-		{
+		public string Pool {
 			get;
 			internal set;
 		}
@@ -95,14 +76,12 @@ namespace RandoMapMod
 		/// essence collected. This is used to control whether we use the
 		/// `prereqPin.png` instead of the standard pins.
 		/// </summary>
-		public bool hasPrereq
-		{
+		public bool HasPrereq {
 			get;
 			internal set;
 		}
 
-		public bool isShop
-		{
+		public bool IsShop {
 			get;
 			internal set;
 		}
@@ -110,11 +89,9 @@ namespace RandoMapMod
 		/// <summary>
 		/// Returns true if the item is reachable based on current randomizer logic; false otherwise.
 		/// </summary>
-		public bool Possible
-		{
-			get
-			{
-				bool test = LogicManager.ItemIsReachable(this.ID.Replace('_', ' '));
+		public bool Reachable {
+			get {
+				bool test = GameStatus.ItemIsReachable(this.ID.Replace('_', ' '));
 				//Dev.Log(this.ID + " Possible? " + test);
 				return test;
 			}
@@ -125,60 +102,43 @@ namespace RandoMapMod
 		/// default. Grubfather and Seer pins only have preReq met if you have
 		/// enough grub/essence.
 		/// </summary>
-		public bool PreReqMet
-		{
-			get
-			{
-				if (!this.hasPrereq)
-				{
+		public bool PreReqMet {
+			get {
+				if (!this.HasPrereq) {
 					return true;
-				}
-				else
-				{
-					logger.Log($"Checking if {this.ID} has its prereqs met...");
+				} else {
+					_logger.Log($"Checking if {this.ID} has its prereqs met...");
 					int cost = 0;
 					(string, int)[] costs = RandomizerMod.RandomizerMod.Instance.Settings.VariableCosts;
-					for (int i = 0; i < costs.Length; i++)
-					{
-						if (costs[i].Item1 == this.ID)
-						{
+					for (int i = 0; i < costs.Length; i++) {
+						if (costs[i].Item1 == this.ID) {
 							cost = costs[i].Item2;
 							break;
 						}
 					}
-					if (cost == 0)
-					{
-						logger.Log($"Cost for {this.ID} was zero, so marking as prereqs met.");
+					if (cost == 0) {
+						_logger.Log($"Cost for {this.ID} was zero, so marking as prereqs met.");
 						return true;
 					}
-					if (LogicManager.isGrubFatherItem(this.ID.Replace('_', ' ')))
-					{
-						var retVal = PlayerData.instance.grubsCollected > cost;
-						logger.Log($"{this.ID} is a grubfather item, and  {PlayerData.instance.grubsCollected} > {cost} == {retVal}.");
+					if (GameStatus.IsGrubFatherItem(this.ID.Replace('_', ' '))) {
+						bool retVal = PlayerData.instance.grubsCollected > cost;
+						_logger.Log($"{this.ID} is a grubfather item, and  {PlayerData.instance.grubsCollected} > {cost} == {retVal}.");
 						return retVal;
 					}
-					if (LogicManager.isSeerItem(this.ID.Replace('_', ' ')))
-					{
-						var retVal = PlayerData.instance.dreamOrbs > cost;
-						logger.Log($"{this.ID} is a Seer item, and  {PlayerData.instance.dreamOrbs} > {cost} == {retVal}.");
+					if (GameStatus.IsSeerItem(this.ID.Replace('_', ' '))) {
+						bool retVal = PlayerData.instance.dreamOrbs > cost;
+						_logger.Log($"{this.ID} is a Seer item, and  {PlayerData.instance.dreamOrbs} > {cost} == {retVal}.");
 						return retVal;
 					}
-					logger.Log($"{this.ID} returning false by default.");
+					_logger.Log($"{this.ID} returning false by default.");
 					return false;
 				}
 			}
 		}
 
-		public Vector3 Offset
-		{
-			get
-			{
-				return new Vector3(this.OffsetX, this.OffsetY, this.OffsetZ);
-			}
-		}
+		public Vector3 Offset => new Vector3(this.OffsetX, this.OffsetY, this.OffsetZ);
 
-		public PinData()
-		{
+		public PinData() {
 			//Some of these things don't appear in the items.xml file, so I'll just set some defaults...
 			this.SceneName = "";
 			this.OriginalName = "";
@@ -187,8 +147,7 @@ namespace RandoMapMod
 			this.NewShiny = false;
 		}
 
-		public override string ToString()
-		{
+		public override string ToString() {
 			return "Pin_" + this.ID;
 		}
 	}

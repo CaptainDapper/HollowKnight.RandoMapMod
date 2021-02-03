@@ -1,70 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace RandoMapMod
-{
-	class DebugLog
-	{
-		private static string pLogPath = "";
-		private static string LogPath
-		{
-			get
-			{
-				if (pLogPath == "")
-				{
+namespace RandoMapMod {
+	public class DebugLog {
+		#region Static
+		private static string _logPath = "";
+		private static string _LogPath {
+			get {
+				if (_logPath == "") {
 					string codeBase = Assembly.GetExecutingAssembly().CodeBase;
 					UriBuilder uri = new UriBuilder(codeBase);
-					pLogPath = Path.GetDirectoryName(Uri.UnescapeDataString(uri.Path));
+					_logPath = Path.GetDirectoryName(Uri.UnescapeDataString(uri.Path));
 				}
-				return pLogPath;
+				return _logPath;
 			}
 		}
 
-		private static string LogFile
-		{
-			get
-			{
-				return LogPath + @"/RandoMapMod.log";
-			}
+		private static string _LogFile => _LogPath + @"/RandoMapMod.log";
+		#endregion
+
+
+		private readonly string _name;
+
+		public DebugLog(string name) {
+			this._name = name;
 		}
 
-		private readonly string name;
-
-		public DebugLog(string name)
-		{
-			this.name = name;
+		public void Error(string msg) {
+			this._Write("ERROR", msg);
+			RandoMapMod.Instance.LogError(msg);
 		}
 
-		private void Write(string logLevel, string line)
-		{
-			if (File.Exists(LogFile))
-			{
-				DateTime now = DateTime.Now;
-				using (var writer = new StreamWriter(LogFile, true))
-				{
-					writer.WriteLine($"{now:HH:mm:ss tt} {logLevel,5} {this.name,12} - {line}");
-				}
-			}
-		}
-
-		internal void Error(string v)
-		{
-			this.Write("ERROR", v);
-			RandoMapMod.Instance.LogError(v);
-		}
-
-		internal void Log(string v)
-		{
-			this.Write("LOG", v);
+		public void Log(string v) {
+			this._Write("LOG", v);
 			RandoMapMod.Instance.Log(v);
 		}
 
-		internal void Warn(string v)
-		{
-			this.Write("WARN", v);
+		public void Warn(string v) {
+			this._Write("WARN", v);
 			RandoMapMod.Instance.LogWarn(v);
+		}
+
+		private void _Write(string logLevel, string line) {
+			if (File.Exists(_LogFile)) {
+				DateTime now = DateTime.Now;
+				using StreamWriter writer = new StreamWriter(_LogFile, true);
+				writer.WriteLine($"{now:HH:mm:ss tt} {logLevel,5} {this._name,12} - {line}");
+			}
 		}
 	}
 }

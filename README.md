@@ -1,11 +1,11 @@
 # Randomizer Map
 
-[![GitHub Stars](https://img.shields.io/github/stars/NebuPookins/HollowKnight.RandoMapMod.svg)](https://github.com/NebuPookins/HollowKnight.RandoMapMod)
-[![GitHub Issues](https://img.shields.io/github/issues/NebuPookins/HollowKnight.RandoMapMod.svg)](https://github.com/NebuPookins/HollowKnight.RandoMapMod/issues)
-[![Current Version](https://img.shields.io/badge/version-0.5.0-green.svg)](https://github.com/NebuPookins/HollowKnight.RandoMapMod)
+[![GitHub Stars](https://img.shields.io/github/stars/CaptainDapper/HollowKnight.RandoMapMod.svg)](https://github.com/CaptainDapper/HollowKnight.RandoMapMod)
+[![GitHub Issues](https://img.shields.io/github/issues/CaptainDapper/HollowKnight.RandoMapMod.svg)](https://github.com/CaptainDapper/HollowKnight.RandoMapMod/issues)
+[![Current Version](https://img.shields.io/badge/version-0.5.1-green.svg)](https://github.com/CaptainDapper/HollowKnight.RandoMapMod)
 
 This is a mod for Hollow Knight Randomizer that adds pins to the map showing
-the location of the various checks. It's trainning wheels for beginners to
+the location of the various checks. It's training wheels for beginners to
 learn how to play Hollow Knight Randomizer.
 
 ![Example Screenshot](./readmeAssets/screenshot.jpg)
@@ -13,8 +13,10 @@ learn how to play Hollow Knight Randomizer.
 ## Features
 
 * Talking to Elderbug 3 times activates the mod and gives you all maps
-  (including the Collector's map if grubs are non-randomized) and the compass
+  (including the Collector's Map if grubs are non-randomized) and the compass
   charm.
+* Alternatively, `Ctrl + M` will give you all the maps, `Ctrl + G` will toggle
+  the Collector's Map, and `Crtl + P` will hide/show the Rando pins.
 * The map will contain pins indicating which checks are currently reachable.
 * The map will show a list of areas and the number of checks available in each
   area.
@@ -24,7 +26,7 @@ learn how to play Hollow Knight Randomizer.
 1. Make sure `ModCommon.dll` and `RandomizerMod3.0.dll` are already installed
    in your Hollow Knight Mod Folder. If they're not installed, easiest way to
    install them is to [use the Hollow Knight Mod Installer](https://www.nexusmods.com/hollowknight/mods/9).
-2. Download [the latest release of `RandoMapMod.dll`](https://github.com/NebuPookins/HollowKnight.RandoMapMod/releases/).
+2. Download [the latest release of `RandoMapMod.dll`](https://github.com/CaptainDapper/HollowKnight.RandoMapMod/releases/).
 3. Copy `RandoMapMod.dll` to your Hollow Knight mod folder (for example
    `C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods`).
 4. Start a new game.
@@ -53,8 +55,10 @@ There are five different types of pins:
 
 * seanpr96 for the original version of the randomizer.
 * homothetyhk for version 3 of the randomizer.
+* CallumMosely for the multiworld version of the randomizer.
 * CaptainDapper for the original version of the RandoMapMod.
 * TheGreatGallus for updating RandoMapMod to work with v3 of the randomizer.
+* NebuPookins for the Collector's Map and Reachable Count features.
 
 ## Version History
 
@@ -74,3 +78,6 @@ There are five different types of pins:
 * v0.5.0
   * There is now an overlay on the map that shows how many reachable checks
     there are in each location.
+* v0.5.1
+  * Added the ability to unlock the maps with hotkeys.
+  * Refactored everything (whoops).
