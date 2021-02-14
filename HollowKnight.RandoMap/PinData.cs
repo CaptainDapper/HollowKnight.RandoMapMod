@@ -1,13 +1,8 @@
-﻿using ModCommon;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RandoMapMod {
 	class PinData {
-		public enum Types {
-			SceneData,
-			PlayerBool
-		}
+		private static readonly DebugLog _logger = new DebugLog(nameof(PinData));
 
 		//Assigned with pindata.xml
 		public string ID {
@@ -19,15 +14,7 @@ namespace RandoMapMod {
 			internal set;
 		}
 
-		public Types CheckType {
-			get;
-			internal set;
-		}
 		public string CheckBool {
-			get;
-			internal set;
-		}
-		public string PrereqRaw {
 			get;
 			internal set;
 		}
@@ -77,104 +64,79 @@ namespace RandoMapMod {
 			get;
 			internal set;
 		}
-        public string Pool
-        {
-            get;
-            internal set;
-        }
+		public string Pool {
+			get;
+			internal set;
+		}
 
-        public bool hasPrereq
-        {
-            get;
-            internal set;
-        }
+		/// <summary>
+		/// Returns true if `pindata.xml` has the `hasPrereq` flag set to true.
+		/// This seems to indicate that the item belongs to either the Grubfather
+		/// or Seer and thus has a prerequisite in the number of grubs rescued or
+		/// essence collected. This is used to control whether we use the
+		/// `prereqPin.png` instead of the standard pins.
+		/// </summary>
+		public bool HasPrereq {
+			get;
+			internal set;
+		}
 
-        public bool isShop
-        {
-            get;
-            internal set;
-        }
+		public bool IsShop {
+			get;
+			internal set;
+		}
 
-		//Stuff and things
-		private string[] pLogic = null;
-		public string[] Logic {
+		/// <summary>
+		/// Returns true if the item is reachable based on current randomizer logic; false otherwise.
+		/// </summary>
+		public bool Reachable {
 			get {
-				if ( pLogic == null ) {
-					pLogic = LogicManager.ShuntingYard( this.LogicRaw );
-				}
-				return pLogic;
+				bool test = GameStatus.ItemIsReachable(this.ID.Replace('_', ' '));
+				//Dev.Log(this.ID + " Possible? " + test);
+				return test;
 			}
 		}
-		private string[] pPrereq = null;
-		public string[] Prereq {
-			get {
-				if ( pPrereq == null ) {
-					pPrereq = LogicManager.ShuntingYard( this.PrereqRaw );
-				}
-				return pPrereq;
-			}
-		}
-		public bool Obtained {
-			get {
-                //return PlayerData.instance.GetBool( this.ObtainedBool );
-                return LogicManager.checkedItems.Contains(this.ID.Replace('_', ' '));
-			}
-		}
-		public bool Possible {
-			get {
-                bool test = LogicManager.reachableItems.Contains(this.ID.Replace('_', ' '));
-                //Dev.Log(this.ID + " Possible? " + test);
-                return test;
-			}
-		}
+
+		/// <summary>
+		/// Returns true if the "preReq"s are met. Most pins have preReq met by
+		/// default. Grubfather and Seer pins only have preReq met if you have
+		/// enough grub/essence.
+		/// </summary>
 		public bool PreReqMet {
 			get {
-                if(!this.hasPrereq)
-                {
-                    return true;
-                }
-                else
-                {
-                    int cost = 0;
-                    (string, int)[] costs = RandomizerMod.RandomizerMod.Instance.Settings.VariableCosts;
-                    for (int i = 0; i < costs.Length; i++)
-                    {
-                        if (costs[i].Item1 == this.ID)
-                        {
-                            cost = costs[i].Item2;
-                            break;
-                        }
-                    }
-                    if (cost == 0) return true;
-                    if (RandoMapMod.grubfatherItems.Contains(this.ID.Replace('_', ' '))) 
-                    {
-                        //Dev.Log("Grub Cost for " + this.ID + " is " + cost + ". You have " + PlayerData.instance.grubsCollected);
-                        return PlayerData.instance.grubsCollected > cost;
-                    }
-                    if(RandoMapMod.seerItems.Contains(this.ID.Replace('_',' ')))
-                    {
-                        //Dev.Log("Essence Cost for " + this.ID + " is " + cost + ". You have " + PlayerData.instance.dreamOrbs);
-                        return PlayerData.instance.dreamOrbs > cost;
-                    }
-                    return false;
-                }
-				//if ( this.PrereqRaw == null ) {
-				//	return true;
-				//}
-				//return LogicManager.ParseLogic( this.Prereq, LogicManager.ParsePrereqNode );
-			}
-		}
-		public string ObjectName {
-			get {
-				return ObjectNames.Get( this );
+				if (!this.HasPrereq) {
+					return true;
+				} else {
+					_logger.Log($"Checking if {this.ID} has its prereqs met...");
+					int cost = 0;
+					(string, int)[] costs = RandomizerMod.RandomizerMod.Instance.Settings.VariableCosts;
+					for (int i = 0; i < costs.Length; i++) {
+						if (costs[i].Item1 == this.ID) {
+							cost = costs[i].Item2;
+							break;
+						}
+					}
+					if (cost == 0) {
+						_logger.Log($"Cost for {this.ID} was zero, so marking as prereqs met.");
+						return true;
+					}
+					if (GameStatus.IsGrubFatherItem(this.ID.Replace('_', ' '))) {
+						bool retVal = PlayerData.instance.grubsCollected > cost;
+						_logger.Log($"{this.ID} is a grubfather item, and  {PlayerData.instance.grubsCollected} > {cost} == {retVal}.");
+						return retVal;
+					}
+					if (GameStatus.IsSeerItem(this.ID.Replace('_', ' '))) {
+						bool retVal = PlayerData.instance.dreamOrbs > cost;
+						_logger.Log($"{this.ID} is a Seer item, and  {PlayerData.instance.dreamOrbs} > {cost} == {retVal}.");
+						return retVal;
+					}
+					_logger.Log($"{this.ID} returning false by default.");
+					return false;
+				}
 			}
 		}
 
-		public Vector3 Offset {
-			get {
-				return new Vector3( this.OffsetX, this.OffsetY, this.OffsetZ );
-			}
-		}
+		public Vector3 Offset => new Vector3(this.OffsetX, this.OffsetY, this.OffsetZ);
 
 		public PinData() {
 			//Some of these things don't appear in the items.xml file, so I'll just set some defaults...

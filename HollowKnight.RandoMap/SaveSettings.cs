@@ -1,24 +1,16 @@
-﻿using Modding;
-using SeanprCore;
-using System.Collections.Generic;
-using System.Linq;
+﻿using SeanprCore;
 
-namespace RandoMapMod
-{
-	public class SaveSettings : BaseSettings
-	{
+namespace RandoMapMod {
+	public class SaveSettings : BaseSettings {
 		public static SaveSettings Instance;
-		public SaveSettings()
-		{
-			AfterDeserialize += () =>
-			{
-
+		public SaveSettings() {
+			AfterDeserialize += () => {
+				//This space probably unintentially left blank
 			};
 			Instance = this;
 		}
 
-		public bool MapsGiven
-		{
+		public bool MapsGiven {
 			get => GetBool(false);
 			set => SetBool(value);
 		}

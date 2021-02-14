@@ -1,34 +1,56 @@
 # Randomizer Map
 
-This mod is made for the [Randomizer v3.0 mod](https://github.com/homothetyhk/HollowKnight.RandomizerMod). Simply put, it adds a pin on the map for each randomized location. The pins will also show up differently if it's possible to get to that location with your current rando settings.
+[![GitHub Stars](https://img.shields.io/github/stars/CaptainDapper/HollowKnight.RandoMapMod.svg)](https://github.com/CaptainDapper/HollowKnight.RandoMapMod)
+[![GitHub Issues](https://img.shields.io/github/issues/CaptainDapper/HollowKnight.RandoMapMod.svg)](https://github.com/CaptainDapper/HollowKnight.RandoMapMod/issues)
+[![Current Version](https://img.shields.io/badge/version-0.5.1-green.svg)](https://github.com/CaptainDapper/HollowKnight.RandoMapMod)
 
-My hopes for this is to make learning the randomizer more accessible to newer players who don't know the base map very well, and to help more experienced players really learn the logic deeply and improve routing decisions.
+This is a mod for Hollow Knight Randomizer that adds pins to the map showing the location of the various checks.
+It aids in the accessibility of Hollow Knight Randomizer aimed at beginners,
+casual fans, and people interested in learning the Logic more deeply without studying boolean phrases.
 
-Let me know if you find any bugs, have any feature requests, or just have questions.
+![Example Screenshot](./readmeAssets/screenshot.jpg)
 
-## How it works
+## Features
 
-There are five different types of pins for randomized item checks: Small Dark (?) Pins, Big (?) Pins, Yellow (!) Pins, Small Dark ($) Pins, and Big Green ($) Pins.
-
-The Small (?) indicate item locations that are currently out-of-logic. It's possible they are still obtainable through sequence breaks. 
-
-The Big (?) indicate item locations that are currently in logic. One of these will contain the progression you are looking for. Big grey (?) pins indicate geo rocks. Big purple (?) pins indicate soul totems. Big blue (?) pins indicate lifeblood. Big red (?) pins indicate all other checks.
-
-The Yellow (!) indicate item locations that are currently in logic but still require some form of prerequisite to obtain; I.E. Grubs for Grubfather or Essence for Seer.
-
-The Small ($) indicate shop locations that are currently out-of-logic. It's possible they are still reachable through sequence breaks.
-
-The Green ($) indicate shop locations that are currently in logic, as a reminder to the player that the shop may still have items for sale they may need.
-
-In addition, non-randomized Grub and Essence sources have pins to indicate whether or not they are currently accessible in logic.
-
-## Dependencies
-
-Modding API, ModCommon, RandomizerMod3.0
+* Talking to Elderbug 3 times activates the mod and gives you all maps
+  (including the Collector's Map if grubs are non-randomized) and the compass
+  charm.
+* Alternatively, `Ctrl + M` will give you all the maps, `Ctrl + G` will toggle
+  the Collector's Map, and `Crtl + P` will hide/show the Rando pins.
+* The map will contain pins indicating which checks are currently reachable.
+* The map will show a list of areas and the number of checks available in each
+  area.
+* In addition, non-randomized Grub and Essence sources have pins to indicate whether or not they are currently accessible in logic.
 
 ## How to install
 
-Ensure you have the above dependencies installed, then place the .dll file in the Hollow Knight/Managed/Mods directory.
+1. Make sure `ModCommon.dll` and `RandomizerMod3.0.dll` are already installed
+   in your Hollow Knight Mod Folder. If they're not installed, easiest way to
+   install them is to [use the Hollow Knight Mod Installer](https://www.nexusmods.com/hollowknight/mods/9).
+2. Download [the latest release of `RandoMapMod.dll`](https://github.com/CaptainDapper/HollowKnight.RandoMapMod/releases/).
+3. Copy `RandoMapMod.dll` to your Hollow Knight mod folder (for example
+   `C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods`).
+4. Start a new game.
+5. Talk to Elderbug 3 times.
+
+## How it works
+
+There are five different types of pins:
+
+* **Small Dark (?) Pins** indicate item locations that are considered to be not
+  reachable based on the allowed-skip settings in the randomizer. It's possible
+  they are still obtainable through sequence breaks.
+* **Big Red (?) Pins** indicate item locations that are currently considered
+  reachable, and one of these will contain the progression you are looking for
+  if you are stuck.
+* **Yellow (!) Pins** indicate item locations that are currently considered
+  reachable but still require some form of prerequisite to obtain. For example,
+  Grubs for Grubfather or Essence for Seer.
+* **Small Dark ($) Pins** indicate shop locations that are currently considered
+  not reacehable.
+* **Big Green ($) Pins** indicate shop locations that are currently in
+  reachable, as a reminder to the player that the shop may still have items for
+  sale they may need.
 
 ## Thanks!
 
