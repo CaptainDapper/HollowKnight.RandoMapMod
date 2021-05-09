@@ -8,16 +8,11 @@ using UnityEngine;
 
 namespace RandoMapMod {
 	//<summary>This class handles everything related to Parsing and Data of the RandomizerHelperLog.txt file.</summary>
+	[DebugName(nameof(HelperLog))]
 	public static class HelperLog {
-		#region Non-Methods
+		#region Statics
 		public static DataStore Data { get; private set; }
-		
-		private static readonly DebugLog _logger = new DebugLog("RandomizerHelperParser");
 
-		#endregion
-
-
-		#region Methods
 		public static void NewGame() {
 			Data = new DataStore();
 		}
@@ -29,12 +24,12 @@ namespace RandoMapMod {
 				using StreamReader file = new StreamReader(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt"));
 
 				_Parse(file).Case(errorMessage => {
-					_logger.Error($"Could not parse RandomizeHelperLog.txt: {errorMessage}");
+					DebugLog.Error($"Could not parse RandomizeHelperLog.txt: {errorMessage}");
 				}, helperData => {
 					Data = helperData;
 				});
 			} catch (Exception e) {
-				_logger.Error($"Failed to parse RandomizerHelper data: {e}");
+				DebugLog.Error($"Failed to parse RandomizerHelper data: {e}");
 			}
 		}
 		private static Either<string, DataStore> _Parse(StreamReader reader) {
@@ -71,7 +66,7 @@ namespace RandoMapMod {
 						try {
 							newData.AddReachableLocation(currentLocation.Name, currentLocation);
 						} catch (ArgumentException e) {
-							_logger.Warn($"Ignoring duplicate entry for location {currentLocation.Name} (old value = {newData.GetReachableLocation(currentLocation.Name)}, new value = {currentLocation}) {e}");
+							DebugLog.Warn($"Ignoring duplicate entry for location {currentLocation.Name} (old value = {newData.GetReachableLocation(currentLocation.Name)}, new value = {currentLocation}) {e}");
 						}
 					}
 					currentLocation = null;
@@ -92,7 +87,7 @@ namespace RandoMapMod {
 						try {
 							newData.AddCheckedLocation(currentLocation.Name, currentLocation);
 						} catch (ArgumentException e) {
-							_logger.Warn($"Ignoring duplicate entry for locationg {currentLocation.Name} (old value = {newData.GetCheckedLocation(currentLocation.Name)}, new value = {currentLocation}) {e}");
+							DebugLog.Warn($"Ignoring duplicate entry for locationg {currentLocation.Name} (old value = {newData.GetCheckedLocation(currentLocation.Name)}, new value = {currentLocation}) {e}");
 						}
 					}
 					currentLocation = null;
@@ -104,9 +99,7 @@ namespace RandoMapMod {
 			}
 			return new Either.Right<string, DataStore>(newData);
 		}
-
 		#endregion
-
 
 		#region Mastercard
 		public class Location {
@@ -125,10 +118,8 @@ namespace RandoMapMod {
 			private readonly HashSet<string> _allCheckedItems = new HashSet<string>();
 			private readonly HashSet<string> _allReachableItems = new HashSet<string>();
 
-			public HashSet<string> CheckedShopItems => GetCheckedLocation("Shops").Items;
-			public HashSet<string> ReachableShopItems => GetReachableLocation("Shops").Items;
-
-
+			public HashSet<string> CheckedShopItems => GetCheckedLocation("Shops")?.Items;
+			public HashSet<string> ReachableShopItems => GetReachableLocation("Shops")?.Items;
 
 			public Location GetCheckedLocation(string key) {
 				if (_checked.TryGetValue(key, out Location value)) {
@@ -165,7 +156,7 @@ namespace RandoMapMod {
 			}
 
 			public bool HasChecked(string itemName) {
-				return _allCheckedItems.Contains(itemName);
+				return _allCheckedItems.Contains(itemName.Replace('_', ' '));
 			}
 
 			public bool CanReach(string itemName) {
@@ -180,7 +171,6 @@ namespace RandoMapMod {
 				.ToArray();
 			}
 		}
-
 		#endregion
 	}
 }

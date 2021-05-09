@@ -1,131 +1,199 @@
 ﻿using RandoMapMod;
+//using RandoMapMod.BoringInternals;
 using System;
 using UnityEngine;
-using static RandoMapMod.Resources;
+using UnityEngine.UI;
 
+[DebugName(nameof(Pin))]
 class Pin : MonoBehaviour {
-	#region Static
-	private static readonly DebugLog _logger = new DebugLog(nameof(Pin));
-	#endregion
-
-
 	#region Private Non-Methods
-	private PinData _pinData;
-	private RandoMapMod.Resources _resources;
-	private bool _isPossible = true;
-	private bool _isPrereqMet = true;
+	internal readonly Color InactiveColor = Color.gray;
 
-	private SpriteRenderer _sr = null;
-	/// <summary>
-	/// This is the sprite to show if all the pre-requisites are met (this is usually either randoPin.png or shopPin.png).
-	/// </summary>
-	private Sprite _origSprite = null;
-	private Vector3 _origScale;
-	private Color _origColor;
+	private bool? _isPossible = null;
+	private bool _updateTrigger = false;
+
+	internal Vector3 OrigScale;
+	internal Color OrigColor;
+	internal Sprite OrigSprite;
+	internal Vector3 OrigPosition;
+
+	private bool _preReqTrueLock = false;
+	private GameObject _prereqLayer = null;
+
+	private MapMod.PinStyles _currentPinStyle = MapMod.PinStyle;
+
+	private SpriteRenderer SR => this.gameObject.GetComponent<SpriteRenderer>();
 	#endregion
 
+	#region Public Non-Methods
+	public PinData PinData { get; private set; } = null;
+	public void SetPinData(PinData pd) {
+		this.PinData = pd;
 
-	#region Non-Private Non-Methods
-	public PinData PinData {
-		set => this._pinData = value;
-	}
+		this.OrigScale = this.transform.localScale;
+		this.OrigColor = this.SR.color;
+		this.OrigSprite = this.SR.sprite;
+		this.OrigPosition = this.transform.localPosition;
 
-	public RandoMapMod.Resources Resources {
-		set => this._resources = value;
-	}
+		this._UpdateState();
+	} // As a setter, this totally counts as a non-method >_>
 	#endregion
 
-
-	#region Unity Methods
-	protected void Awake() {
-		this._sr = this.gameObject.GetComponent<SpriteRenderer>();
-		this._origSprite = this._sr.sprite;
-		this._origScale = this.transform.localScale;
-		this._origColor = this._sr.color;
-	}
-
+	#region MonoBehaviour "Overrides"
 	protected void OnEnable() {
+		_updateTrigger = true;
+	}
+	protected void Update() {
+		if (_updateTrigger) {
+			this._UpdateState();
+
+			this._UpdatePinType();
+		}
+	}
+	#endregion
+
+	#region Private Methods
+	private void _UpdatePinType() {
+		if (this.OrigSprite.name.StartsWith("req")) //Grub pin; don't change it!
+			return;
+
+		if (this._currentPinStyle != MapMod.PinStyle) {
+			switch (MapMod.PinStyle) {
+				case MapMod.PinStyles.Afraid:
+				case MapMod.PinStyles.AlsoAfraid:
+					__SetNewPinStyle(MapMod.PinStyle);
+					break;
+				case MapMod.PinStyles.Normal:
+				default: {
+					// Need to change to the normal pins
+					if (_prereqLayer != null && _prereqLayer.activeSelf == true) {
+						SpriteRenderer sr = _prereqLayer.GetComponent<SpriteRenderer>();
+						sr.color = new Color(1, 1, 1, 1);
+					}
+
+					this.SR.sprite = this.OrigSprite;
+				}
+				break;
+			}
+
+			this._currentPinStyle = MapMod.PinStyle;
+		}
+
+
+
+
+
+
+		void __SetNewPinStyle(MapMod.PinStyles pinStyle) {
+			// Change to old pins
+			bool prereq = false;
+			if (_prereqLayer != null && _prereqLayer.activeSelf == true) {
+				SpriteRenderer sr = _prereqLayer.GetComponent<SpriteRenderer>();
+				sr.color = new Color(0, 0, 0, 0);
+				prereq = true;
+			}
+
+			string ogName = this.SR.sprite.name;
+			ResourceHelper.Sprites oldSprite;
+			if (pinStyle == MapMod.PinStyles.Afraid) {
+				oldSprite = this.PinData.Pool switch {
+					"Rock" => ResourceHelper.Sprites.oldGeoRockInv,
+					"Grub" => ResourceHelper.Sprites.oldGrubInv,
+					"Cocoon" => ResourceHelper.Sprites.oldLifebloodInv,
+					"Soul" => ResourceHelper.Sprites.oldTotemInv,
+					_ => ResourceHelper.Sprites.Unknown,
+				};
+			} else {
+				oldSprite = this.PinData.Pool switch {
+					"Rock" => ResourceHelper.Sprites.oldGeoRock,
+					"Grub" => ResourceHelper.Sprites.oldGrub,
+					"Cocoon" => ResourceHelper.Sprites.oldLifeblood,
+					"Soul" => ResourceHelper.Sprites.oldTotem,
+					_ => ResourceHelper.Sprites.Unknown,
+				};
+			}
+
+			this.SR.sprite = ResourceHelper.FetchSprite(prereq ? ResourceHelper.Sprites.old_prereq : oldSprite);
+			this.SR.sprite.name = ogName + "_OLD";
+		}
+	}
+
+	private void _UpdateState() {
 		try {
-			//First off, if this item is not randomized, don't show it.
-			string pool = _resources.PinData()[this._pinData.ID].Pool;
-			bool isRandomized = pool switch
-			{
-				"Dreamer" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeDreamers,
-				"Skill" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeSkills,
-				"Charm" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharms,
-				"Key" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeKeys,
-				"Geo" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGeoChests,
-				"Mask" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaskShards,
-				"Vessel" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeVesselFragments,
-				"Ore" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizePaleOre,
-				"Notch" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharmNotches,
-				"Egg" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRancidEggs,
-				"Relic" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRelics,
-				"Map" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaps,
-				"Stag" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeStags,
-				"Grub" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGrubs,
-				"Root" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeWhisperingRoots,
-				_ => true,
-			};
-			if (!isRandomized) {
-				this._DisableSelf();
-				return;
+			if (this.PinData == null) {
+				throw new Exception("Cannot enable pin with null pindata. Ensure game object is disabled before adding as component, then call SetPinData(<pd>) before enabling.");
 			}
+			//Set Pin state according to prereqs.
+			this._UpdatePrereqState();
+
 			//Otherwise, check if it's reachable and/or if it has any prerequisites.
-			this._SetReachableStatus(this._pinData.Reachable);
-			if (this._isPossible) {
-				//Set Pin state according to prereqs.
-				this._SetPrereqState(this._pinData.PreReqMet);
-			}
+			this._UpdateReachableState();
+
 			//Disable Pin if we've already obtained / checked this location.
-			if (GameStatus.ItemIsChecked(this._pinData.ID.Replace('_', ' '))) {
+			if (GameStatus.ItemIsChecked(this.PinData.ID)) {
 				this._DisableSelf();
 			} else {
 
 			}
 		} catch (Exception e) {
-			_logger.Error($"Failed to enable pin: {e.Message} {e.StackTrace}");
+			DebugLog.Error($"Failed to enable pin! ID: {this.PinData.ID}", e);
 		}
 	}
-	#endregion
 
-
-	#region Private Methods
 	private void _DisableSelf() {
 		this.gameObject.SetActive(false);
 	}
 
-	/// <summary>
-	/// Shrinks and/or greys out a pin if it is not possible to get the pin at the current time.
-	/// </summary>
-	private void _SetReachableStatus(bool newValue) {
-		//Dev.Log("Set Logic State: " + val);
-		if (newValue == true && this._isPossible == false) {
-			this.transform.localScale = this._origScale;
-			this._sr.color = this._origColor;
+	private void _UpdateReachableState() {
+		bool newValue = GameStatus.ItemIsReachable(this.PinData.ID);
+
+		if (newValue == this._isPossible) {
+			return;
+		}
+
+		if (newValue == true) {
+			// We can reach this item now!
+			this.transform.localScale = this.OrigScale;
+			this.SR.color = this.OrigColor;
 			this._isPossible = true;
-		} else if (newValue == false && this._isPossible == true) {
-			this.transform.localScale = this._origScale * 0.5f;
-			this._sr.color = Color.gray;
+		} else {
+			// We can't reach this item.
+			this.transform.localScale = this.OrigScale * 0.5f;
+			this.SR.color = this.InactiveColor;
 			this._isPossible = false;
 		}
 	}
 
-	/// <summary>
-	/// Sets whether the prereq is met for the current pin. Has the side effect
-	/// of changing SpriteRenderer's pin to the "prereq pin" if the prereqs are not met.
-	/// </summary>
-	private void _SetPrereqState(bool newValue) {
-		if (newValue == true && this._isPrereqMet == false) {
-			this._sr.sprite = this._origSprite;
-			this._isPrereqMet = true;
-		} else if (newValue == false && this._isPrereqMet == true) {
-			if (_resources == null) {
-				_logger.Error("Tried to invoke setPrereqState when resources was null");
+	private void _UpdatePrereqState() {
+		if (!this.PinData.HasPrereq || _preReqTrueLock) return;
+
+		//No need to set one up unless we need it.
+		if (GameStatus.ItemPrereqsAreMet(this.PinData.ID) == true) {
+			//We've got all the prereqs; hide the "!"
+			if (_prereqLayer != null && _prereqLayer.activeSelf == true) {
+				_prereqLayer.SetActive(false);
 			}
-			this._sr.sprite = _resources.Sprite(SpriteId.MissingPrereq);
-			this._isPrereqMet = false;
+			_preReqTrueLock = true;
+		} else if (_prereqLayer == null || _prereqLayer.activeSelf == false) {
+			if (_prereqLayer == null) {
+				_SetupPrereqLayer();
+			}
+			_prereqLayer.SetActive(true);
 		}
+	}
+
+	private void _SetupPrereqLayer() {
+		_prereqLayer = new GameObject();
+		_prereqLayer.transform.SetParent(this.transform);
+		_prereqLayer.layer = 30;
+		_prereqLayer.transform.localScale *= 1.3f;
+
+		SpriteRenderer sr = _prereqLayer.AddComponent<SpriteRenderer>();
+		sr.sprite = ResourceHelper.FetchSprite(ResourceHelper.Sprites.Prereq);
+		sr.sortingLayerName = "HUD";
+		sr.size = new Vector2(1f, 1f);
+
+		_prereqLayer.transform.localPosition = new Vector3(0, 0, -0.001f);
 	}
 	#endregion
 }

@@ -1,9 +1,23 @@
-﻿using UnityEngine;
+﻿using RandoMapMod.VersionDiffs;
+using System.Security.AccessControl;
+using UnityEngine;
 
 namespace RandoMapMod {
-	class PinData {
-		private static readonly DebugLog _logger = new DebugLog(nameof(PinData));
 
+	[DebugName(nameof(PinData))]
+	public class PinData {
+		#region Constructors
+		public PinData() {
+			//Some of these things don't appear in the items.xml file, so I'll just set some defaults...
+			this.SceneName = "";
+			this.OriginalName = "";
+			this.LogicRaw = "";
+			this.ObtainedBool = "";
+			this.NewShiny = false;
+		}
+		#endregion
+
+		#region Private Non-Methods
 		//Assigned with pindata.xml
 		public string ID {
 			get;
@@ -70,11 +84,9 @@ namespace RandoMapMod {
 		}
 
 		/// <summary>
-		/// Returns true if `pindata.xml` has the `hasPrereq` flag set to true.
-		/// This seems to indicate that the item belongs to either the Grubfather
-		/// or Seer and thus has a prerequisite in the number of grubs rescued or
-		/// essence collected. This is used to control whether we use the
-		/// `prereqPin.png` instead of the standard pins.
+		/// Returns true if `pindata.xml` has the `hasPrereq` flag set to true. This
+		/// indicates that the item belongs to either the Grubfather or Seer and thus
+		/// has a prerequisite cost. This is used to control whether we add a "!" to a pin.
 		/// </summary>
 		public bool HasPrereq {
 			get;
@@ -86,69 +98,61 @@ namespace RandoMapMod {
 			internal set;
 		}
 
-		/// <summary>
-		/// Returns true if the item is reachable based on current randomizer logic; false otherwise.
-		/// </summary>
-		public bool Reachable {
+		public Vector3 Offset => new Vector3(this.OffsetX, this.OffsetY, this.OffsetZ);
+		public bool CreationRequired {
 			get {
-				bool test = GameStatus.ItemIsReachable(this.ID.Replace('_', ' '));
-				//Dev.Log(this.ID + " Possible? " + test);
-				return test;
-			}
-		}
+				bool? isRand = this.Pool switch {
+					"Dreamer" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeDreamers,
+					"Skill" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeSkills,
+					"Charm" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharms,
+					"Key" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeKeys,
+					"Geo" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeGeoChests,
+					"Mask" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaskShards,
+					"Vessel" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeVesselFragments,
+					"Ore" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizePaleOre,
+					"Notch" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCharmNotches,
+					"Egg" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRancidEggs,
+					"Relic" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRelics,
+					"Map" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeMaps,
+					"Stag" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeStags,
+					"Flame" => MapMod.VersionController.RandomizeGrimmkinFlames(),
+					"Soul" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeSoulTotems,
+					"Lore" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeLoreTablets,
+					"Cocoon" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeLifebloodCocoons,
+					"PalaceSoul" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizePalaceTotems,
+					"Rock" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRocks,
 
-		/// <summary>
-		/// Returns true if the "preReq"s are met. Most pins have preReq met by
-		/// default. Grubfather and Seer pins only have preReq met if you have
-		/// enough grub/essence.
-		/// </summary>
-		public bool PreReqMet {
-			get {
-				if (!this.HasPrereq) {
+					//The following will always need a pin. If they aren't randomized, they have ResourceHelper pins.
+					"Grub" => true,
+					"Root" => true,
+					"Essence_Boss" => true,
+					_ => null,
+				};
+
+#if DEBUG
+				if (this.Pool == "Cocoon") {
+					//DebugLog.Log($"`{this.Pool}` => `{this.ID}`");
+				}
+#endif
+
+				if (isRand == null) {
+					if (this.ID.Contains("Grimmkin") && MapMod.VersionController is MultiWorldRando3) {
+						//No need to warn
+					} else {
+						DebugLog.Warn($"Undefined Pool Type: `{this.Pool}` from PinData `{this.ID}`");
+					}
 					return true;
 				} else {
-					_logger.Log($"Checking if {this.ID} has its prereqs met...");
-					int cost = 0;
-					(string, int)[] costs = RandomizerMod.RandomizerMod.Instance.Settings.VariableCosts;
-					for (int i = 0; i < costs.Length; i++) {
-						if (costs[i].Item1 == this.ID) {
-							cost = costs[i].Item2;
-							break;
-						}
-					}
-					if (cost == 0) {
-						_logger.Log($"Cost for {this.ID} was zero, so marking as prereqs met.");
-						return true;
-					}
-					if (GameStatus.IsGrubFatherItem(this.ID.Replace('_', ' '))) {
-						bool retVal = PlayerData.instance.grubsCollected > cost;
-						_logger.Log($"{this.ID} is a grubfather item, and  {PlayerData.instance.grubsCollected} > {cost} == {retVal}.");
-						return retVal;
-					}
-					if (GameStatus.IsSeerItem(this.ID.Replace('_', ' '))) {
-						bool retVal = PlayerData.instance.dreamOrbs > cost;
-						_logger.Log($"{this.ID} is a Seer item, and  {PlayerData.instance.dreamOrbs} > {cost} == {retVal}.");
-						return retVal;
-					}
-					_logger.Log($"{this.ID} returning false by default.");
-					return false;
+					return (bool) isRand;
 				}
 			}
 		}
+		#endregion
 
-		public Vector3 Offset => new Vector3(this.OffsetX, this.OffsetY, this.OffsetZ);
-
-		public PinData() {
-			//Some of these things don't appear in the items.xml file, so I'll just set some defaults...
-			this.SceneName = "";
-			this.OriginalName = "";
-			this.LogicRaw = "";
-			this.ObtainedBool = "";
-			this.NewShiny = false;
-		}
-
+		#region <> Overrides
 		public override string ToString() {
 			return "Pin_" + this.ID;
 		}
+		#endregion
 	}
 }

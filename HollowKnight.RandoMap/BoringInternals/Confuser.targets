@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project baseDir="." outputDir="Confused" xmlns="http://confuser.codeplex.com">
+	<rule preset="none" pattern="namespace('RandoMapMod.BoringInternals')">
+		<protection id="rename" action="remove" />
+	</rule>
+	<module path="PaintDotNet.exe" />
+</Project>

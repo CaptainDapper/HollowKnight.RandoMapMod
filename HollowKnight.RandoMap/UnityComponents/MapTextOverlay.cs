@@ -5,16 +5,49 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-class MapTextOverlay : Component {
-	private static readonly DebugLog _logger = new DebugLog(nameof(MapTextOverlay));
-
+[DebugName(nameof(MapTextOverlay))]
+class MapTextOverlay : MonoBehaviour {
+	#region Private Non-Methods
 	private GameObject _canvas = null;
 	private GameObject _textObj = null;
 	private Text _textComponent;
+	#endregion
 
+	#region Non-Private Methods
+	public void Show() {
+		HelperLog.Refresh();
+
+		try {
+			if (HelperLog.Data == null) {
+				return; //do nothing
+			}
+			_GetOrInitializeTextComponent().text = string.Join("\n", HelperLog.Data.GetReachableCountStrings());
+			_GetOrInitializeTextObj().SetActive(true);
+		} catch (Exception e) {
+			DebugLog.Warn($"Show failed: {e}");
+		}
+	}
+
+	public void Hide() {
+		if (_textComponent == null) {
+			//DebugLog.Warn("Hide: textComponent was null");
+			//it's okay
+		} else {
+			_GetOrInitializeTextComponent().text = "";
+		}
+		if (_textObj == null) {
+			//DebugLog.Warn("Hide: textObj was null");
+			//yeah this is fine
+		} else {
+			_GetOrInitializeTextObj().SetActive(false);
+		}
+	}
+	#endregion
+
+	#region Private Methods
 	private GameObject _GetOrInitializeCanvas() {
 		if (_canvas == null) {
-			_logger.Log("Initializing Canvas.");
+			DebugLog.Log("Initializing Canvas.");
 			_canvas = new GameObject();
 			_canvas.AddComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
 			CanvasScaler scaler = _canvas.AddComponent<CanvasScaler>();
@@ -27,28 +60,27 @@ class MapTextOverlay : Component {
 
 	private GameObject _GetOrInitializeTextObj() {
 		if (_textObj == null) {
-			_logger.Log("Initializing textObj.");
+			DebugLog.Log("Initializing textObj.");
 			_textObj = new GameObject();
 			_textObj.AddComponent<CanvasRenderer>();
 			CanvasGroup group = _textObj.AddComponent<CanvasGroup>();
 			group.interactable = false;
 			group.blocksRaycasts = false;
 			RectTransform textTransform = _textObj.AddComponent<RectTransform>();
-			_textObj.transform.SetParent(_GetOrInitializeCanvas().transform, false);
+			_textObj.transform.SetParent(_GetOrInitializeCanvas().transform);
 			Vector2 pos = new Vector2(100f, 100f);
 			Vector2 size = new Vector2(500f, 400f);
 			Vector2 anchorPosition = new Vector2((pos.x + size.x / 2f) / 1920f, (1080f - (pos.y + size.y / 2f)) / 1080f);
 			textTransform.anchorMin = anchorPosition;
 			textTransform.anchorMax = anchorPosition;
 			_textObj.SetActive(false);
-			UnityEngine.Object.DontDestroyOnLoad(_textObj);
 		}
 		return _textObj;
 	}
 
 	private Text _GetOrInitializeTextComponent() {
 		if (_textComponent == null) {
-			_logger.Log("Initializing textComponent");
+			DebugLog.Log("Initializing textComponent");
 			_textComponent = _GetOrInitializeTextObj().AddComponent<Text>();
 			_textComponent.horizontalOverflow = HorizontalWrapMode.Overflow;
 			_textComponent.resizeTextForBestFit = true;
@@ -62,31 +94,5 @@ class MapTextOverlay : Component {
 		}
 		return _textComponent;
 	}
-
-	public void Show() {
-		HelperLog.Refresh();
-
-		try {
-			if (HelperLog.Data == null) {
-				return; //do nothing
-			}
-			_GetOrInitializeTextComponent().text = string.Join("\n", HelperLog.Data.GetReachableCountStrings());
-			_GetOrInitializeTextObj().SetActive(true);
-		} catch (Exception e) {
-			_logger.Warn($"Show failed: {e}");
-		}
-	}
-
-	public void Hide() {
-		if (_textComponent == null) {
-			_logger.Warn("Hide: textComponent was null");
-		} else {
-			_GetOrInitializeTextComponent().text = "";
-		}
-		if (_textObj == null) {
-			_logger.Warn("Hide: textObj was null");
-		} else {
-			_GetOrInitializeTextObj().SetActive(false);
-		}
-	}
+	#endregion
 }

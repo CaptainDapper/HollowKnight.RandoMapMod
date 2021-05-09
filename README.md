@@ -13,14 +13,16 @@ casual fans, and people interested in learning the Logic more deeply without stu
 ## Features
 
 * Talking to Elderbug 3 times activates the mod and gives you all maps
-  (including the Collector's Map if grubs are non-randomized) and the compass
-  charm.
-* Alternatively, `Ctrl + M` will give you all the maps, `Ctrl + G` will toggle
-  the Collector's Map, and `Crtl + P` will hide/show the Rando pins.
-* The map will contain pins indicating which checks are currently reachable.
-* The map will show a list of areas and the number of checks available in each
-  area.
-* In addition, non-randomized Grub and Essence sources have pins to indicate whether or not they are currently accessible in logic.
+  and the compass charm, and the quill. Additionally: grubs, roots,
+  and essence boss location pins will also appear on the map. (Pink backgrounds)
+* As an alternative to talking with Elder Bug, Some hotkeys have been added.
+  `Ctrl + M` will give you all the maps, the charm, and the quill. (Can't be undone).
+  `Crtl + P` will hide/show the pins for the randomized locations.
+  `Ctrl + G` will toggle the Resource Helper pins- grubs + essence locations.
+* If, according to the randomizer's logic, you can't access a location, that pin
+  will be smaller and darker.
+* If there is a non-geo cost (grubs or essence) for the location on top of the logic
+  requirements, a small yellow exclamation point will show itself on top of the pin.
 
 ## How to install
 
@@ -30,27 +32,6 @@ casual fans, and people interested in learning the Logic more deeply without stu
 2. Download [the latest release of `RandoMapMod.dll`](https://github.com/CaptainDapper/HollowKnight.RandoMapMod/releases/).
 3. Copy `RandoMapMod.dll` to your Hollow Knight mod folder (for example
    `C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods`).
-4. Start a new game.
-5. Talk to Elderbug 3 times.
-
-## How it works
-
-There are five different types of pins:
-
-* **Small Dark (?) Pins** indicate item locations that are considered to be not
-  reachable based on the allowed-skip settings in the randomizer. It's possible
-  they are still obtainable through sequence breaks.
-* **Big Red (?) Pins** indicate item locations that are currently considered
-  reachable, and one of these will contain the progression you are looking for
-  if you are stuck.
-* **Yellow (!) Pins** indicate item locations that are currently considered
-  reachable but still require some form of prerequisite to obtain. For example,
-  Grubs for Grubfather or Essence for Seer.
-* **Small Dark ($) Pins** indicate shop locations that are currently considered
-  not reacehable.
-* **Big Green ($) Pins** indicate shop locations that are currently in
-  reachable, as a reminder to the player that the shop may still have items for
-  sale they may need.
 
 ## Thanks!
 
@@ -60,19 +41,27 @@ And shout outs to the [Hollow Knight Racing Discord](https://discord.gg/F3upRRu)
 
 ## Version History
 
-### v0.3.2
+###
 
-First "official" release. Fixed the map boundaries so the map ACTUALLY scrolls to the edges without having to purchase every map first.
+### v0.4
 
-### v0.3.5
-
-Compatibility for Rando 3
-
-### v0.3.10
-
-Compatibility for Rando 3.10
+Complete refactor. Code should be a bit more organized, but maybe that's just me.
+Added rando-pool specific sprites for the pins.
+Compatibility for Rando Multiworld.
 
 ### v0.3.11
 
 Non-randomized Grub and Essence pins
 Settings update to handle different randomizer branches
+
+### v0.3.10
+
+Compatibility for Rando 3.10
+
+### v0.3.5
+
+Compatibility for Rando 3
+
+### v0.3.2
+
+First "official" release. Fixed the map boundaries so the map ACTUALLY scrolls to the edges without having to purchase every map first.
