@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Xml;
 using UnityEngine;
@@ -233,7 +234,23 @@ namespace RandoMapMod {
 			foreach (XmlNode node in nodes) {
 				string itemName = node.Attributes["name"].Value;
 				if (!PinData.ContainsKey(itemName)) {
-					//logger.Log($"RandomizerMod has an item.xml entry for {itemName} but there is no matching entry in RandoMapMod's pindata.xml. This is probably intentional to avoid pins that would otherwise mislead the player.");
+					//Skip warnings for:
+					string[] skipPools = {
+						"fake",					//These aren't real items
+					};
+					string[] types = {
+						"shop",					//One pin per shop
+					};
+					if (skipPools.Contains(node.SelectSingleNode("pool").InnerText.ToLower()) ||
+						    types.Contains(node.SelectSingleNode("type").InnerText.ToLower())
+						) {
+						continue;
+					}
+
+					DebugLog.Warn($"Unknown Rando Item `{itemName}`. Tell devs to check 'pindata.xml'");
+					foreach (XmlNode chld in node.ChildNodes) {
+						DebugLog.Warn($"    {chld.Name} : {chld.InnerText}");
+					}
 					continue;
 				}
 

@@ -102,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoringInternals\SeriouslyBoring.cs" />
-    <Compile Include="Extensions\EitherMonad.cs" />
     <Compile Include="UnityComponents\InputListener.cs" />
     <Compile Include="UnityComponents\MapTextOverlay.cs" />
     <Compile Include="HelperLog.cs" />
@@ -155,16 +154,10 @@
     <EmbeddedResource Include="Resources\Map\pinShop.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BoringInternals\BoringStuff.crproj" />
-    <None Include="BoringInternals\Confuser.targets" />
     <None Include="ILRepack.targets" />
+    <None Include="utility.targets" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Confuser.MSBuild">
-      <Version>1.5.0</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="ILRepack.Lib.MSBuild.Task">
       <Version>2.0.18.2</Version>
     </PackageReference>
@@ -183,6 +176,9 @@
     <EmbeddedResource Include="Resources\Map\pinUnknown_GrubInv.png" />
     <EmbeddedResource Include="Resources\Map\pinUnknown_LifebloodInv.png" />
     <EmbeddedResource Include="Resources\Map\pinUnknown_TotemInv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

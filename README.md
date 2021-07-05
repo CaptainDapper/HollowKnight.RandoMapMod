@@ -43,6 +43,15 @@ And shout outs to the [Hollow Knight Racing Discord](https://discord.gg/F3upRRu)
 
 ###
 
+### v0.5.1
+
+Finally got the code out there holy crap.
+
+But actually this release introduced the Hotkeys and a few completely boring easter eggs (don't spoil yourself).
+I think there were a couple of other things but honestly it has been too long so I forget. Oh well, at least it's updated!
+
+Next is investigating a couple of bugs (lol) as well as adding EVEN MORE pins for the updates.
+
 ### v0.4
 
 Complete refactor. Code should be a bit more organized, but maybe that's just me.

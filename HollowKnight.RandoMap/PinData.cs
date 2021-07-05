@@ -121,6 +121,14 @@ namespace RandoMapMod {
 					"Cocoon" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeLifebloodCocoons,
 					"PalaceSoul" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizePalaceTotems,
 					"Rock" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeRocks,
+					"Boss_Geo" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeBossGeo,
+					"PalaceLore" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizePalaceTablets,
+
+					"Cursed" => RandomizerMod.RandomizerMod.Instance.Settings.Cursed,
+					"SplitCloak" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCloakPieces,
+					"SplitCloakLocation" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeCloakPieces,
+					"SplitClaw" => RandomizerMod.RandomizerMod.Instance.Settings.RandomizeClawPieces,
+					"CursedNail" => RandomizerMod.RandomizerMod.Instance.Settings.CursedNail,
 
 					//The following will always need a pin. If they aren't randomized, they have ResourceHelper pins.
 					"Grub" => true,

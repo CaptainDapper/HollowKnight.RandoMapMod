@@ -8,6 +8,13 @@ using UnityEngine;
 namespace RandoMapMod {
 	public static class DebugLog {
 		#region Statics
+		public enum Level {
+			Log = 0,			//Regular debug stuff
+			Warn = 1,			//Refactor or really minor/annoying things
+			Error = 2,			//This is a problem, but might not need code changes to fix...
+			Critical = 3		//This is crucial! An integral obstruction to the features of the mod.
+		}
+
 		private static string _logPath = "";
 		private static string _LogPath {
 			get {
@@ -19,12 +26,22 @@ namespace RandoMapMod {
 				return _logPath;
 			}
 		}
-		//This folder ends up being in the Mods folder! "hollow_knight_Data\Managed\Mods"
+		//Mods folder! "hollow_knight_Data\Managed\Mods\[name].log"
 		private static string _LogFile => _LogPath + @"/RandoMapMod.log";
 
-		public static void Trace() {
+		public static void Trace(Level level = Level.Error) {
 			string msg = new StackTrace(1, true).ToString();
-			_Write("ERROR", msg);
+			_Write(level, msg);
+			MapMod.Instance.LogError(msg);
+		}
+
+		public static void Critical(string msg, Exception inner) {
+			Critical($"{msg}\n-----Inner Exception:-----\n{inner}\n-----");
+		}
+
+		public static void Critical(string msg) {
+			msg += "\n" + new StackTrace(1, true).ToString();
+			_Write(Level.Critical, msg);
 			MapMod.Instance.LogError(msg);
 		}
 
@@ -34,25 +51,37 @@ namespace RandoMapMod {
 
 		public static void Error(string msg) {
 			msg += "\n" + new StackTrace(1, true).ToString();
-			_Write("ERROR", msg);
+			_Write(Level.Error, msg);
 			MapMod.Instance.LogError(msg);
 		}
 
 		public static void Log(string v) {
-			_Write("LOG", v);
+			_Write(Level.Log, v);
 			MapMod.Instance.Log(v);
 		}
 
 		public static void Warn(string v) {
-			_Write("WARN", v);
+			_Write(Level.Warn, v);
 			MapMod.Instance.LogWarn(v);
 		}
 
-		private static void _Write(string logLevel, string line) {
-#if DEBUG
+		private static void _Write(Level level, string line) {
+			if ((int) level > 2) {
+				//Only send LOG and WARN if it's a debug build
+#if !DEBUG
+				return;
+#endif
+			}
+
+			string levelString = level switch {
+				Level.Warn => "WARN",
+				Level.Error => "ERROR",
+				_ => "LOG",
+			};
+
 			string nickName = _DetermineClassNickName();
 
-			string msg = $"{DateTime.Now:HH:mm:ss tt} {logLevel,5} {nameof(MapMod),12} - {line}";
+			string msg = $"{DateTime.Now:HH:mm:ss tt} {levelString,5} {nameof(MapMod),12} - {line}";
 			if (!File.Exists(_LogFile)) {
 				try {
 					File.Create(_LogFile);
@@ -62,7 +91,6 @@ namespace RandoMapMod {
 			}
 			using StreamWriter writer = new StreamWriter(_LogFile, true);
 			writer.WriteLine(msg);
-#endif
 		}
 
 		private static string _DetermineClassNickName() {

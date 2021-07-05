@@ -1,5 +1,4 @@
-﻿using RandoMapMod.Monads;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,21 +17,23 @@ namespace RandoMapMod {
 		}
 
 		public static void Refresh() {
-			//I really like the Either monad, it's really neat! However... We're already try catching the parse function.
-			//Couldn't you just make the parse function throw an exception and we can log it out here, like we do right now? -CDpr
+			//The Either Monad was pretty cool I admit, but I feel like it goes against .net stuff.
+			//The "Right" side was unintended or unexpected behavior of the code, which is what Exceptions are for. Eek -CDpr
 			try {
 				using StreamReader file = new StreamReader(Path.Combine(Application.persistentDataPath, "RandomizerHelperLog.txt"));
 
-				_Parse(file).Case(errorMessage => {
-					DebugLog.Error($"Could not parse RandomizeHelperLog.txt: {errorMessage}");
-				}, helperData => {
-					Data = helperData;
-				});
+				Data = _Parse(file);
+			} catch (HelperLogException e) {
+				DebugLog.Error($"Failed to parse HelperLogData: {e}", e);
 			} catch (Exception e) {
-				DebugLog.Error($"Failed to parse RandomizerHelper data: {e}");
+				DebugLog.Critical($"Failed to parse HelperLog data for unknown reason: {e}", e);
 			}
 		}
-		private static Either<string, DataStore> _Parse(StreamReader reader) {
+
+		public class HelperLogException : Exception {
+			public HelperLogException(string message) : base(message) { }
+		};
+		private static DataStore _Parse(StreamReader reader) {
 			DataStore newData = new DataStore();
 			string line;
 			//Read until we see "REACHABLE ITEM LOCATIONS".
@@ -44,15 +45,15 @@ namespace RandoMapMod {
 				}
 			}
 			if (!sawReachableItemLocations) {
-				return new Either.Left<string, DataStore>("Expected to see 'RECHABLE ITEM LOCATIONS' but hit end of file.");
+				throw new HelperLogException("Expected to see 'RECHABLE ITEM LOCATIONS' but hit end of file.");
 			}
 			line = reader.ReadLine();
 			if (!Regex.Match(line, @"There are [0-9]+ unchecked reachable locations.", RegexOptions.None).Success) {
-				return new Either.Left<string, DataStore>($"Expected to see 'There are N unchecked reachable locations.' but got {line}");
+				throw new HelperLogException($"Expected to see 'There are N unchecked reachable locations.' but got {line}");
 			}
 			line = reader.ReadLine();
 			if (!"".Equals(line)) {
-				return new Either.Left<string, DataStore>($"Expected a blank line but got {line}");
+				throw new HelperLogException($"Expected a blank line but got {line}");
 			}
 			bool sawCheckedItemLocations = false;
 			Location currentLocation = null;
@@ -77,7 +78,7 @@ namespace RandoMapMod {
 				}
 			}
 			if (!sawCheckedItemLocations) {
-				return new Either.Left<string, DataStore>("Expected to see 'CHECKED ITEM LOCATIONS' but reached end of file.");
+				throw new HelperLogException("Expected to see 'CHECKED ITEM LOCATIONS' but reached end of file.");
 			}
 			while ((line = reader.ReadLine()) != null) {
 				if (Regex.Match(line, @"Generated helper log in [0-9.]+ seconds\.", RegexOptions.None).Success) {
@@ -97,7 +98,7 @@ namespace RandoMapMod {
 					currentLocation = new Location(line);
 				}
 			}
-			return new Either.Right<string, DataStore>(newData);
+			return newData;
 		}
 		#endregion
 

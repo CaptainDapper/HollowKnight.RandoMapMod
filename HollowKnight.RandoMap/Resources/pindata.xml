@@ -367,7 +367,9 @@
 	</pin>
 
 	<!--Mask Shards-->
-	<!--<pin name="Mask_Shard-Sly1">
+	<!-- Sly shop is already pinned
+	
+	<pin name="Mask_Shard-Sly1">
     <pinScene>Town</pinScene>
     <offsetX>-0.85</offsetX>
     <offsetY>1.2</offsetY>
@@ -1205,6 +1207,8 @@
 	</pin>
 
 	<!--Stag Stations-->
+	<pin name="Dirtmouth_Stag" />
+	<pin name="Stag_Nest_Stag" />
 	<pin name="Crossroads_Stag">
 	</pin>
 	<pin name="Greenpath_Stag">
@@ -2470,11 +2474,66 @@
 		<offsetX>-0.3</offsetX>
 		<offsetY>0.5</offsetY>
 	</pin>
+	
+	
+	<!-- @@TODO: OFFSETS NEED TO BE FIXED FROM HERE DOWN -->
+	
+	
+	<!--Boss Geo-->
+	<pin name="Boss_Geo-Massive_Moss_Charger" />
+	<pin name="Boss_Geo-Gorgeous_Husk" />
+	<pin name="Boss_Geo-Sanctum_Soul_Warrior" />
+	<pin name="Boss_Geo-Elegant_Soul_Warrior" />
+	<pin name="Boss_Geo-Crystal_Guardian" />
+	<pin name="Boss_Geo-Enraged_Guardian" />
+	<pin name="Boss_Geo-Gruz_Mother" />
+	<pin name="Boss_Geo-Vengefly_King" />
 
 	<!--Lore Tablet-->
-	<pin name="Lore_Tablet-King's_Pass">
+	<pin name="Lore_Tablet-City_Entrance" />
+	<pin name="Lore_Tablet-Pleasure_House" />
+	<pin name="Lore_Tablet-Sanctum_Entrance" />
+	<pin name="Lore_Tablet-Sanctum_Past_Soul_Master" />
+	<pin name="Lore_Tablet-Watcher's_Spire" />
+	<pin name="Lore_Tablet-Archives_Upper" />
+	<pin name="Lore_Tablet-Archives_Left" />
+	<pin name="Lore_Tablet-Archives_Right" />
+	<pin name="Lore_Tablet-Pilgrim's_Way_1" />
+	<pin name="Lore_Tablet-Pilgrim's_Way_2" />
+	<pin name="Lore_Tablet-Mantis_Outskirts" />
+	<pin name="Lore_Tablet-Mantis_Village" />
+	<pin name="Lore_Tablet-Greenpath_Upper_Hidden" />
+	<pin name="Lore_Tablet-Greenpath_Below_Toll" />
+	<pin name="Lore_Tablet-Greenpath_Lifeblood" />
+	<pin name="Lore_Tablet-Greenpath_Stag" />
+	<pin name="Lore_Tablet-Greenpath_QG" />
+	<pin name="Lore_Tablet-Greenpath_Lower_Hidden" />
+	<pin name="Lore_Tablet-Dung_Defender" />
+	<pin name="Lore_Tablet-Spore_Shroom" />
+	<pin name="Lore_Tablet-Fungal_Wastes_Hidden" />
+	<pin name="Lore_Tablet-Fungal_Wastes_Below_Shrumal_Ogres" />
+	<pin name="Lore_Tablet-Fungal_Core" />
+	<pin name="Lore_Tablet-Ancient_Basin" />
+	<pin name="Lore_Tablet-King's_Pass_Focus" />
+	<pin name="Lore_Tablet-King's_Pass_Fury" />
+	<pin name="Lore_Tablet-King's_Pass_Exit" />
+	<pin name="Lore_Tablet-World_Sense" />
+	<pin name="Lore_Tablet-Howling_Cliffs" />
+	<pin name="Lore_Tablet-Kingdom's_Edge" />
+	<pin name="Lore_Tablet-Palace_Workshop" />
+	<pin name="Lore_Tablet-Palace_Throne" />
+	<pin name="Lore_Tablet-Path_of_Pain_Entrance" />
 
-	</pin>
-
-
+	<!--Misc / Cursed-->
+	<pin name="Focus" />
+	<pin name="Left_Mothwing_Cloak" />
+	<pin name="Right_Mothwing_Cloak" />
+	<pin name="Left_Shade_Cloak" />
+	<pin name="Right_Shade_Cloak" />
+	<pin name="Split_Mothwing_Cloak" />
+	<pin name="Left_Mantis_Claw" />
+	<pin name="Right_Mantis_Claw" />
+	<pin name="Leftslash" />
+	<pin name="Rightslash" />
+	<pin name="Upslash" />
 </randomap>

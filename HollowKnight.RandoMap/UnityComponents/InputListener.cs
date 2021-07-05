@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Diagnostics.Eventing.Reader;
 using System.Collections;
+using System;
+using System.Collections.Generic;
+using RandoMapMod.BoringInternals;
 
 namespace RandoMapMod.UnityComponents {
 	class InputListener : MonoBehaviour {
+		#region Statics
 		private static GameObject _instance_GO = null;
+
 		public static InputListener Instance {
 			get {
 				InstantiateSingleton();
@@ -23,17 +28,13 @@ namespace RandoMapMod.UnityComponents {
 				}
 			}
 		}
+		#endregion
 
-#region Statics
-		private const string OLD_PINS = "afraidofchange";
-		private const string OLD_PINS_INV = "alsoafraidofchange";
-#endregion
-
-#region Private Non-Methods
+		#region Private Non-Methods
 		private string _typedString = "";
-#endregion
+		#endregion
 
-#region MonoBehaviour "Overrides"
+		#region MonoBehaviour "Overrides"
 		protected void Update() {
 			if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) {
 				if (Input.GetKeyDown(KeyCode.P)) {
@@ -50,20 +51,24 @@ namespace RandoMapMod.UnityComponents {
 				}
 			}
 
+			List<(string, Action)> keyPhrases = new List<(string, Action)> {
+				("alsoafraidofchange", () => MapMod.SetPinStyleOrReturnToNormal(MapMod.PinStyles.AlsoAfraid)),
+				("afraidofchange", () => MapMod.SetPinStyleOrReturnToNormal(MapMod.PinStyles.Afraid)),
+				(SeriouslyBoring.BORING_PHRASE_1, SeriouslyBoring.ToggleBoringMode1),
+				(SeriouslyBoring.BORING_PHRASE_2, SeriouslyBoring.ToggleBoringMode2),
+			};
+
 			string inputString = Input.inputString;
 			if (inputString != string.Empty) {
 				_typedString += inputString.Replace("'", "").ToLower();
 
-				if (_typedString.ToLower().Contains(OLD_PINS_INV)) {
-					DebugLog.Log($"'{OLD_PINS}': Toggle Old Pins (inverted)");
-					MapMod.SetPinStyleOrReturnToNormal(MapMod.PinStyles.AlsoAfraid);
+				foreach ((string phrase, Action call) item in keyPhrases) {
+					if (_typedString.ToLower().Contains(item.phrase.ToLower())) {
+						DebugLog.Log($"'{item.phrase}' KeyPhrase found!");
+						item.call.Invoke();
 
-					_typedString = "";
-				} else if (_typedString.ToLower().Contains(OLD_PINS)) {
-					DebugLog.Log($"'{OLD_PINS}': Toggle Old Pins");
-					MapMod.SetPinStyleOrReturnToNormal(MapMod.PinStyles.Afraid);
-
-					_typedString = "";
+						_typedString = "";
+					}
 				}
 
 				if (_typedString.Length > 20) {
@@ -74,9 +79,6 @@ namespace RandoMapMod.UnityComponents {
 		#endregion
 
 		#region Non-Private Methods
-		public void CheckIn() {
-			// Literally just makes the instance happen... This is probably stupid.
-		}
 		#endregion
 	}
 }

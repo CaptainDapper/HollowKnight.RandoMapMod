@@ -14,6 +14,21 @@ using UnityEngine.SceneManagement;
 
 namespace RandoMapMod {
 	public class MapMod : Mod {
+		#region Meta
+		public override string GetVersion() {
+			string ver = "0.5.1"; //If you update this, please also update the README.
+			int minAPI = 45;
+
+			bool apiTooLow = Convert.ToInt32(ModHooks.Instance.ModVersion.Split('-')[1]) < minAPI;
+			if (apiTooLow) {
+				return ver + " (Update your API)";
+			}
+
+			return ver;
+		}
+		#endregion
+
+
 		#region Static Stuff
 		private const int SAFE = 3;
 		private const float MAP_MIN_X = -24.16f;
@@ -101,14 +116,14 @@ namespace RandoMapMod {
 		public static PinStyles PinStyle { get; private set; } = PinStyles.Normal;
 
 		public static void SetPinStyleOrReturnToNormal(PinStyles style) {
-			DebugLog.Log($"SetPins:> {PinStyle} => {style}");
+			DebugLog.Log($"SetPins: {PinStyle} => {style}");
 			if (PinStyle == style) {
 				PinStyle = PinStyles.Normal;
-				DebugLog.Log($"Back to Normal:> {PinStyle}");
+				DebugLog.Log($"Back to Normal: {PinStyle}");
 				return;
 			}
 			PinStyle = style;
-			DebugLog.Log($"New Stuff:> {PinStyle}");
+			DebugLog.Log($"New Stuff: {PinStyle}");
 		}
 		#endregion
 
@@ -149,18 +164,6 @@ namespace RandoMapMod {
 
 			DebugLog.Log("RandoMapMod Initialize complete!");
 		}
-
-		public override string GetVersion() {
-			string ver = "0.5.1-rc2"; //If you update this, please also update the README.
-			int minAPI = 45;
-
-			bool apiTooLow = Convert.ToInt32(ModHooks.Instance.ModVersion.Split('-')[1]) < minAPI;
-			if (apiTooLow) {
-				return ver + " (Update API)";
-			}
-
-			return ver;
-		}
 		#endregion
 
 		#region Private Methods
@@ -196,19 +199,11 @@ namespace RandoMapMod {
 				DebugLog.Error($"Error: {e}");
 			}
 
-			DebugLog.Log("Invoking potential hooks.");
-			InputListener.Instance.CheckIn(); //@@OPTIMIZE This is incredibly stupid... I think? (The Instance getter sets up the GO we need)
-
-			OnSetupComplete?.Invoke(this._PinGroup);
-
 			DebugLog.Log("Finished.");
 			orig(self);
 
 			//_DebugPins(self);
 		}
-
-		internal delegate void SetupCompleteHandler(PinGroup pg);
-		internal event SetupCompleteHandler OnSetupComplete;
 
 		private void _GameMap_WorldMap(On.GameMap.orig_WorldMap orig, GameMap self) {
 			orig(self);
@@ -375,7 +370,8 @@ namespace RandoMapMod {
 			return Language.Language.GetInternal(key, sheetTitle);
 		}
 
-#if DEBUG
+#if DEBUG && false
+		//These are nice but I don't need them right now
 		private void _DebugPins(GameMap gameMap) {
 			for (int i = 0; i < gameMap.transform.childCount; i++) {
 				GameObject areaObj = gameMap.transform.GetChild(i).gameObject;

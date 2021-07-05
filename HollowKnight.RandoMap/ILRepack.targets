@@ -1,11 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Target Name="CopyDLLToResources" AfterTargets="Build;Confuser">
-		<Copy Condition="'$(ConfigurationName)' == 'Debug'"
-			  SourceFiles="$(TargetPath)"
-			  DestinationFolder="G:\Games\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods"
-			  OverwriteReadOnlyFiles="true">
+	<Import Project="utility.targets" />
+	
+	<Target Name="MapModTargets" AfterTargets="Build;Confuser">
+		<!-- DEBUG -->
+		<CallTarget Targets="DebugOnly"
+			Condition="'$(ConfigurationName)' == 'Debug'" />
+
+		<!-- RELEASE -->
+		<CallTarget Targets="ReleaseOnly"
+			Condition="'$(ConfigurationName)' != 'Debug'" />
+	</Target>
+
+
+
+
+	<Target Name="DebugOnly">
+		<Copy SourceFiles="$(TargetPath)"
+				DestinationFolder="G:\Games\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods"
+				OverwriteReadOnlyFiles="true">
 		</Copy>
-		<Message Condition="'$(ConfigurationName)' == 'Debug'" Text="(Debug Only) Copied to Mods Folder" Importance="high" />
+		<Message Text="(Debug only) Copied to Mods Folder" Importance="high" />
+	</Target>
+
+	<Target Name="ReleaseOnly">
+		<ItemGroup>
+			<FilesToZip Include="$(TargetPath);$(SolutionDir)README.md" />
+		</ItemGroup>
+
+		<!-- Zip the files up! -->
+		<Zip InputFileNames="@(FilesToZip)"
+			OutputFileName="$(OutDir)$(ProjectName).zip"
+			OverwriteExistingFile="true" />
+		<Message Text="(Not Debug only) Zipped some stuff!" Importance="high" />
+
+		<!-- Get SHA1 / Open Explorer -->
+		<CallTarget Targets="WindowsOnly"
+			Condition="'$(OS)' == 'Windows_NT'" />
+	</Target>
+
+	<Target Name="WindowsOnly">
+		<!-- Get SHA1 for new Zip File -->
+		<Exec Command="Powershell.exe &quot;Get-FileHash $(TargetPath) -Algorithm SHA1&quot;" />
+		<!-- Open explorer to Output Directory -->
+		<Exec Command="start explorer &quot;$(OutDir)&quot;" />
 	</Target>
 </Project>

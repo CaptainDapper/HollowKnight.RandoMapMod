@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RandoMapMod.BoringInternals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -95,6 +96,9 @@ namespace RandoMapMod {
 
 			Pin pinC = newPin.AddComponent<Pin>();
 			pinC.SetPinData(pinData);
+
+			//Don't worry about this one. It just does some totally normal non-spoilery things.
+			newPin.AddComponent<BoringPinThing>();
 
 			newPin.SetActive(true);
 
